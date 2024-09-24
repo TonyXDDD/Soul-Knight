@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://pundmgboenu6" path="res://8bit ELDEN RING  Main Theme  Short Version Chiptune Cover.mp3" id="3_dc0t2"]
 
 [sub_resource type="SystemFont" id="SystemFont_crmj5"]
-font_names = PackedStringArray("Chiller")
+font_names = PackedStringArray("Sitka Small")
 
 [sub_resource type="SystemFont" id="SystemFont_l2pn4"]
 font_names = PackedStringArray("Chiller")
