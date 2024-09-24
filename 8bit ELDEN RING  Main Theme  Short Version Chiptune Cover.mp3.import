@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pundmgboenu6"
+path="res://.godot/imported/8bit ELDEN RING  Main Theme  Short Version Chiptune Cover.mp3-659dbf2ba4633b067f15f5add9fe2ca2.mp3str"
+
+[deps]
+
+source_file="res://8bit ELDEN RING  Main Theme  Short Version Chiptune Cover.mp3"
+dest_files=["res://.godot/imported/8bit ELDEN RING  Main Theme  Short Version Chiptune Cover.mp3-659dbf2ba4633b067f15f5add9fe2ca2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
