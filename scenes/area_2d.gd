@@ -4,7 +4,7 @@ extends Area2D
 @onready var transition: Control = $"../Transition" # Fade control (a ColorRect or Control node)
 @onready var animation_player: AnimationPlayer = $"../Transition/AnimationPlayer" # Animation player for fade animations
 
-var next_level_scene = "res://scenes/level_1.tscn"
+var next_level_scene = "res://scenes/level_1TEST.tscn"
 
 func _ready():
 	# Connect the body_entered signal to the function
