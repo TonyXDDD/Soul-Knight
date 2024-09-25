@@ -1,9 +1,202 @@
-[gd_scene load_steps=2 format=3 uid="uid://detgrwi2njwun"]
+[gd_scene load_steps=27 format=3 uid="uid://detgrwi2njwun"]
+
+[ext_resource type="Texture2D" uid="uid://cmii75afand2n" path="res://sprites/levelbuilds/SET1/_PNG/SET1_background_obj.png" id="1_73sss"]
+[ext_resource type="Script" path="res://scenes/tutorial_level.gd" id="1_hxa6k"]
+[ext_resource type="Texture2D" uid="uid://dcwux0s6gwq5f" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_day1.png" id="2_br2td"]
+[ext_resource type="Texture2D" uid="uid://bxe2ekim2fklj" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_day2.png" id="3_76rhs"]
+[ext_resource type="Texture2D" uid="uid://c3vm30y1n8iel" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_day3.png" id="4_r6d58"]
+[ext_resource type="Texture2D" uid="uid://2xadmkle5rah" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_night1.png" id="5_rwrp1"]
+[ext_resource type="Texture2D" uid="uid://bdovdltaldggh" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_night2.png" id="6_tj4tg"]
+[ext_resource type="Texture2D" uid="uid://namek1glqnxg" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_night3.png" id="7_adqmu"]
+[ext_resource type="Texture2D" uid="uid://t3ucgquvxd2c" path="res://sprites/levelbuilds/SET1/_PNG/SET1_decorative_obj.png" id="8_upxum"]
+[ext_resource type="Texture2D" uid="uid://wlwxiinijlak" path="res://sprites/levelbuilds/SET1/_PNG/SET1_Mainlev_build.png" id="9_ec8sn"]
+[ext_resource type="Texture2D" uid="uid://uqgou66mek42" path="res://sprites/levelbuilds/SET1/_PNG/SET1_Main_bckgrdlev_build.png" id="10_pmh3n"]
+[ext_resource type="PackedScene" uid="uid://cop7c1ogtmvfp" path="res://scenes/player.tscn" id="11_yyq76"]
+[ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="12_woywj"]
+[ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="14_or3bf"]
+[ext_resource type="AudioStream" uid="uid://hqtv2xt0ulhn" path="res://Abandoned Metropolis Royalty Free  8 Bit Lofi Hip Hop.mp3" id="15_yeese"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsmyb"]
+texture = ExtResource("1_73sss")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7t3i4"]
+texture = ExtResource("2_br2td")
+0:0/size_in_atlas = Vector2i(40, 23)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bmjwu"]
+texture = ExtResource("3_76rhs")
+0:0/size_in_atlas = Vector2i(40, 23)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g2nt8"]
+texture = ExtResource("4_r6d58")
+0:0/size_in_atlas = Vector2i(40, 23)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_owd5g"]
+texture = ExtResource("5_rwrp1")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kc27"]
+texture = ExtResource("6_tj4tg")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygfjv"]
+texture = ExtResource("7_adqmu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d1chu"]
+texture = ExtResource("8_upxum")
+1:0/size_in_atlas = Vector2i(16, 23)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(60, 180, 32, 148, 20, 96, 16, 28, 60, 12, 92, -40, 112, -104, 68, -156, 20, -180, -12, -156, -60, -160, -92, -156, -116, -136, -104, -100, -84, -60, -72, -28, -52, 4, -44, 20, -36, 48, -28, 64, -24, 84, -28, 112, -36, 140, -48, 156, -64, 164, -80, 176)
+20:24/size_in_atlas = Vector2i(4, 2)
+20:24/0 = 0
+19:27/size_in_atlas = Vector2i(6, 2)
+19:27/0 = 0
+28:30/size_in_atlas = Vector2i(6, 3)
+28:30/0 = 0
+36:32/size_in_atlas = Vector2i(5, 1)
+36:32/0 = 0
+0:23/size_in_atlas = Vector2i(7, 10)
+0:23/0 = 0
+7:25/size_in_atlas = Vector2i(5, 8)
+7:25/0 = 0
+13:25/size_in_atlas = Vector2i(6, 8)
+13:25/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3627o"]
+texture = ExtResource("9_ec8sn")
+0:28/size_in_atlas = Vector2i(10, 2)
+0:28/0 = 0
+0:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-80, -16, -80, 16, 80, 16, 80, -16)
+5:7/size_in_atlas = Vector2i(5, 2)
+5:7/0 = 0
+5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-28, 0, 40, 0, 40, 12, -24, 12)
+14:7/size_in_atlas = Vector2i(5, 2)
+14:7/0 = 0
+14:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, 0, 24, 0, 24, 12, -24, 12, -40, 12)
+0:24/size_in_atlas = Vector2i(2, 4)
+0:24/0 = 0
+0:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -20, 16, -20, 16, 32, -16, 32)
+2:25/size_in_atlas = Vector2i(2, 3)
+2:25/0 = 0
+2:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -20, 16, -20, 16, 32, -16, 32)
+4:26/size_in_atlas = Vector2i(2, 2)
+4:26/0 = 0
+4:26/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 16, -4, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3j7rw"]
+texture = ExtResource("10_pmh3n")
+1:14/size_in_atlas = Vector2i(7, 2)
+1:14/0 = 0
+1:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-56, -4, -56, 16, 56, 16, 56, -4)
+2:16/size_in_atlas = Vector2i(5, 4)
+2:16/0 = 0
+16:14/size_in_atlas = Vector2i(5, 6)
+16:14/0 = 0
+16:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -32, 40, -32, 40, -16, -40, -16)
+14:0/size_in_atlas = Vector2i(4, 2)
+14:0/0 = 0
+14:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 32, 0, 32, 16, -16, 16)
+18:0/size_in_atlas = Vector2i(4, 2)
+18:0/0 = 0
+18:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 0, 16, 0, 16, 16, -32, 16)
+14:2/size_in_atlas = Vector2i(4, 5)
+14:2/0 = 0
+14:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -40, 20, -40, 16, 40, 4, 40, -16, 40)
+18:2/size_in_atlas = Vector2i(4, 5)
+18:2/0 = 0
+18:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -40, 20, -40, 16, 40, 4, 40, -16, 40)
+14:7/size_in_atlas = Vector2i(4, 2)
+14:7/0 = 0
+14:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 32, -16, 32, 4, -16, 4)
+18:7/size_in_atlas = Vector2i(4, 2)
+18:7/0 = 0
+18:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, 16, -16, 16, 4, -32, 4)
+3:3/0 = 0
+3:4/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+4:4/0 = 0
+4:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_sv12d"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_dsmyb")
+sources/1 = SubResource("TileSetAtlasSource_7t3i4")
+sources/2 = SubResource("TileSetAtlasSource_bmjwu")
+sources/3 = SubResource("TileSetAtlasSource_g2nt8")
+sources/4 = SubResource("TileSetAtlasSource_owd5g")
+sources/5 = SubResource("TileSetAtlasSource_1kc27")
+sources/6 = SubResource("TileSetAtlasSource_ygfjv")
+sources/7 = SubResource("TileSetAtlasSource_d1chu")
+sources/8 = SubResource("TileSetAtlasSource_3627o")
+sources/9 = SubResource("TileSetAtlasSource_3j7rw")
 
 [node name="Tutorial_level" type="Node2D"]
+script = ExtResource("1_hxa6k")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_sv12d")
 format = 2
+layer_0/name = "Layer3"
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 40, 2, 0)
+layer_1/name = "Layer2"
+layer_1/tile_data = PackedInt32Array(0, 2, 0, 40, 2, 0)
+layer_2/name = "Layer1"
+layer_2/tile_data = PackedInt32Array(0, 3, 0, 40, 3, 0, 458759, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 458760, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 458749, 1835015, 30, 327673, 458759, 25, 262143, 7, 23, 458736, 1310727, 24)
+layer_3/name = "Mainphy"
+layer_3/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589839, 1048585, 14, 589842, 1048585, 14, 589847, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, -196549, 65543, 0, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917521, 131081, 16, 917526, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32)
+layer_4/name = "covr"
+layer_4/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3)
+
+[node name="Player" parent="." instance=ExtResource("11_yyq76")]
+position = Vector2(-190, 98)
+
+[node name="Soul" parent="Player" instance=ExtResource("12_woywj")]
+position = Vector2(1, -31)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
+position = Vector2(1, -3)
+zoom = Vector2(2.5, 2.5)
+limit_left = -300
+limit_top = -173
+limit_right = 957
+limit_bottom = 170
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+offset_left = -260.0
+offset_top = 19.0
+offset_right = -108.0
+offset_bottom = 42.0
+text = "To move Knight use"
+
+[node name="Label2" type="Label" parent="Labels"]
+offset_left = -217.0
+offset_top = 38.0
+offset_right = -156.0
+offset_bottom = 61.0
+text = "A and D"
+
+[node name="Label3" type="Label" parent="Labels"]
+offset_left = 46.0
+offset_top = -41.0
+offset_right = 182.0
+offset_bottom = -18.0
+text = "Spacebar to jump"
+
+[node name="Transition" parent="." instance=ExtResource("14_or3bf")]
+offset_left = -223.0
+offset_top = 72.0
+offset_right = -223.0
+offset_bottom = 72.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_yeese")
+volume_db = -18.489
+pitch_scale = 1.49
+autoplay = true

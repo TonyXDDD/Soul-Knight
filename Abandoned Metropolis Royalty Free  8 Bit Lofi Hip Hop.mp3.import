@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hqtv2xt0ulhn"
+path="res://.godot/imported/Abandoned Metropolis Royalty Free  8 Bit Lofi Hip Hop.mp3-aa0aa37ecd7b250d795211a02e174fa0.mp3str"
+
+[deps]
+
+source_file="res://Abandoned Metropolis Royalty Free  8 Bit Lofi Hip Hop.mp3"
+dest_files=["res://.godot/imported/Abandoned Metropolis Royalty Free  8 Bit Lofi Hip Hop.mp3-aa0aa37ecd7b250d795211a02e174fa0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
