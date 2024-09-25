@@ -33,9 +33,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(\"jump\") and is_on_floor() and not is_attacking:
 		velocity.y = JUMP_VELOCITY
 
-	# Check for attack input
+	# Check for attack1 input
 	if Input.is_action_just_pressed(\"left_mouse_click\") and not is_attacking:
-		start_attack()
+		start_attack1()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(\"move_left\", \"move_right\")
@@ -66,7 +66,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func start_attack() -> void:
+func start_attack1() -> void:
 	if not is_attacking:
 		is_attacking = true  # Mark as attacking
 
@@ -520,7 +520,6 @@ position = Vector2(5, -1)
 scale = Vector2(0.891667, 1)
 sprite_frames = SubResource("SpriteFrames_8fjx5")
 animation = &"idol"
-frame_progress = 0.551994
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_y87gy")
