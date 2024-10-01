@@ -34,7 +34,8 @@
 ## 2024-09-26 - 6hr: Creating a main Menu
 *Item 1 - created a simple menu for the player
 
-## 2024-09-26 - 6hr: Trying to create a Puse menu
+## 2024-10-01 - 7hr: Creating a pause Menu
+*Item 1 - created a simple pause menu for the player to return to the main menu when they want to or even quit the game with out having to alt-f4
 
 
 
