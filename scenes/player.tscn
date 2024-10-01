@@ -1,10 +1,11 @@
-[gd_scene load_steps=55 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=59 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
 [ext_resource type="Texture2D" uid="uid://d0k3oo6bm6y51" path="res://sprites/KnightSprites/_Idle.png" id="1_y5bw3"]
 [ext_resource type="Texture2D" uid="uid://xiqy5erxkhn5" path="res://sprites/KnightSprites/_Jump.png" id="2_2dvmj"]
 [ext_resource type="Texture2D" uid="uid://dkd1f8e24wino" path="res://sprites/KnightSprites/_Run.png" id="3_glb56"]
 [ext_resource type="Texture2D" uid="uid://dpspw0fvswaqk" path="res://sprites/KnightSprites/_DeathNoMovement.png" id="4_k8dk1"]
+[ext_resource type="Texture2D" uid="uid://d0voydig7wlew" path="res://sprites/KnightSprites/_Attack2.png" id="6_4fsq4"]
 
 [sub_resource type="GDScript" id="GDScript_deogl"]
 script/source = "extends CharacterBody2D
@@ -15,6 +16,8 @@ const JUMP_VELOCITY = -400.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d_2: Sprite2D = $Sprite2D2
+@onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
 @onready var soul: CharacterBody2D = $Soul  # Reference to the Soul character
 
 var is_attacking = false
@@ -36,6 +39,10 @@ func _physics_process(delta: float) -> void:
 	# Check for attack1 input
 	if Input.is_action_just_pressed(\"left_mouse_click\") and not is_attacking:
 		start_attack1()
+
+	# Check for attack2 input
+	if Input.is_action_just_pressed(\"right_mouse_click\") and not is_attacking:
+		start_attack2()
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(\"move_left\", \"move_right\")
@@ -71,7 +78,7 @@ func start_attack1() -> void:
 		is_attacking = true  # Mark as attacking
 
 		# Debugging information
-		print(\"Starting attack. Facing direction:\", facing_direction)
+		print(\"Starting attack1. Facing direction:\", facing_direction)
 
 		# Flip the sprite based on facing direction
 		sprite_2d.flip_h = facing_direction == -1
@@ -80,9 +87,31 @@ func start_attack1() -> void:
 		animated_sprite_2d.visible = false
 		animation_player.play(\"attack1\")
 
-# Called when the attack animation finishes
+func start_attack2() -> void:
+	if not is_attacking:
+		is_attacking = true  # Mark as attacking
+
+		# Debugging information
+		print(\"Starting attack2. Facing direction:\", facing_direction)
+
+		# Flip the sprite based on facing direction
+		sprite_2d_2.flip_h = facing_direction == -1
+
+		# Hide the animated sprite and play the attack animation
+		animated_sprite_2d.visible = false
+		animation_player_2.play(\"attack2\")
+
+# Called when the attack1 animation finishes
 func _on_attack_animation_finished(animation_name: String) -> void:
 	if animation_name == \"attack1\":
+		is_attacking = false  # Reset attack state after the attack animation finishes
+
+		# Show the animated sprite again
+		animated_sprite_2d.visible = true
+
+# Called when the attack2 animation finishes
+func _on_attack_animation_finished_2(animation_name: String) -> void:
+	if animation_name == \"attack2\":
 		is_attacking = false  # Reset attack state after the attack animation finishes
 
 		# Show the animated sprite again
@@ -91,6 +120,7 @@ func _on_attack_animation_finished(animation_name: String) -> void:
 func _ready() -> void:
 	# Connect the animation_finished signal to handle attack completion
 	animation_player.animation_finished.connect(_on_attack_animation_finished)
+	animation_player_2.animation_finished.connect(_on_attack_animation_finished_2)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdbxn"]
@@ -424,7 +454,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y87gy"]
 radius = 8.0
-height = 34.0
+height = 38.0
 
 [sub_resource type="Animation" id="Animation_2bmdm"]
 length = 0.001
@@ -512,6 +542,91 @@ _data = {
 "attack1": SubResource("Animation_dt05u")
 }
 
+[sub_resource type="Animation" id="Animation_x23tr"]
+resource_name = "attack2"
+length = 0.6667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_4fsq4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 5, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cuukj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_4fsq4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ylj88"]
+_data = {
+"RESET": SubResource("Animation_cuukj"),
+"attack2": SubResource("Animation_x23tr")
+}
+
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_deogl")
 
@@ -528,6 +643,7 @@ shape = SubResource("CapsuleShape2D_y87gy")
 libraries = {
 "": SubResource("AnimationLibrary_7vlc0")
 }
+speed_scale = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -535,3 +651,15 @@ position = Vector2(-1, -20)
 texture = ExtResource("1_3gsrm")
 hframes = 4
 frame = 1
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ylj88")
+}
+speed_scale = 1.2
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-7, -20)
+texture = ExtResource("6_4fsq4")
+hframes = 6
