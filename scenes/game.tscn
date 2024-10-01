@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://di8jkcjaq0d3b"]
+[gd_scene load_steps=28 format=3 uid="uid://di8jkcjaq0d3b"]
 
 [ext_resource type="Texture2D" uid="uid://bdl0bpmu21w0s" path="res://sprites/mainlev_build.png" id="1_dpksh"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_jfq0j"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_ml1up"]
 [ext_resource type="PackedScene" uid="uid://cop7c1ogtmvfp" path="res://scenes/player.tscn" id="2_w6dbk"]
 [ext_resource type="Texture2D" uid="uid://cls8d8bcgnv24" path="res://sprites/background1.png" id="3_p0b6g"]
@@ -14,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="12_ijq7g"]
 [ext_resource type="Script" path="res://scenes/area_2d.gd" id="13_h8umj"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="14_qvkvw"]
+[ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="16_x3xyw"]
+[ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="17_5cb4x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qujjk"]
 texture = ExtResource("1_dpksh")
@@ -724,6 +727,7 @@ size = Vector2(41, 50)
 
 [node name="Game" type="Node2D"]
 scale = Vector2(1, 0.984806)
+script = ExtResource("1_jfq0j")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_p872y")
@@ -771,5 +775,16 @@ offset_left = 459.0
 offset_top = -103.574
 offset_right = 459.0
 offset_bottom = -103.574
+
+[node name="Transition2" parent="." instance=ExtResource("14_qvkvw")]
+offset_left = -601.0
+offset_top = -24.3703
+offset_right = -601.0
+offset_bottom = -24.3703
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("16_x3xyw")
+
+[node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("17_5cb4x")]
 
 [connection signal="finished" from="Player/Music" to="Player/Music" method="_on_finished"]

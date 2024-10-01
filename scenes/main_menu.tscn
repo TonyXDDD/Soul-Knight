@@ -6,9 +6,11 @@
 
 [sub_resource type="SystemFont" id="SystemFont_crmj5"]
 font_names = PackedStringArray("Sitka Small")
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_l2pn4"]
 font_names = PackedStringArray("Chiller")
+subpixel_positioning = 0
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
