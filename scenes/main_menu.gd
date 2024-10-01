@@ -1,6 +1,6 @@
 class_name MainMenu
 extends Control
-
+#repo try
 @onready var start_b: Button = $MarginContainer/HBoxContainer/VBoxContainer/StartB as Button
 @onready var quit_b: Button = $MarginContainer/HBoxContainer/VBoxContainer/QuitB as Button
 @onready var tutrl: Button = $MarginContainer/HBoxContainer/VBoxContainer/tutrl as Button
