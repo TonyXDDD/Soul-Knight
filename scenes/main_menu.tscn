@@ -119,5 +119,4 @@ text = "Quit
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_dc0t2")
-pitch_scale = 0.8
 autoplay = true
