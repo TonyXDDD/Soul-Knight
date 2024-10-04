@@ -1,6 +1,7 @@
-[gd_scene load_steps=59 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=66 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
+[ext_resource type="Texture2D" uid="uid://b1w0sw470dpsj" path="res://sprites/KnightSprites/_frozenandunfreze.png" id="1_ere4o"]
 [ext_resource type="Texture2D" uid="uid://d0k3oo6bm6y51" path="res://sprites/KnightSprites/_Idle.png" id="1_y5bw3"]
 [ext_resource type="Texture2D" uid="uid://xiqy5erxkhn5" path="res://sprites/KnightSprites/_Jump.png" id="2_2dvmj"]
 [ext_resource type="Texture2D" uid="uid://dkd1f8e24wino" path="res://sprites/KnightSprites/_Run.png" id="3_glb56"]
@@ -9,7 +10,7 @@
 
 [sub_resource type="GDScript" id="GDScript_deogl"]
 script/source = "extends CharacterBody2D
-#test
+
 const SPEED = 220.0
 const JUMP_VELOCITY = -400.0
 
@@ -22,11 +23,29 @@ const JUMP_VELOCITY = -400.0
 
 var is_attacking = false
 var facing_direction = 1  # 1 for right, -1 for left
+var is_frozen = false  # Track if frozen animation is playing
+var soul_was_active = false  # Track whether Soulmode was active
 
 func _physics_process(delta: float) -> void:
-	# Check if Soul is active and prevent movement if it is
+	# Check if Soul is active
 	if soul.is_playable:
-		return  # Exit early if Soul is active
+		if not is_frozen:
+			# Soul is active, play the frozen animation and prevent movement
+			animated_sprite_2d.play(\"frozen\")
+			is_frozen = true
+		return  # Exit early if Soul is active (no movement allowed)
+
+	# If Soulmode was active but is now deactivated, play \"notfrozen\"
+	if is_frozen:
+		animated_sprite_2d.play(\"notfrozen\")
+		is_frozen = false
+		soul_was_active = true
+		return  # Wait for notfrozen to finish before resuming movement
+
+	# If notfrozen animation has finished, reset soul_was_active flag
+	if soul_was_active:
+		soul_was_active = false  # Reset after notfrozen has played once
+		return  # Prevent any further logic until the next frame
 
 	# Add gravity.
 	if not is_on_floor():
@@ -54,8 +73,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 		facing_direction = -1
 
-	# Play animations if not attacking
-	if not is_attacking:
+	# Play animations if not attacking or coming out of Soulmode
+	if not is_attacking and not soul_was_active:
 		if is_on_floor():
 			if direction == 0:
 				animated_sprite_2d.play(\"idol\")
@@ -123,6 +142,18 @@ func _ready() -> void:
 	animation_player_2.animation_finished.connect(_on_attack_animation_finished_2)
 "
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixj3q"]
+atlas = ExtResource("1_ere4o")
+region = Rect2(240, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6byl"]
+atlas = ExtResource("1_ere4o")
+region = Rect2(120, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o563b"]
+atlas = ExtResource("1_ere4o")
+region = Rect2(0, 40, 120, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdbxn"]
 atlas = ExtResource("1_y5bw3")
 region = Rect2(0, 40, 120, 40)
@@ -173,6 +204,18 @@ region = Rect2(120, 40, 120, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mavnb"]
 atlas = ExtResource("2_2dvmj")
+region = Rect2(240, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qopvv"]
+atlas = ExtResource("1_ere4o")
+region = Rect2(0, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgr3a"]
+atlas = ExtResource("1_ere4o")
+region = Rect2(120, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi2pj"]
+atlas = ExtResource("1_ere4o")
 region = Rect2(240, 40, 120, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d24c7"]
@@ -299,6 +342,20 @@ region = Rect2(0, 40, 120, 40)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ixj3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6byl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o563b")
+}],
+"loop": false,
+"name": &"frozen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jdbxn")
 }, {
 "duration": 1.0,
@@ -345,6 +402,20 @@ animations = [{
 "loop": true,
 "name": &"jump",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qopvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgr3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi2pj")
+}],
+"loop": false,
+"name": &"notfrozen",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -634,7 +705,9 @@ script = SubResource("GDScript_deogl")
 position = Vector2(5, -1)
 scale = Vector2(0.891667, 1)
 sprite_frames = SubResource("SpriteFrames_8fjx5")
-animation = &"idol"
+animation = &"notfrozen"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_y87gy")
