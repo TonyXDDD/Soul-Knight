@@ -730,6 +730,7 @@ scale = Vector2(1, 0.984806)
 script = ExtResource("1_jfq0j")
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(0, 9.13885)
 tile_set = SubResource("TileSet_p872y")
 format = 2
 layer_0/name = "backB2"
@@ -748,7 +749,7 @@ position = Vector2(-569, -10)
 position = Vector2(-4, 3)
 zoom = Vector2(2.5, 2.5)
 limit_left = -728
-limit_top = -225
+limit_top = -205
 limit_bottom = 248
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0

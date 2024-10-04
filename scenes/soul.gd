@@ -1,17 +1,21 @@
 extends CharacterBody2D
 
-const SPEED = 180.0
+const SPEED = 80.0
 const JUMP_VELOCITY = -400.0
 const OFFSET_Y = -50  # Adjust this value to position the Soul above the Knight's head
+const CIRCLE_RADIUS = 125  # Adjust the radius for the movement constraint
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: CharacterBody2D = $".."
-
 
 var is_playable: bool = false  # Variable to track if the character is playable
 var is_exiting: bool = false  # Variable to track if the character is exiting
 var waiting_for_idle: bool = false  # Variable to track if we should play "idle" after "enter"
 var reset_position: Vector2  # Variable to store the reset position
+
+# Circle constraint variables
+var circle_center: Vector2  # Will store the initial spawn position
+var circle_radius: float = CIRCLE_RADIUS  # Radius for movement limitation
 
 func _ready() -> void:
 	# Set visibility to false at the start
@@ -38,6 +42,10 @@ func _process(delta: float) -> void:
 			animated_sprite_2d.visible = true  # Show character when entering
 			print("Playing enter animation and character is now visible. Reset position updated to: ", reset_position)
 
+			# Set the circle center to the current position when becoming playable
+			circle_center = global_position
+			print("Circle center set to: ", circle_center)
+
 	# Check if we need to reset the position when exiting
 	if is_exiting and not animated_sprite_2d.is_playing():
 		# If the exit animation is done, hide the character and reset its position to the stored reset position
@@ -61,6 +69,19 @@ func _physics_process(delta: float) -> void:
 	var vertical_direction := Input.get_axis("soul_up", "soul_down")
 	velocity.y = vertical_direction * SPEED
 
+	# Calculate the new position after movement
+	var new_position = global_position + velocity * delta
+
+	# Check if the new position is within the circular constraint
+	if new_position.distance_to(circle_center) <= circle_radius:
+		global_position = new_position  # Move freely within the circle
+	else:
+		# Restrict movement to the circle boundary
+		var direction_to_center = (new_position - circle_center).normalized()
+		global_position = circle_center + direction_to_center * circle_radius
+		print("Restricted movement to the edge of the circle.")
+
+	# Apply the movement
 	move_and_slide()
 
 	# Play the correct animation based on movement only if not exiting
