@@ -16,6 +16,7 @@ var reset_position: Vector2  # Variable to store the reset position
 # Circle constraint variables
 var circle_center: Vector2  # Will store the initial spawn position
 var circle_radius: float = CIRCLE_RADIUS  # Radius for movement limitation
+var at_boundary: bool = false  # Track if the character is at the boundary
 
 func _ready() -> void:
 	# Set visibility to false at the start
@@ -74,19 +75,28 @@ func _physics_process(delta: float) -> void:
 
 	# Check if the new position is within the circular constraint
 	if new_position.distance_to(circle_center) <= circle_radius:
-		global_position = new_position  # Move freely within the circle
+		# Move freely within the circle
+		global_position = new_position
+		at_boundary = false  # Not at the boundary
 	else:
 		# Restrict movement to the circle boundary
 		var direction_to_center = (new_position - circle_center).normalized()
 		global_position = circle_center + direction_to_center * circle_radius
 		print("Restricted movement to the edge of the circle.")
+		at_boundary = true  # At the boundary
 
 	# Apply the movement
 	move_and_slide()
 
 	# Play the correct animation based on movement only if not exiting
 	if is_playable and not is_exiting:
-		if velocity.length() > 0:
+		if at_boundary:
+			# Play the cantReach animation if the character is at the boundary
+			if animated_sprite_2d.animation != "cantReach":
+				animated_sprite_2d.play("cantReach")
+				print("Playing cantReach animation.")
+		elif velocity.length() > 0:
+			# Play the float animation when moving within the circle
 			animated_sprite_2d.play("float")
 		else:
 			if waiting_for_idle:

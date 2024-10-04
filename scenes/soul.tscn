@@ -1,7 +1,23 @@
-[gd_scene load_steps=39 format=3 uid="uid://bt0hniy5va30a"]
+[gd_scene load_steps=43 format=3 uid="uid://bt0hniy5va30a"]
 
 [ext_resource type="Texture2D" uid="uid://bhye3re7yynri" path="res://sprites/Soul sprites/000.png" id="1_7r8nr"]
 [ext_resource type="Script" path="res://scenes/soul.gd" id="1_ho78h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1e03"]
+atlas = ExtResource("1_7r8nr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvs0e"]
+atlas = ExtResource("1_7r8nr")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_se38r"]
+atlas = ExtResource("1_7r8nr")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjaoj"]
+atlas = ExtResource("1_7r8nr")
+region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qmmu"]
 atlas = ExtResource("1_7r8nr")
@@ -147,6 +163,23 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_p1e03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvs0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_se38r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjaoj")
+}],
+"loop": false,
+"name": &"cantReach",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7qmmu")
 }, {
 "duration": 1.0,
@@ -279,4 +312,6 @@ script = ExtResource("1_ho78h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_brhjj")
-animation = &"idle"
+animation = &"cantReach"
+frame = 2
+frame_progress = 1.0
