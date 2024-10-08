@@ -18,7 +18,7 @@ const JUMP_VELOCITY = -400.0
 const DASH_SPEED = 600.0  # Dash speed
 const DASH_DURATION = 0.2  # Dash lasts for 0.2 seconds
 const DASH_COOLDOWN = 2.5  # Cooldown time for dash in seconds
-const FRICTION = 0.2  # Lower value for more gradual slowdown
+const FRICTION = 0.1  # Lower value for more gradual slowdown
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
