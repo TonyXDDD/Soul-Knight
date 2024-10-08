@@ -1,4 +1,8 @@
 # Fall 2024 - Intro to Game Design @ SUNY New Paltz
+* Name: Joshua Alfarano
+* [Trello Board](https://trello.com/b/OxphJGYl/new-paltz-game-design-final-project-template)
+* [Proposal](https://drive.google.com/file/d/1yC7JtO5aYezi7_7ROdvto446HfgG_WDr/view?usp=sharing)
+* [Other docs](todo)
 
 ## 2024-10-01 - 7hr: Creating a pause Menu
 * Item 1 - created a simple pause menu for the player to return to the main menu when they want to or even quit the game with out having to alt-f4
@@ -33,7 +37,3 @@
 * Item 2 - Importet Knight assets off itch.io
 * Item 3 - Fully implemented normal movement controls and character
 
-* Name: Joshua Alfarano
-* [Trello Board](https://trello.com/b/OxphJGYl/new-paltz-game-design-final-project-template)
-* [Proposal](https://drive.google.com/file/d/1yC7JtO5aYezi7_7ROdvto446HfgG_WDr/view?usp=sharing)
-* [Other docs](todo)
