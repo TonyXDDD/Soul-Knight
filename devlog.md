@@ -1,7 +1,7 @@
 # Fall 2024 - Intro to Game Design @ SUNY New Paltz
 * Name: Joshua Alfarano
 * [Trello Board](https://trello.com/b/OxphJGYl/new-paltz-game-design-final-project-template)
-* [Proposal](FinalProposal_Soul Knight(SoulmodeMechanic).pdf)
+* [Proposal](FinalProp)
 * [Other docs](todo)
 
 ## 2024-10-09 - 5hr: Implementing a simple dash mechanic for the Knight
