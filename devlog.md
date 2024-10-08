@@ -1,10 +1,19 @@
 # Fall 2024 - Intro to Game Design @ SUNY New Paltz
+* Name: Joshua Alfarano
+* [Trello Board](https://trello.com/b/OxphJGYl/new-paltz-game-design-final-project-template)
+* [Proposal](https://drive.google.com/file/d/1yC7JtO5aYezi7_7ROdvto446HfgG_WDr/view?usp=sharing)
+* [Other docs](todo)
+
+## 2024-10-09 - 5hr: Implementing a simple dash mechanic for the Knight
+* Item 1 - created a dash for the Knight mechanic so traversing the map would be a little more fun
+* Item 2 - I was able to learn on how to implement the mechanic via this youtube video: https://youtu.be/fp_XugQvOKU
 
 ## 2024-10-01 - 7hr: Creating a pause Menu
 * Item 1 - created a simple pause menu for the player to return to the main menu when they want to or even quit the game with out having to alt-f4
 
 ## 2024-09-26 - 6hr: Creating a main Menu
-* Item 1 - created a simple menu for the player
+* Item 1 - created a simple menu
+* Item 2 - This includes a Start button, Tutorial buton and an exit button
 
 ## 2024-09-22 - 6hr: Learning Level Transitioning
 * Item 1 - before I continued to work on my game mechanic i thought it might be important to learn how to make a level transition so that later on when i start making proper levels the player can move on to the next level
@@ -33,7 +42,3 @@
 * Item 2 - Importet Knight assets off itch.io
 * Item 3 - Fully implemented normal movement controls and character
 
-* Name: Joshua Alfarano
-* [Trello Board](https://trello.com/b/OxphJGYl/new-paltz-game-design-final-project-template)
-* [Proposal](https://drive.google.com/file/d/1yC7JtO5aYezi7_7ROdvto446HfgG_WDr/view?usp=sharing)
-* [Other docs](todo)
