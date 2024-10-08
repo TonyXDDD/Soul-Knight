@@ -8,6 +8,11 @@
 * Item 1 - created a dash for the Knight mechanic so traversing the map would be a little more fun
 * Item 2 - I was able to learn on how to implement the mechanic via this youtube video: https://youtu.be/fp_XugQvOKU
 
+## 2024-10-05 4hr: Creating limitations for the Soul
+* Item 1 - I wanted to fix the distance that the Soul can move around the map
+* ITem 2 - before the Soul could go anywhere it wanted to, even of the screen!
+* Item 3 - Now i made it that from where it spawns in the Soul can move only within a invisible cirlce
+
 ## 2024-10-01 - 7hr: Creating a pause Menu
 * Item 1 - created a simple pause menu for the player to return to the main menu when they want to or even quit the game with out having to alt-f4
 
