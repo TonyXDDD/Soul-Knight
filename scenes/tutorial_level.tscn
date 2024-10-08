@@ -232,7 +232,6 @@ volume_db = -26.489
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("16_t852s")
 
 [node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_yib6t")]
