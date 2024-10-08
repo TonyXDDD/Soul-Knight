@@ -14,12 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://cop7c1ogtmvfp" path="res://scenes/player.tscn" id="11_yyq76"]
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="12_woywj"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="14_or3bf"]
-[ext_resource type="AudioStream" uid="uid://hqtv2xt0ulhn" path="res://Abandoned Metropolis Royalty Free  8 Bit Lofi Hip Hop.mp3" id="15_yeese"]
+[ext_resource type="AudioStream" uid="uid://ce4hbcjnkx5b2" path="res://thank you.mp3" id="15_b3u1k"]
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="16_t852s"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_yib6t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsmyb"]
 texture = ExtResource("1_73sss")
+25:48/size_in_atlas = Vector2i(11, 6)
+25:48/0 = 0
+16:57/size_in_atlas = Vector2i(18, 10)
+16:57/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7t3i4"]
 texture = ExtResource("2_br2td")
@@ -64,6 +68,12 @@ texture = ExtResource("8_upxum")
 7:25/0 = 0
 13:25/size_in_atlas = Vector2i(6, 8)
 13:25/0 = 0
+36:26/size_in_atlas = Vector2i(6, 3)
+36:26/0 = 0
+42:25/size_in_atlas = Vector2i(4, 5)
+42:25/0 = 0
+46:25/size_in_atlas = Vector2i(6, 5)
+46:25/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3627o"]
 texture = ExtResource("9_ec8sn")
@@ -120,6 +130,12 @@ texture = ExtResource("10_pmh3n")
 4:5/0 = 0
 4:4/0 = 0
 4:3/0 = 0
+21:14/size_in_atlas = Vector2i(2, 2)
+21:14/0 = 0
+21:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 4, -4, 4, 16, -16, 16, -16, 16)
+14:14/size_in_atlas = Vector2i(2, 2)
+14:14/0 = 0
+14:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 16, -4, 16, 16, -4, 16, -4, 16)
 
 [sub_resource type="TileSet" id="TileSet_sv12d"]
 physics_layer_0/collision_layer = 1
@@ -147,9 +163,9 @@ layer_1/tile_data = PackedInt32Array(0, 2, 0, 40, 2, 0)
 layer_2/name = "Layer1"
 layer_2/tile_data = PackedInt32Array(0, 3, 0, 40, 3, 0, 458759, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 458760, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 458749, 1835015, 30, 327673, 458759, 25, 262143, 7, 23, 458736, 1310727, 24)
 layer_3/name = "Mainphy"
-layer_3/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589839, 1048585, 14, 589842, 1048585, 14, 589847, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, -196549, 65543, 0, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917521, 131081, 16, 917526, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32, 131085, 917512, 7)
+layer_3/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, -196549, 65543, 0, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32, 131085, 917512, 7, 589836, 1048585, 14, 589851, 1048585, 14, 131098, 327688, 7, 29, 917513, 0, 196637, 917513, 2, 327709, 917513, 2, 458781, 196617, 3, 458782, 196617, 3, 32, 1179657, 0, 196640, 1179657, 2, 327712, 1179657, 2, 131107, 917512, 7)
 layer_4/name = "covr"
-layer_4/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 196618, 1179657, 2)
+layer_4/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 196618, 1179657, 2, 458783, 262153, 5, 458784, 262153, 5, 458782, 262153, 5, 458781, 262153, 5, 524317, 262153, 5, 524318, 262153, 5, 655374, 1179657, 2, 917518, 1179657, 2, 655385, 917513, 2, 917529, 917513, 2, 458776, 917513, 14, 458767, 1376265, 14, 720913, 1638400, 48, 720917, 1638400, 48, 327701, 1048576, 57, 458777, 917513, 0, 589851, 262153, 4, 655387, 262153, 4, 655388, 262153, 4, 589852, 262153, 4, 655389, 262153, 4, 589853, 262153, 4, 589854, 262153, 4, 524316, 262153, 4, 524315, 262153, 4)
 
 [node name="Player" parent="." instance=ExtResource("11_yyq76")]
 position = Vector2(-190, 98)
@@ -184,11 +200,25 @@ offset_bottom = 61.0
 text = "A and D"
 
 [node name="Label3" type="Label" parent="Labels"]
-offset_left = 79.0
-offset_top = -52.0
-offset_right = 215.0
-offset_bottom = -29.0
+offset_left = 37.0
+offset_top = -63.0
+offset_right = 173.0
+offset_bottom = -40.0
 text = "Spacebar to jump"
+
+[node name="Label4" type="Label" parent="Labels"]
+offset_left = 299.0
+offset_top = 148.0
+offset_right = 435.0
+offset_bottom = 171.0
+text = "Death...."
+
+[node name="Label5" type="Label" parent="Labels"]
+offset_left = 238.0
+offset_top = -17.0
+offset_right = 411.0
+offset_bottom = 6.0
+text = "Press C to Dash across"
 
 [node name="Transition" parent="." instance=ExtResource("14_or3bf")]
 offset_left = -223.0
@@ -197,12 +227,12 @@ offset_right = -223.0
 offset_bottom = 72.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_yeese")
-volume_db = -18.489
-pitch_scale = 1.49
+stream = ExtResource("15_b3u1k")
+volume_db = -26.489
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("16_t852s")
 
 [node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_yib6t")]

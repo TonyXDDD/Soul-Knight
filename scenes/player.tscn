@@ -1,18 +1,23 @@
-[gd_scene load_steps=66 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=70 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
 [ext_resource type="Texture2D" uid="uid://b1w0sw470dpsj" path="res://sprites/KnightSprites/_frozenandunfreze.png" id="1_ere4o"]
+[ext_resource type="Texture2D" uid="uid://drpu3dhq7e2av" path="res://sprites/KnightSprites/_Dash.png" id="1_nmuhr"]
 [ext_resource type="Texture2D" uid="uid://d0k3oo6bm6y51" path="res://sprites/KnightSprites/_Idle.png" id="1_y5bw3"]
 [ext_resource type="Texture2D" uid="uid://xiqy5erxkhn5" path="res://sprites/KnightSprites/_Jump.png" id="2_2dvmj"]
 [ext_resource type="Texture2D" uid="uid://dkd1f8e24wino" path="res://sprites/KnightSprites/_Run.png" id="3_glb56"]
 [ext_resource type="Texture2D" uid="uid://dpspw0fvswaqk" path="res://sprites/KnightSprites/_DeathNoMovement.png" id="4_k8dk1"]
 [ext_resource type="Texture2D" uid="uid://d0voydig7wlew" path="res://sprites/KnightSprites/_Attack2.png" id="6_4fsq4"]
+[ext_resource type="PackedScene" uid="uid://cxu5qkn6dqjp" path="res://scenes/dash.tscn" id="8_o7wg0"]
 
 [sub_resource type="GDScript" id="GDScript_deogl"]
 script/source = "extends CharacterBody2D
 
 const SPEED = 220.0
 const JUMP_VELOCITY = -400.0
+const DASH_SPEED = 600.0  # Dash speed
+const DASH_DURATION = 0.2  # Dash lasts for 0.2 seconds
+const DASH_COOLDOWN = 2.5  # Cooldown time for dash in seconds
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -25,45 +30,40 @@ var is_attacking = false
 var facing_direction = 1  # 1 for right, -1 for left
 var is_frozen = false  # Track if frozen animation is playing
 var soul_was_active = false  # Track whether Soulmode was active
+var is_dashing = false  # Track if player is dashing
+var dash_timer = 0.0  # Timer for dash duration
+var dash_cooldown_timer = 0.0  # Timer for dash cooldown
 
 func _physics_process(delta: float) -> void:
 	# Check if Soul is active
 	if soul.is_playable:
 		if not is_frozen:
-			# Soul is active, play the frozen animation and prevent movement
 			animated_sprite_2d.play(\"frozen\")
 			is_frozen = true
 		return  # Exit early if Soul is active (no movement allowed)
 
-	# If Soulmode was active but is now deactivated, play \"notfrozen\"
 	if is_frozen:
 		animated_sprite_2d.play(\"notfrozen\")
 		is_frozen = false
 		soul_was_active = true
-		return  # Wait for notfrozen to finish before resuming movement
+		return
 
-	# If notfrozen animation has finished, reset soul_was_active flag
 	if soul_was_active:
-		soul_was_active = false  # Reset after notfrozen has played once
-		return  # Prevent any further logic until the next frame
+		soul_was_active = false
+		return
 
-	# Add gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed(\"jump\") and is_on_floor() and not is_attacking:
 		velocity.y = JUMP_VELOCITY
 
-	# Check for attack1 input
 	if Input.is_action_just_pressed(\"left_mouse_click\") and not is_attacking:
 		start_attack1()
 
-	# Check for attack2 input
 	if Input.is_action_just_pressed(\"right_mouse_click\") and not is_attacking:
 		start_attack2()
 
-	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis(\"move_left\", \"move_right\")
 
 	if direction > 0:
@@ -73,74 +73,92 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 		facing_direction = -1
 
-	# Play animations if not attacking or coming out of Soulmode
+	# Handle animations based on the current state
 	if not is_attacking and not soul_was_active:
-		if is_on_floor():
-			if direction == 0:
-				animated_sprite_2d.play(\"idol\")
-			else:
-				animated_sprite_2d.play(\"run\")
+		if is_dashing:
+			# Ensure dash animation is playing
+			animated_sprite_2d.play(\"dash\")
 		else:
-			animated_sprite_2d.play(\"jump\")
+			if is_on_floor():
+				if direction == 0:
+					animated_sprite_2d.play(\"idol\")
+				else:
+					animated_sprite_2d.play(\"run\")
+			else:
+				animated_sprite_2d.play(\"jump\")
+
+	# Dash input and handling (using 'dash_now')
+	if Input.is_action_just_pressed(\"dash_now\") and not is_dashing and dash_cooldown_timer <= 0:
+		start_dash()
+
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0:
+			stop_dash()
+
+	# Update cooldown timer if it's active
+	if dash_cooldown_timer > 0:
+		dash_cooldown_timer -= delta
 
 	# Apply movement
+	var current_speed = (DASH_SPEED if is_dashing else SPEED)  # Adjust speed based on dash state
 	if direction != 0:
-		velocity.x = direction * SPEED
+		velocity.x = direction * current_speed
 	else:
-		# Smoothly reduce velocity.x to 0
 		velocity.x = lerp(velocity.x, 0.0, 0.1)
 
 	move_and_slide()
 
+# Start the dash by setting the speed and timer
+func start_dash() -> void:
+	is_dashing = true
+	dash_timer = DASH_DURATION
+	dash_cooldown_timer = DASH_COOLDOWN  # Start cooldown
+	animated_sprite_2d.play(\"dash\")
+
+# Stop the dash after the timer ends
+func stop_dash() -> void:
+	is_dashing = false
+	animated_sprite_2d.play(\"run\")  # Transition back to running
+
 func start_attack1() -> void:
 	if not is_attacking:
-		is_attacking = true  # Mark as attacking
-
-		# Debugging information
+		is_attacking = true
 		print(\"Starting attack1. Facing direction:\", facing_direction)
-
-		# Flip the sprite based on facing direction
 		sprite_2d.flip_h = facing_direction == -1
-
-		# Hide the animated sprite and play the attack animation
 		animated_sprite_2d.visible = false
 		animation_player.play(\"attack1\")
 
 func start_attack2() -> void:
 	if not is_attacking:
-		is_attacking = true  # Mark as attacking
-
-		# Debugging information
+		is_attacking = true
 		print(\"Starting attack2. Facing direction:\", facing_direction)
-
-		# Flip the sprite based on facing direction
 		sprite_2d_2.flip_h = facing_direction == -1
-
-		# Hide the animated sprite and play the attack animation
 		animated_sprite_2d.visible = false
 		animation_player_2.play(\"attack2\")
 
-# Called when the attack1 animation finishes
 func _on_attack_animation_finished(animation_name: String) -> void:
 	if animation_name == \"attack1\":
-		is_attacking = false  # Reset attack state after the attack animation finishes
-
-		# Show the animated sprite again
+		is_attacking = false
 		animated_sprite_2d.visible = true
 
-# Called when the attack2 animation finishes
 func _on_attack_animation_finished_2(animation_name: String) -> void:
 	if animation_name == \"attack2\":
-		is_attacking = false  # Reset attack state after the attack animation finishes
-
-		# Show the animated sprite again
+		is_attacking = false
 		animated_sprite_2d.visible = true
 
 func _ready() -> void:
-	# Connect the animation_finished signal to handle attack completion
 	animation_player.animation_finished.connect(_on_attack_animation_finished)
 	animation_player_2.animation_finished.connect(_on_attack_animation_finished_2)
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff8bx"]
+atlas = ExtResource("1_nmuhr")
+region = Rect2(0, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2e8t"]
+atlas = ExtResource("1_nmuhr")
+region = Rect2(120, 40, 120, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixj3q"]
 atlas = ExtResource("1_ere4o")
@@ -340,6 +358,17 @@ region = Rect2(0, 40, 120, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8fjx5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff8bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2e8t")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ixj3q")
@@ -705,8 +734,8 @@ script = SubResource("GDScript_deogl")
 position = Vector2(5, -1)
 scale = Vector2(0.891667, 1)
 sprite_frames = SubResource("SpriteFrames_8fjx5")
-animation = &"notfrozen"
-frame = 2
+animation = &"dash"
+frame = 1
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -736,3 +765,5 @@ visible = false
 position = Vector2(-7, -20)
 texture = ExtResource("6_4fsq4")
 hframes = 6
+
+[node name="Dash" parent="." instance=ExtResource("8_o7wg0")]

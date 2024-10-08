@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d37hrvy3uwh1h"
+path="res://.godot/imported/thank you.wav-70c3a5dcf4c2cf5c89fe18515246648e.sample"
+
+[deps]
+
+source_file="res://thank you.wav"
+dest_files=["res://.godot/imported/thank you.wav-70c3a5dcf4c2cf5c89fe18515246648e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
