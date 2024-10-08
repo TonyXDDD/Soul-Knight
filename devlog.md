@@ -4,6 +4,10 @@
 * [Proposal](https://drive.google.com/file/d/1yC7JtO5aYezi7_7ROdvto446HfgG_WDr/view?usp=sharing)
 * [Other docs](todo)
 
+## 2024-10-09 - 5hr: Implementing a simple dash mechanic for the Knight
+* Item 1 - created a dash for the Knight mechanic so traversing the map would be a little more fun
+* Item 2 - I was able to learn on how to implement the mechanic via this youtube video: https://youtu.be/fp_XugQvOKU
+
 ## 2024-10-01 - 7hr: Creating a pause Menu
 * Item 1 - created a simple pause menu for the player to return to the main menu when they want to or even quit the game with out having to alt-f4
 
