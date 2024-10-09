@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://ylvw3kifrgmx" path="res://sprites/background4a.png" id="6_caied"]
 [ext_resource type="Texture2D" uid="uid://bs7eb7r7vbrh6" path="res://sprites/props1.png" id="7_5eyrd"]
 [ext_resource type="Texture2D" uid="uid://bu3qyc7lcrq7i" path="res://sprites/props2.png" id="8_u4j5k"]
-[ext_resource type="AudioStream" uid="uid://byte557ose38t" path="res://MF DOOM - Raid (Chiptune cover) (1).wav" id="10_5yjj0"]
 [ext_resource type="Script" path="res://scripts/audio_stream_player_2d.gd" id="11_30msd"]
+[ext_resource type="AudioStream" uid="uid://d37hrvy3uwh1h" path="res://thank you.wav" id="11_fus6g"]
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="12_ijq7g"]
 [ext_resource type="Script" path="res://scenes/area_2d.gd" id="13_h8umj"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="14_qvkvw"]
@@ -756,8 +756,7 @@ position_smoothing_speed = 3.0
 
 [node name="Music" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-18, 8)
-stream = ExtResource("10_5yjj0")
-volume_db = -22.781
+stream = ExtResource("11_fus6g")
 autoplay = true
 script = ExtResource("11_30msd")
 

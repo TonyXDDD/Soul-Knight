@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cu6k87ne2x2wp"]
+[gd_scene load_steps=7 format=3 uid="uid://cu6k87ne2x2wp"]
 
 [ext_resource type="Texture2D" uid="uid://dkasd625gja76" path="res://sprites/mainmenuBCK.png" id="1_fc400"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wdwx8"]
 [ext_resource type="AudioStream" uid="uid://pundmgboenu6" path="res://8bit ELDEN RING  Main Theme  Short Version Chiptune Cover.mp3" id="3_dc0t2"]
+[ext_resource type="Script" path="res://scenes/label.gd" id="3_n58qy"]
 
 [sub_resource type="SystemFont" id="SystemFont_crmj5"]
 font_names = PackedStringArray("Sitka Small")
@@ -59,6 +60,7 @@ theme_override_font_sizes/font_size = 120
 text = "Soul-Knight"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_n58qy")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
