@@ -11,7 +11,7 @@ const CIRCLE_RADIUS = 125  # Adjust the radius for the movement constraint
 var is_playable: bool = false  # Variable to track if the character is playable
 var is_exiting: bool = false  # Variable to track if the character is exiting
 var waiting_for_idle: bool = false  # Variable to track if we should play "idle" after "enter"
-var reset_position: Vector2  # Variable to store the reset position
+var reset_position: Vector2 # Variable to store the reset position
 
 # Circle constraint variables
 var circle_center: Vector2  # Will store the initial spawn position

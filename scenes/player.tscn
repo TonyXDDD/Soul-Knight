@@ -19,6 +19,8 @@ const DASH_SPEED = 600.0  # Dash speed
 const DASH_DURATION = 0.2  # Dash lasts for 0.2 seconds
 const DASH_COOLDOWN = 2.5  # Cooldown time for dash in seconds
 const FRICTION = 0.1  # Lower value for more gradual slowdown
+const KNIGHT_MOVE_COOLDOWN = 1.2  # Cooldown time before Knight can move again after Soul exits
+const COYOTE_TIME = 0.5  # 0.2 seconds of coyote time to jump after leaving the ground
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -34,9 +36,11 @@ var soul_was_active = false  # Track whether Soulmode was active
 var is_dashing = false  # Track if player is dashing
 var dash_timer = 0.0  # Timer for dash duration
 var dash_cooldown_timer = 0.0  # Timer for dash cooldown
+var move_cooldown_timer = 0.0  # Timer for Knight move cooldown after Soul exits
+var coyote_timer = 0.0  # Timer for coyote time
 
 func _physics_process(delta: float) -> void:
-	# Check if Soul is active
+	# If Soul is active or exiting, prevent Knight movement
 	if soul.is_playable:
 		if not is_frozen:
 			animated_sprite_2d.play(\"frozen\")
@@ -49,15 +53,35 @@ func _physics_process(delta: float) -> void:
 		soul_was_active = true
 		return
 
+	# Handle cooldown after Soul exits before allowing Knight movement
+	if move_cooldown_timer > 0:
+		move_cooldown_timer -= delta
+		if move_cooldown_timer <= 0:
+			print(\"Knight can move again.\")
+		else:
+			animated_sprite_2d.play(\"notfrozen\")  # Ensure \"notfrozen\" animation plays during cooldown
+		return  # Do not allow movement during cooldown
+
 	if soul_was_active:
 		soul_was_active = false
-		return
+		# Start cooldown after Soul exits
+		move_cooldown_timer = KNIGHT_MOVE_COOLDOWN
+		print(\"Starting Knight movement cooldown.\")
 
+	# Update coyote timer if the Knight is not on the floor
+	if not is_on_floor():
+		coyote_timer -= delta
+	else:
+		coyote_timer = COYOTE_TIME  # Reset coyote time when on the ground
+
+	# Apply gravity if not on the floor
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed(\"jump\") and is_on_floor() and not is_attacking:
+	# Jump handling, allowing coyote time jump
+	if Input.is_action_just_pressed(\"jump\") and (is_on_floor() or coyote_timer > 0) and not is_attacking:
 		velocity.y = JUMP_VELOCITY
+		coyote_timer = 0  # Reset coyote time after jumping
 
 	if Input.is_action_just_pressed(\"left_mouse_click\") and not is_attacking:
 		start_attack1()
@@ -435,10 +459,10 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_qopvv")
 }, {
-"duration": 1.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_fgr3a")
 }, {
 "duration": 1.0,
@@ -736,8 +760,8 @@ script = SubResource("GDScript_deogl")
 position = Vector2(5, -1)
 scale = Vector2(0.891667, 1)
 sprite_frames = SubResource("SpriteFrames_8fjx5")
-animation = &"dash"
-frame = 1
+animation = &"notfrozen"
+frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
