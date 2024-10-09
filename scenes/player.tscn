@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=74 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
 [ext_resource type="Texture2D" uid="uid://b1w0sw470dpsj" path="res://sprites/KnightSprites/_frozenandunfreze.png" id="1_ere4o"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dpspw0fvswaqk" path="res://sprites/KnightSprites/_DeathNoMovement.png" id="4_k8dk1"]
 [ext_resource type="Texture2D" uid="uid://d0voydig7wlew" path="res://sprites/KnightSprites/_Attack2.png" id="6_4fsq4"]
 [ext_resource type="PackedScene" uid="uid://cxu5qkn6dqjp" path="res://scenes/dash.tscn" id="8_o7wg0"]
+[ext_resource type="Texture2D" uid="uid://dmd0q8wg2wvc4" path="res://sprites/Soul sprites/souldash.png" id="10_s1mw5"]
 
 [sub_resource type="GDScript" id="GDScript_deogl"]
 script/source = "extends CharacterBody2D
@@ -771,6 +772,8 @@ direction = Vector3(0, -1, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.5
 color_ramp = SubResource("GradientTexture1D_ohutj")
 
 [node name="Player" type="CharacterBody2D"]
@@ -816,5 +819,6 @@ hframes = 6
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 300
+amount = 134
 process_material = SubResource("ParticleProcessMaterial_m5h2p")
+texture = ExtResource("10_s1mw5")
