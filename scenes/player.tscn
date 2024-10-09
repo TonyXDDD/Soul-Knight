@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=73 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
 [ext_resource type="Texture2D" uid="uid://b1w0sw470dpsj" path="res://sprites/KnightSprites/_frozenandunfreze.png" id="1_ere4o"]
@@ -28,6 +28,8 @@ const COYOTE_TIME = 0.5  # 0.2 seconds of coyote time to jump after leaving the 
 @onready var sprite_2d_2: Sprite2D = $Sprite2D2
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
 @onready var soul: CharacterBody2D = $Soul  # Reference to the Soul character
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
 
 var is_attacking = false
 var facing_direction = 1  # 1 for right, -1 for left
@@ -141,10 +143,12 @@ func start_dash() -> void:
 	dash_timer = DASH_DURATION
 	dash_cooldown_timer = DASH_COOLDOWN  # Start cooldown
 	animated_sprite_2d.play(\"dash\")
+	gpu_particles_2d.emitting = true
 
 # Stop the dash after the timer ends
 func stop_dash() -> void:
 	is_dashing = false
+	gpu_particles_2d.emitting = false
 	animated_sprite_2d.play(\"run\")  # Transition back to running
 
 func start_attack1() -> void:
@@ -753,6 +757,22 @@ _data = {
 "attack2": SubResource("Animation_x23tr")
 }
 
+[sub_resource type="Gradient" id="Gradient_wqppr"]
+offsets = PackedFloat32Array(0.00598802, 0.125749, 0.377246)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.643137, 1, 1, 1, 0.643137)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ohutj"]
+gradient = SubResource("Gradient_wqppr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m5h2p"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 20, 0)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ohutj")
+
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_deogl")
 
@@ -793,3 +813,8 @@ texture = ExtResource("6_4fsq4")
 hframes = 6
 
 [node name="Dash" parent="." instance=ExtResource("8_o7wg0")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_m5h2p")
