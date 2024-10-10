@@ -11,12 +11,15 @@ const CIRCLE_RADIUS = 125  # Adjust the radius for the movement constraint
 var is_playable: bool = false  # Variable to track if the character is playable
 var is_exiting: bool = false  # Variable to track if the character is exiting
 var waiting_for_idle: bool = false  # Variable to track if we should play "idle" after "enter"
-var reset_position: Vector2 # Variable to store the reset position
+var reset_position: Vector2  # Variable to store the reset position
 
 # Circle constraint variables
 var circle_center: Vector2  # Will store the initial spawn position
 var circle_radius: float = CIRCLE_RADIUS  # Radius for movement limitation
 var at_boundary: bool = false  # Track if the character is at the boundary
+
+# Variable to track the facing direction (-1 for left, 1 for right)
+var facing_direction: int = 1
 
 func _ready() -> void:
 	# Set visibility to false at the start
@@ -63,6 +66,15 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("soul_left", "soul_right")
 	if direction != 0:
 		velocity.x = direction * SPEED
+
+		# Flip the sprite based on the direction (-1 for left, 1 for right)
+		if direction < 0:
+			facing_direction = -1
+		elif direction > 0:
+			facing_direction = 1
+		
+		# Apply the flip to the sprite
+		animated_sprite_2d.flip_h = facing_direction == -1  # Flip if moving left
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
