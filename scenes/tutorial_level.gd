@@ -9,3 +9,5 @@ func _ready():
 		animation_player.play("fade_in")
 	else:
 		print("Error: AnimationPlayer is null!")
+
+#hello
