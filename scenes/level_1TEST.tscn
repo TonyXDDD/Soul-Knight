@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=37 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="11_yaucr"]
 [ext_resource type="Script" path="res://scenes/area_2dkeyuse.gd" id="12_17usk"]
 [ext_resource type="Script" path="res://scenes/area_2_dkey.gd" id="13_l85ip"]
+[ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="15_3ylfc"]
+[ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_a00e1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1180,6 +1182,11 @@ shape = SubResource("RectangleShape2D_vy7uy")
 [node name="key" type="Sprite2D" parent="."]
 position = Vector2(-165, 0)
 texture = ExtResource("11_yaucr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("15_3ylfc")
+
+[node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_a00e1")]
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
