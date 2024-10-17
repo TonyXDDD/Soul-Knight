@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://6yx2jrslc178"]
+
+[ext_resource type="Texture2D" uid="uid://bjm00g4aqvne7" path="res://sprites/levelbuilds/door.png" id="1_myxb2"]
+[ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="2_xve05"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj54e"]
+atlas = ExtResource("1_myxb2")
+region = Rect2(0, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b5wx"]
+atlas = ExtResource("1_myxb2")
+region = Rect2(0, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cukaf"]
+atlas = ExtResource("1_myxb2")
+region = Rect2(9, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbiss"]
+atlas = ExtResource("1_myxb2")
+region = Rect2(18, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpdrq"]
+atlas = ExtResource("1_myxb2")
+region = Rect2(27, 0, 9, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j5xb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj54e")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b5wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cukaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbiss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpdrq")
+}],
+"loop": true,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr00o"]
+size = Vector2(6, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktlh6"]
+size = Vector2(10, 10)
+
+[node name="doorandbutton" type="Node2D"]
+
+[node name="door" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8j5xb")
+animation = &"unlocked"
+metadata/_edit_group_ = true
+
+[node name="doorbody" type="StaticBody2D" parent="door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door/doorbody"]
+shape = SubResource("RectangleShape2D_lr00o")
+
+[node name="button" type="Sprite2D" parent="."]
+position = Vector2(48, -1)
+texture = ExtResource("2_xve05")
+metadata/_edit_group_ = true
+
+[node name="buttonbody" type="Area2D" parent="button"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="button/buttonbody"]
+shape = SubResource("RectangleShape2D_ktlh6")
