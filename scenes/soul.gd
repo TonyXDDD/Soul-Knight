@@ -30,29 +30,35 @@ func _ready() -> void:
 	set_collision_layer(3)  # Set to Layer 3
 	set_collision_mask(0)    # No collisions with other layers
 
-func _process(delta: float) -> void:
-	# Toggle control when Q is pressed
-	if Input.is_action_just_pressed("ui_toggle_control"):  # Custom action for Q
-		if is_playable:
-			# If currently playable, play exit animation
-			is_playable = false
-			is_exiting = true
-			waiting_for_idle = false
-			animated_sprite_2d.play("exit")
-			print("Playing exit animation.")
-		else:
-			# If currently not playable, update reset position and play enter animation
-			is_playable = true
-			is_exiting = false
-			waiting_for_idle = true
-			reset_position = player.global_position + Vector2(0, OFFSET_Y)  # Update reset position based on Knight's position
-			animated_sprite_2d.play("enter")
-			animated_sprite_2d.visible = true  # Show character when entering
-			print("Playing enter animation and character is now visible. Reset position updated to: ", reset_position)
+	# Simulate pressing Q at the start to make the character playable
+	_toggle_control()
 
-			# Set the circle center to the current position when becoming playable
-			circle_center = global_position
-			print("Circle center set to: ", circle_center)
+func _toggle_control() -> void:
+	if is_playable:
+		# If currently playable, play exit animation
+		is_playable = false
+		is_exiting = true
+		waiting_for_idle = false
+		animated_sprite_2d.play("exit")
+		print("Playing exit animation.")
+	else:
+		# If currently not playable, update reset position and play enter animation
+		is_playable = true
+		is_exiting = false
+		waiting_for_idle = true
+		reset_position = player.global_position + Vector2(0, OFFSET_Y)  # Update reset position based on Knight's position
+		animated_sprite_2d.play("enter")
+		animated_sprite_2d.visible = true  # Show character when entering
+		print("Playing enter animation and character is now visible. Reset position updated to: ", reset_position)
+
+		# Set the circle center to the current position when becoming playable
+		circle_center = global_position
+		print("Circle center set to: ", circle_center)
+
+func _process(delta: float) -> void:
+	# Check for control toggle input
+	if Input.is_action_just_pressed("ui_toggle_control"):  # Custom action for Q
+		_toggle_control()
 
 	# Check if we need to reset the position when exiting
 	if is_exiting and not animated_sprite_2d.is_playing():
@@ -76,7 +82,7 @@ func _physics_process(delta: float) -> void:
 			facing_direction = -1
 		elif direction > 0:
 			facing_direction = 1
-		
+
 		# Apply the flip to the sprite
 		animated_sprite_2d.flip_h = facing_direction == -1  # Flip if moving left
 	else:
