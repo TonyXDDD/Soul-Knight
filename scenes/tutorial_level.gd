@@ -10,4 +10,4 @@ func _ready():
 	else:
 		print("Error: AnimationPlayer is null!")
 
-#hello
+#hellos
