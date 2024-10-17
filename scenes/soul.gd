@@ -26,6 +26,10 @@ func _ready() -> void:
 	animated_sprite_2d.visible = false
 	print("Soul character ready and visibility set to false.")
 
+	# Set collision layer and mask
+	set_collision_layer(3)  # Set to Layer 3
+	set_collision_mask(0)    # No collisions with other layers
+
 func _process(delta: float) -> void:
 	# Toggle control when Q is pressed
 	if Input.is_action_just_pressed("ui_toggle_control"):  # Custom action for Q
@@ -117,3 +121,7 @@ func _physics_process(delta: float) -> void:
 					animated_sprite_2d.play("idle")
 					waiting_for_idle = false
 					print("Playing idle animation.")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact_soul") and is_playable:
+		print("Pressing 'E' to interact!")
