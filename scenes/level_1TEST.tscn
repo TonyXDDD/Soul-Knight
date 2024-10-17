@@ -1110,6 +1110,17 @@ animation = &"notdef"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR2/StaticBody2D"]
 shape = SubResource("RectangleShape2D_f0vry")
 
+[node name="TESTDOOR3" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(-219, -1)
+sprite_frames = SubResource("SpriteFrames_30j2g")
+animation = &"notdef"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_f0vry")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(-55, -2)
@@ -1135,6 +1146,10 @@ offset_top = -42.0
 offset_right = 103.0
 offset_bottom = -19.0
 text = "Lever"
+
+[node name="key" type="Sprite2D" parent="."]
+position = Vector2(-165, 0)
+texture = ExtResource("11_yaucr")
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
