@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="7_ahqs1"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="8_vwnpj"]
 [ext_resource type="Script" path="res://scenes/TESTEST.gd" id="9_motuu"]
-[ext_resource type="PackedScene" uid="uid://6yx2jrslc178" path="res://scenes/doorandbutton.tscn" id="10_c3v1q"]
 [ext_resource type="Texture2D" uid="uid://bjm00g4aqvne7" path="res://sprites/levelbuilds/door.png" id="11_ku7g6"]
+[ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="11_yaucr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1049,9 +1049,6 @@ script = ExtResource("9_motuu")
 position = Vector2(-55, -2)
 shape = SubResource("RectangleShape2D_i78jb")
 
-[node name="doorandbutton" parent="." instance=ExtResource("10_c3v1q")]
-position = Vector2(-103, -48)
-
 [node name="TESTDOOR" type="AnimatedSprite2D" parent="."]
 position = Vector2(-105, -1)
 sprite_frames = SubResource("SpriteFrames_30j2g")
@@ -1061,6 +1058,10 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR/StaticBody2D"]
 shape = SubResource("RectangleShape2D_f0vry")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-55, -2)
+texture = ExtResource("11_yaucr")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
