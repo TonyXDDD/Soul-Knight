@@ -1082,6 +1082,7 @@ position = Vector2(-55, -2)
 shape = SubResource("RectangleShape2D_i78jb")
 
 [node name="TESTDOOR" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
 position = Vector2(-105, -1)
 sprite_frames = SubResource("SpriteFrames_30j2g")
 animation = &"notdef"
@@ -1099,6 +1100,7 @@ position = Vector2(85, 0)
 shape = SubResource("RectangleShape2D_dpg7t")
 
 [node name="TESTDOOR2" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
 position = Vector2(118, -1)
 sprite_frames = SubResource("SpriteFrames_30j2g")
 animation = &"notdef"
@@ -1119,17 +1121,19 @@ position = Vector2(85, 0)
 texture = ExtResource("11_yaucr")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -81.0
-offset_top = -38.0
-offset_right = -27.0
-offset_bottom = -15.0
+show_behind_parent = true
+offset_left = -62.0
+offset_top = -44.0
+offset_right = -8.0
+offset_bottom = -21.0
 text = "Button"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 62.0
-offset_top = -38.0
-offset_right = 116.0
-offset_bottom = -15.0
+show_behind_parent = true
+offset_left = 49.0
+offset_top = -42.0
+offset_right = 103.0
+offset_bottom = -19.0
 text = "Lever"
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]

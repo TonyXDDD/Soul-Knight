@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func start_countdown_and_show_collision_shape():
 	print("Starting countdown...")
-	await get_tree().create_timer(15.0).timeout  # Wait for 15 seconds
+	await get_tree().create_timer(10.0).timeout  # Wait for 15 seconds
 	print("Countdown finished. Making collision shape visible.")
 	static_body_2d.visible = true  # Set the collision shape visible after 15 seconds
 	collision_shape_2d.disabled = false
