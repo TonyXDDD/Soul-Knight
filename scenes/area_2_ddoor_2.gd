@@ -28,3 +28,13 @@ func _process(delta: float) -> void:
 		# Hide the static body and disable the collision shape
 		static_body_2d.visible = false
 		collision_shape_2d.disabled = true
+		start_countdown_and_show_collision_shape()
+
+func start_countdown_and_show_collision_shape():
+	print("Starting countdown...")
+	await get_tree().create_timer(15.0).timeout  # Wait for 15 seconds
+	print("Countdown finished. Making collision shape visible.")
+	static_body_2d.visible = true  # Set the collision shape visible after 15 seconds
+	collision_shape_2d.disabled = false
+	testdoor.play("close")
+	
