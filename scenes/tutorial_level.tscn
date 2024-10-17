@@ -186,13 +186,25 @@ position_smoothing_speed = 3.0
 [node name="Labels" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
+show_behind_parent = true
 offset_left = -260.0
 offset_top = 19.0
 offset_right = -108.0
 offset_bottom = 42.0
 text = "To move Knight use"
 
+[node name="Label6" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = -259.0
+offset_top = -36.0
+offset_right = -100.0
+offset_bottom = 13.0
+text = "Press Q to exit 
+and enter Soulmode
+"
+
 [node name="Label2" type="Label" parent="Labels"]
+show_behind_parent = true
 offset_left = -217.0
 offset_top = 38.0
 offset_right = -156.0
@@ -200,6 +212,7 @@ offset_bottom = 61.0
 text = "A and D"
 
 [node name="Label3" type="Label" parent="Labels"]
+show_behind_parent = true
 offset_left = 37.0
 offset_top = -63.0
 offset_right = 173.0
@@ -207,6 +220,7 @@ offset_bottom = -40.0
 text = "Spacebar to jump"
 
 [node name="Label4" type="Label" parent="Labels"]
+show_behind_parent = true
 offset_left = 299.0
 offset_top = 148.0
 offset_right = 435.0
@@ -214,6 +228,7 @@ offset_bottom = 171.0
 text = "Death...."
 
 [node name="Label5" type="Label" parent="Labels"]
+show_behind_parent = true
 offset_left = 238.0
 offset_top = -17.0
 offset_right = 411.0
@@ -221,7 +236,6 @@ offset_bottom = 6.0
 text = "Press C to Dash across"
 
 [node name="Transition" parent="." instance=ExtResource("14_or3bf")]
-visible = false
 offset_left = -223.0
 offset_top = 72.0
 offset_right = -223.0

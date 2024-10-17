@@ -1180,6 +1180,7 @@ script = ExtResource("13_l85ip")
 shape = SubResource("RectangleShape2D_vy7uy")
 
 [node name="key" type="Sprite2D" parent="."]
+show_behind_parent = true
 position = Vector2(-165, 0)
 texture = ExtResource("11_yaucr")
 
