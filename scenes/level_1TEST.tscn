@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=35 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://scenes/area_2_ddoor_2.gd" id="11_84byi"]
 [ext_resource type="Texture2D" uid="uid://bjm00g4aqvne7" path="res://sprites/levelbuilds/door.png" id="11_ku7g6"]
 [ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="11_yaucr"]
+[ext_resource type="Script" path="res://scenes/area_2dkeyuse.gd" id="12_17usk"]
+[ext_resource type="Script" path="res://scenes/area_2_dkey.gd" id="13_l85ip"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1049,6 +1051,11 @@ size = Vector2(6, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg7t"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqxnn"]
+size = Vector2(20, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy7uy"]
+
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_rfq76")
 
@@ -1121,6 +1128,14 @@ animation = &"notdef"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR3/StaticBody2D"]
 shape = SubResource("RectangleShape2D_f0vry")
 
+[node name="Area2DKEYUSE" type="Area2D" parent="."]
+position = Vector2(-219, -1)
+script = ExtResource("12_17usk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DKEYUSE"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_eqxnn")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(-55, -2)
@@ -1147,6 +1162,21 @@ offset_right = 103.0
 offset_bottom = -19.0
 text = "Lever"
 
+[node name="Label3" type="Label" parent="."]
+show_behind_parent = true
+offset_left = -203.0
+offset_top = -42.0
+offset_right = -149.0
+offset_bottom = -19.0
+text = "Key"
+
+[node name="Area2Dkey" type="Area2D" parent="."]
+position = Vector2(-165, 0)
+script = ExtResource("13_l85ip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2Dkey"]
+shape = SubResource("RectangleShape2D_vy7uy")
+
 [node name="key" type="Sprite2D" parent="."]
 position = Vector2(-165, 0)
 texture = ExtResource("11_yaucr")
@@ -1155,3 +1185,7 @@ texture = ExtResource("11_yaucr")
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2DKEYUSE" to="Area2DKEYUSE" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2DKEYUSE" to="Area2DKEYUSE" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2Dkey" to="Area2Dkey" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2Dkey" to="Area2Dkey" method="_on_body_exited"]
