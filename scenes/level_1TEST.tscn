@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=31 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="7_ahqs1"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="8_vwnpj"]
 [ext_resource type="Script" path="res://scenes/TESTEST.gd" id="9_motuu"]
+[ext_resource type="Script" path="res://scenes/area_2_ddoor_2.gd" id="11_84byi"]
 [ext_resource type="Texture2D" uid="uid://bjm00g4aqvne7" path="res://sprites/levelbuilds/door.png" id="11_ku7g6"]
 [ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="11_yaucr"]
 
@@ -956,6 +957,22 @@ sources/2 = SubResource("TileSetAtlasSource_6fc5q")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i78jb"]
 size = Vector2(20.25, 19.5)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1fy1"]
+atlas = ExtResource("11_ku7g6")
+region = Rect2(27, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncbyo"]
+atlas = ExtResource("11_ku7g6")
+region = Rect2(18, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbt4r"]
+atlas = ExtResource("11_ku7g6")
+region = Rect2(9, 0, 9, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8x8la"]
+atlas = ExtResource("11_ku7g6")
+region = Rect2(0, 0, 9, 35)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q6odv"]
 atlas = ExtResource("11_ku7g6")
 region = Rect2(0, 0, 9, 35)
@@ -978,6 +995,26 @@ region = Rect2(27, 0, 9, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_30j2g"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1fy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncbyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbt4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8x8la")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q6odv")
@@ -1010,6 +1047,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0vry"]
 size = Vector2(6, 34)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpg7t"]
+
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_rfq76")
 
@@ -1017,7 +1056,7 @@ script = ExtResource("1_rfq76")
 tile_set = SubResource("TileSet_6ex34")
 format = 2
 layer_0/name = "back1"
-layer_0/tile_data = PackedInt32Array(131070, 3342339, 1, 131071, 3342339, 1, 65536, 3342339, 1, 65537, 3342339, 1, 65538, 3342339, 1, 65539, 3342339, 1, 65540, 3342339, 1, 65541, 3342339, 1, 131069, 3342339, 1, 131068, 3342339, 1, 131067, 3342339, 1, 131065, 3342339, 1, 131066, 3342339, 1, 65542, 3342339, 1, 0, 1, 0)
+layer_0/tile_data = PackedInt32Array(131070, 3342339, 1, 131071, 3342339, 1, 65536, 3342339, 1, 65537, 3342339, 1, 65538, 3342339, 1, 65539, 3342339, 1, 65540, 3342339, 1, 65541, 3342339, 1, 131069, 3342339, 1, 131068, 3342339, 1, 131067, 3342339, 1, 131065, 3342339, 1, 131066, 3342339, 1, 65542, 3342339, 1, 0, 1, 0, 131064, 3342339, 1, 131063, 3342339, 1, 131062, 3342339, 1, 131061, 3342339, 1, 131060, 3342339, 1, 131058, 3342339, 1, 131057, 3342339, 1, 131059, 3342339, 1, 65543, 3342339, 1, 65544, 3342339, 1, 65545, 3342339, 1, 65546, 3342339, 1, 65547, 3342339, 1, 65548, 3342339, 1, 65549, 3342339, 1, 65550, 3342339, 1, 131056, 3342339, 1, 131055, 3342339, 1, 131054, 3342339, 1, 131053, 3342339, 1, 131052, 3342339, 1, 65551, 3342339, 1, 65552, 3342339, 1, 65553, 3342339, 1, 65554, 3342339, 1, 65555, 3342339, 1)
 layer_1/name = "back2"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1034,13 +1073,6 @@ offset_left = -31.0
 offset_top = -31.0
 offset_right = -31.0
 offset_bottom = -31.0
-
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("9_motuu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(114, -4)
-shape = SubResource("RectangleShape2D_i78jb")
 
 [node name="Area2D2" type="Area2D" parent="."]
 script = ExtResource("9_motuu")
@@ -1059,11 +1091,48 @@ animation = &"notdef"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR/StaticBody2D"]
 shape = SubResource("RectangleShape2D_f0vry")
 
+[node name="Area2Ddoor2" type="Area2D" parent="."]
+script = ExtResource("11_84byi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2Ddoor2"]
+position = Vector2(85, 0)
+shape = SubResource("RectangleShape2D_dpg7t")
+
+[node name="TESTDOOR2" type="AnimatedSprite2D" parent="."]
+position = Vector2(118, -1)
+sprite_frames = SubResource("SpriteFrames_30j2g")
+animation = &"notdef"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_f0vry")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
 position = Vector2(-55, -2)
 texture = ExtResource("11_yaucr")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(85, 0)
+texture = ExtResource("11_yaucr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -81.0
+offset_top = -38.0
+offset_right = -27.0
+offset_bottom = -15.0
+text = "Button"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 62.0
+offset_top = -38.0
+offset_right = 116.0
+offset_bottom = -15.0
+text = "Lever"
+
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_exited"]
