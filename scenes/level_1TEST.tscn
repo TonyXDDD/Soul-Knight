@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=40 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" path="res://scenes/area_2_dkey.gd" id="13_l85ip"]
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="15_3ylfc"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_a00e1"]
+[ext_resource type="PackedScene" uid="uid://cd1dqd6d54i4q" path="res://scenes/testenemy.tscn" id="17_86xk2"]
+[ext_resource type="Script" path="res://scenes/hitchecker.gd" id="17_mci04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1058,7 +1060,10 @@ size = Vector2(20, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vy7uy"]
 
-[node name="level_1" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aeonr"]
+radius = 27.8927
+
+[node name="level_1" type="Node2D" groups=["PlayerGroup"]]
 script = ExtResource("1_rfq76")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1172,6 +1177,16 @@ offset_right = -149.0
 offset_bottom = -19.0
 text = "Key"
 
+[node name="Label4" type="Label" parent="."]
+show_behind_parent = true
+offset_left = 208.0
+offset_top = -66.0
+offset_right = 345.0
+offset_bottom = 9.0
+text = "Attack 
+check 
+area"
+
 [node name="Area2Dkey" type="Area2D" parent="."]
 position = Vector2(-165, 0)
 script = ExtResource("13_l85ip")
@@ -1189,6 +1204,16 @@ script = ExtResource("15_3ylfc")
 
 [node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_a00e1")]
 
+[node name="hitchecker" type="Area2D" parent="."]
+script = ExtResource("17_mci04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitchecker"]
+position = Vector2(248, -12)
+shape = SubResource("CircleShape2D_aeonr")
+
+[node name="testenemy" parent="." groups=["PlayerGroup"] instance=ExtResource("17_86xk2")]
+position = Vector2(153, -16)
+
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_entered"]
@@ -1197,3 +1222,5 @@ script = ExtResource("15_3ylfc")
 [connection signal="body_exited" from="Area2DKEYUSE" to="Area2DKEYUSE" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2Dkey" to="Area2Dkey" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2Dkey" to="Area2Dkey" method="_on_body_exited"]
+[connection signal="body_entered" from="hitchecker" to="hitchecker" method="_on_body_entered"]
+[connection signal="body_exited" from="hitchecker" to="hitchecker" method="_on_body_exited"]
