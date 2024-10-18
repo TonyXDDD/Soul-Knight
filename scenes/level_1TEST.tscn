@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=39 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://scenes/area_2_dkey.gd" id="13_l85ip"]
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="15_3ylfc"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_a00e1"]
-[ext_resource type="PackedScene" uid="uid://cd1dqd6d54i4q" path="res://scenes/testenemy.tscn" id="17_86xk2"]
 [ext_resource type="Script" path="res://scenes/hitchecker.gd" id="17_mci04"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
@@ -1210,9 +1209,6 @@ script = ExtResource("17_mci04")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitchecker"]
 position = Vector2(248, -12)
 shape = SubResource("CircleShape2D_aeonr")
-
-[node name="testenemy" parent="." groups=["PlayerGroup"] instance=ExtResource("17_86xk2")]
-position = Vector2(153, -16)
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
