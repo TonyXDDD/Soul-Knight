@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3fr7drrwxnl2"
+path="res://.godot/imported/sword-swoosh-joshua-chivers-1-00-00 (1).mp3-315c9a282265f89ca9ca45ee050be613.mp3str"
+
+[deps]
+
+source_file="res://sword-swoosh-joshua-chivers-1-00-00 (1).mp3"
+dest_files=["res://.godot/imported/sword-swoosh-joshua-chivers-1-00-00 (1).mp3-315c9a282265f89ca9ca45ee050be613.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

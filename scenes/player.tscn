@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=77 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
 [ext_resource type="Texture2D" uid="uid://b1w0sw470dpsj" path="res://sprites/KnightSprites/_frozenandunfreze.png" id="1_ere4o"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://d0voydig7wlew" path="res://sprites/KnightSprites/_Attack2.png" id="6_4fsq4"]
 [ext_resource type="PackedScene" uid="uid://cxu5qkn6dqjp" path="res://scenes/dash.tscn" id="8_o7wg0"]
 [ext_resource type="Texture2D" uid="uid://dmd0q8wg2wvc4" path="res://sprites/Soul sprites/souldash.png" id="10_s1mw5"]
+[ext_resource type="AudioStream" uid="uid://cp1a6w25lobij" path="res://sword-slash-sound-effect_pKSGBs7s.mp3" id="11_6taec"]
+[ext_resource type="AudioStream" uid="uid://d3fr7drrwxnl2" path="res://sword-swoosh-joshua-chivers-1-00-00 (1).mp3" id="12_m8wxg"]
+[ext_resource type="AudioStream" uid="uid://bfiotj5xrxm4x" path="res://wind-rush-sound-effect-deepwoken-roblox_gv7sSseL.mp3" id="13_ks8ch"]
 
 [sub_resource type="GDScript" id="GDScript_deogl"]
 script/source = "extends CharacterBody2D
@@ -31,6 +34,12 @@ const COYOTE_TIME = 0.5  # 0.2 seconds of coyote time to jump after leaving the 
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
 @onready var soul: CharacterBody2D = $Soul  # Reference to the Soul character
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
+#Sounds
+@onready var audio_stream_player_2d_1: AudioStreamPlayer2D = $AudioStreamPlayer2D1
+@onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
+@onready var audio_stream_player_2d_3: AudioStreamPlayer2D = $AudioStreamPlayer2D3
+
 
 
 var is_attacking = false
@@ -89,9 +98,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed(\"left_mouse_click\") and not is_attacking:
 		start_attack1()
-
+		audio_stream_player_2d_1.play()
 	if Input.is_action_just_pressed(\"right_mouse_click\") and not is_attacking:
 		start_attack2()
+		audio_stream_player_2d_2.play()
 
 	var direction := Input.get_axis(\"move_left\", \"move_right\")
 
@@ -145,6 +155,7 @@ func start_dash() -> void:
 	dash_timer = DASH_DURATION
 	dash_cooldown_timer = DASH_COOLDOWN  # Start cooldown
 	animated_sprite_2d.play(\"dash\")
+	audio_stream_player_2d_3.play()
 	gpu_particles_2d.emitting = true
 
 # Stop the dash after the timer ends
@@ -823,3 +834,13 @@ emitting = false
 amount = 134
 process_material = SubResource("ParticleProcessMaterial_m5h2p")
 texture = ExtResource("10_s1mw5")
+
+[node name="AudioStreamPlayer2D1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_6taec")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_m8wxg")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_ks8ch")
+volume_db = 12.0
