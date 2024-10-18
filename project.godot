@@ -21,6 +21,7 @@ Music="*res://music.gd"
 [global_group]
 
 Player=""
+cameraKnightG=""
 
 [input]
 

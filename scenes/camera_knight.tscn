@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bkh3lt8ovxxto"]
+
+[node name="cameraKnight" type="Camera2D" groups=["cameraKnightG"]]
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0

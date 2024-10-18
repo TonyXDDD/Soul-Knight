@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c1oyrm84rh68v"
+path="res://.godot/imported/sword-stab-flesh-joshua-chivers-1-00-01 (1).mp3-f446c3efa33c5fe6186e63dfc9d324b4.mp3str"
+
+[deps]
+
+source_file="res://sword-stab-flesh-joshua-chivers-1-00-01 (1).mp3"
+dest_files=["res://.godot/imported/sword-stab-flesh-joshua-chivers-1-00-01 (1).mp3-f446c3efa33c5fe6186e63dfc9d324b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

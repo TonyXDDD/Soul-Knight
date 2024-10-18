@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=41 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bdl0bpmu21w0s" path="res://sprites/mainlev_build.png" id="5_gouvj"]
 [ext_resource type="PackedScene" uid="uid://cop7c1ogtmvfp" path="res://scenes/player.tscn" id="6_wtfig"]
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="7_ahqs1"]
+[ext_resource type="PackedScene" uid="uid://bkh3lt8ovxxto" path="res://scenes/camera_knight.tscn" id="8_828ne"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="8_vwnpj"]
 [ext_resource type="Script" path="res://scenes/TESTEST.gd" id="9_motuu"]
 [ext_resource type="Script" path="res://scenes/area_2_ddoor_2.gd" id="11_84byi"]
@@ -1078,9 +1079,7 @@ layer_1/name = "back2"
 [node name="Soul" parent="Player" instance=ExtResource("7_ahqs1")]
 position = Vector2(-1, -33)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(2, -36)
-zoom = Vector2(1.85, 1.85)
+[node name="cameraKnight" parent="Player" instance=ExtResource("8_828ne")]
 
 [node name="Transition" parent="." instance=ExtResource("8_vwnpj")]
 offset_left = -31.0

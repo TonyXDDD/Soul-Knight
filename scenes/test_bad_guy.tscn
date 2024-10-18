@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5o4sdkmu0qnh"]
+[gd_scene load_steps=8 format=3 uid="uid://b5o4sdkmu0qnh"]
 
 [ext_resource type="Texture2D" uid="uid://cv4usddjke8p7" path="res://sprites/Enemies/Mushroom/Idle.png" id="1_b2svi"]
 [ext_resource type="Script" path="res://testbadguyscript.gd" id="2_sboth"]
+[ext_resource type="AudioStream" uid="uid://c1oyrm84rh68v" path="res://sword-stab-flesh-joshua-chivers-1-00-01 (1).mp3" id="3_1plxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l554v"]
 size = Vector2(21, 35)
@@ -40,6 +41,9 @@ script = ExtResource("2_sboth")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testbadguyscript"]
 position = Vector2(0, 7.25)
 shape = SubResource("RectangleShape2D_ndiia")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="testbadguyscript"]
+stream = ExtResource("3_1plxw")
 
 [connection signal="body_entered" from="testbadguyscript" to="testbadguyscript" method="_on_body_entered"]
 [connection signal="body_exited" from="testbadguyscript" to="testbadguyscript" method="_on_body_exited"]
