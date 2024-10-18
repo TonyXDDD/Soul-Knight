@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5o4sdkmu0qnh"]
+
+[ext_resource type="Texture2D" uid="uid://cv4usddjke8p7" path="res://sprites/Enemies/Mushroom/Idle.png" id="1_b2svi"]
+[ext_resource type="Script" path="res://testbadguyscript.gd" id="2_sboth"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l554v"]
+size = Vector2(21, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubp5r"]
+atlas = ExtResource("1_b2svi")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbkiw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubp5r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndiia"]
+size = Vector2(72, 38.5)
+
+[node name="testBadGuy" type="CharacterBody2D"]
+
+[node name="CollisionShape2Dbody" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7.5)
+shape = SubResource("RectangleShape2D_l554v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_mbkiw")
+
+[node name="testbadguyscript" type="Area2D" parent="."]
+script = ExtResource("2_sboth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testbadguyscript"]
+position = Vector2(0, 7.25)
+shape = SubResource("RectangleShape2D_ndiia")
+
+[connection signal="body_entered" from="testbadguyscript" to="testbadguyscript" method="_on_body_entered"]
+[connection signal="body_exited" from="testbadguyscript" to="testbadguyscript" method="_on_body_exited"]

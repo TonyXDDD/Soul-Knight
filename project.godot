@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 Music="*res://music.gd"
 
+[global_group]
+
+Player=""
+
 [input]
 
 move_left={

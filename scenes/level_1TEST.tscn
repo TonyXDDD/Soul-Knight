@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=40 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="15_3ylfc"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_a00e1"]
 [ext_resource type="Script" path="res://scenes/hitchecker.gd" id="17_mci04"]
+[ext_resource type="PackedScene" uid="uid://b5o4sdkmu0qnh" path="res://scenes/test_bad_guy.tscn" id="18_a25p7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1069,17 +1070,17 @@ script = ExtResource("1_rfq76")
 tile_set = SubResource("TileSet_6ex34")
 format = 2
 layer_0/name = "back1"
-layer_0/tile_data = PackedInt32Array(131070, 3342339, 1, 131071, 3342339, 1, 65536, 3342339, 1, 65537, 3342339, 1, 65538, 3342339, 1, 65539, 3342339, 1, 65540, 3342339, 1, 65541, 3342339, 1, 131069, 3342339, 1, 131068, 3342339, 1, 131067, 3342339, 1, 131065, 3342339, 1, 131066, 3342339, 1, 65542, 3342339, 1, 0, 1, 0, 131064, 3342339, 1, 131063, 3342339, 1, 131062, 3342339, 1, 131061, 3342339, 1, 131060, 3342339, 1, 131058, 3342339, 1, 131057, 3342339, 1, 131059, 3342339, 1, 65543, 3342339, 1, 65544, 3342339, 1, 65545, 3342339, 1, 65546, 3342339, 1, 65547, 3342339, 1, 65548, 3342339, 1, 65549, 3342339, 1, 65550, 3342339, 1, 131056, 3342339, 1, 131055, 3342339, 1, 131054, 3342339, 1, 131053, 3342339, 1, 131052, 3342339, 1, 65551, 3342339, 1, 65552, 3342339, 1, 65553, 3342339, 1, 65554, 3342339, 1, 65555, 3342339, 1)
+layer_0/tile_data = PackedInt32Array(131070, 3342339, 1, 131071, 3342339, 1, 65536, 3342339, 1, 65537, 3342339, 1, 65538, 3342339, 1, 65539, 3342339, 1, 65540, 3342339, 1, 65541, 3342339, 1, 131069, 3342339, 1, 131068, 3342339, 1, 131067, 3342339, 1, 131065, 3342339, 1, 131066, 3342339, 1, 65542, 3342339, 1, 0, 1, 0, 131064, 3342339, 1, 131063, 3342339, 1, 131062, 3342339, 1, 131061, 3342339, 1, 131060, 3342339, 1, 131058, 3342339, 1, 131057, 3342339, 1, 131059, 3342339, 1, 65543, 3342339, 1, 65544, 3342339, 1, 65545, 3342339, 1, 65546, 3342339, 1, 65547, 3342339, 1, 65548, 3342339, 1, 65549, 3342339, 1, 65550, 3342339, 1, 131056, 3342339, 1, 131055, 3342339, 1, 131054, 3342339, 1, 131053, 3342339, 1, 131052, 3342339, 1, 65551, 3342339, 1, 65552, 3342339, 1, 65553, 3342339, 1, 65554, 3342339, 1, 65555, 3342339, 1, 65556, 3342339, 1, 65557, 3342339, 1, 65558, 3342339, 1, 65559, 3342339, 1, 65560, 3342339, 1, 65561, 3342339, 1, 65562, 3342339, 1, 65563, 3342339, 1)
 layer_1/name = "back2"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2, -36)
-zoom = Vector2(1.85, 1.85)
 
 [node name="Player" parent="." instance=ExtResource("6_wtfig")]
 
 [node name="Soul" parent="Player" instance=ExtResource("7_ahqs1")]
 position = Vector2(-1, -33)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(2, -36)
+zoom = Vector2(1.85, 1.85)
 
 [node name="Transition" parent="." instance=ExtResource("8_vwnpj")]
 offset_left = -31.0
@@ -1210,6 +1211,9 @@ script = ExtResource("17_mci04")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitchecker"]
 position = Vector2(224, -4)
 shape = SubResource("CircleShape2D_aeonr")
+
+[node name="testBadGuy" parent="." instance=ExtResource("18_a25p7")]
+position = Vector2(377, -11)
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
