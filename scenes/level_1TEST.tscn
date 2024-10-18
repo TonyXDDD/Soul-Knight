@@ -1204,10 +1204,11 @@ script = ExtResource("15_3ylfc")
 [node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_a00e1")]
 
 [node name="hitchecker" type="Area2D" parent="."]
+position = Vector2(5, -3)
 script = ExtResource("17_mci04")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitchecker"]
-position = Vector2(248, -12)
+position = Vector2(224, -4)
 shape = SubResource("CircleShape2D_aeonr")
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
