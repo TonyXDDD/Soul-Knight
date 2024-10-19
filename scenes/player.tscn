@@ -217,6 +217,11 @@ func die() -> void:
 func play_death_animation() -> void:
 	animated_sprite_2d.play(\"death\")
 	print(\"Playing death animation...\")
+
+	# Check if the soul is currently active before toggling control
+	if soul.is_playable:
+		soul._toggle_control()
+	
 	await get_tree().create_timer(3.0).timeout
 
 func reset_to_start() -> void:
