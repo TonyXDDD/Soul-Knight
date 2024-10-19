@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://di8jkcjaq0d3b"]
+[gd_scene load_steps=29 format=3 uid="uid://di8jkcjaq0d3b"]
 
 [ext_resource type="Texture2D" uid="uid://bdl0bpmu21w0s" path="res://sprites/mainlev_build.png" id="1_dpksh"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_jfq0j"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://d37hrvy3uwh1h" path="res://thank you.wav" id="11_fus6g"]
 [ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="12_ijq7g"]
 [ext_resource type="Script" path="res://scenes/area_2d.gd" id="13_h8umj"]
+[ext_resource type="PackedScene" uid="uid://bkh3lt8ovxxto" path="res://scenes/camera_knight.tscn" id="14_o01ks"]
 [ext_resource type="PackedScene" uid="uid://chjldg7nh233n" path="res://scenes/transition.tscn" id="14_qvkvw"]
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="16_x3xyw"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="17_5cb4x"]
@@ -745,15 +746,6 @@ layer_3/tile_data = PackedInt32Array(327641, 3407872, 32, 327644, 3801088, 32, 3
 [node name="Player" parent="." instance=ExtResource("2_w6dbk")]
 position = Vector2(-569, 21.324)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-4, 3)
-zoom = Vector2(2.5, 2.5)
-limit_left = -728
-limit_top = -205
-limit_bottom = 248
-position_smoothing_enabled = true
-position_smoothing_speed = 3.0
-
 [node name="Music" type="AudioStreamPlayer2D" parent="Player"]
 position = Vector2(-18, 8)
 stream = ExtResource("11_fus6g")
@@ -762,6 +754,11 @@ script = ExtResource("11_30msd")
 
 [node name="Soul" parent="Player" instance=ExtResource("12_ijq7g")]
 position = Vector2(1, -32)
+
+[node name="cameraKnight" parent="Player" instance=ExtResource("14_o01ks")]
+limit_left = -728
+limit_top = -205
+limit_bottom = 248
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("13_h8umj")
