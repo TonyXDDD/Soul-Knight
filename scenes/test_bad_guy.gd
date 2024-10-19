@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Variables for detecting the player
-@export var speed: float = 100.0  # Speed of the enemy
+@export var speed: float = 50.0  # Speed of the enemy
 @export var detection_radius: float = 100.0
 var minimum_detection_radius: float = 20.0  # Minimum detection radius
 var chase_detection_radius: float = 800.0   # Increased detection radius while chasing
@@ -30,6 +30,10 @@ var is_flashing: bool = false  # Flag to indicate if flashing
 var flash_duration: float = 0.5  # Duration of the flash effect
 var flash_timer: float = 0.0  # Timer for flashing
 var original_color: Color  # Store the original color
+
+# Gravity variables
+@export var gravity: float = 400.0  # Gravity strength
+var is_on_ground: bool = false  # Check if the enemy is on the ground
 
 # Called when the node enters the scene tree for the first time
 func _ready():
@@ -67,6 +71,19 @@ func _physics_process(delta: float):
 			velocity.x = 0
 			move_and_slide()
 			play_animation("idle")  # Play idle animation
+
+	# Gravity effect
+	if not is_on_ground:
+		velocity.y += gravity * delta  # Apply gravity
+
+	# Check for ground collision
+	is_on_ground = is_on_floor()
+	if is_on_ground:
+		if velocity.y > 0:
+			velocity.y = 0  # Reset vertical velocity if on ground
+
+	# Move the enemy and apply the calculated velocity
+	move_and_slide()
 
 	# Check for mouse button clicks when the player is very close
 	if is_player_very_close():
@@ -169,7 +186,7 @@ func play_animation(animation_name: String):
 # Function to play the death animation
 func play_death_animation():
 	play_animation("death")  # Play death animation
-	#audio_stream_player_2d_2.play()
+	# audio_stream_player_2d_2.play()  # Uncomment if you want to play death sound
 	await animated_sprite_2d.animation_finished  # Wait for death animation to finish
 	queue_free()  # Remove the enemy from the scene
 
