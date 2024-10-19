@@ -21,7 +21,7 @@ var health: int = 50  # Health variable for the enemy
 # Attack range
 @export var attack_radius: float = 30.0  # Distance for the attack
 var attack_cooldown: float = 2.0  # Cooldown period between attacks
-var attack_timer: float = 0.0  # Timer to track the cooldown
+var attack_timer: float = 1.5  # Timer to track the cooldown
 var movement_timeout: float = 1.5  # Time to remain idle after attacking
 var movement_timeout_timer: float = 0.0  # Timer for the movement timeout
 
@@ -185,10 +185,17 @@ func play_animation(animation_name: String):
 
 # Function to play the death animation
 func play_death_animation():
+	velocity = Vector2.ZERO  # Stop any movement
+	set_physics_process(false)  # Disable physics updates (stops gravity and movement)
 	play_animation("death")  # Play death animation
+
+	# Optionally play the death sound effect
 	# audio_stream_player_2d_2.play()  # Uncomment if you want to play death sound
+
 	await animated_sprite_2d.animation_finished  # Wait for death animation to finish
-	queue_free()  # Remove the enemy from the scene
+
+	# After death animation finishes, remove the enemy from the scene
+	queue_free()  # Free the enemy node from the scene
 
 # Helper function to find the player in the 'Player' group
 func get_player_in_group() -> Node2D:

@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="15_3ylfc"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_a00e1"]
 [ext_resource type="Script" path="res://scenes/hitchecker.gd" id="17_mci04"]
-[ext_resource type="PackedScene" uid="uid://b5o4sdkmu0qnh" path="res://scenes/test_bad_guy.tscn" id="18_a25p7"]
+[ext_resource type="PackedScene" uid="uid://mjlpimxwe6h8" path="res://scenes/mushroom_man.tscn" id="19_s0i61"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1211,8 +1211,8 @@ script = ExtResource("17_mci04")
 position = Vector2(224, -4)
 shape = SubResource("CircleShape2D_aeonr")
 
-[node name="testBadGuy" parent="." instance=ExtResource("18_a25p7")]
-position = Vector2(377, -11)
+[node name="testBadGuy" parent="." instance=ExtResource("19_s0i61")]
+position = Vector2(358, -15)
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
