@@ -1,10 +1,11 @@
-[gd_scene load_steps=77 format=3 uid="uid://cop7c1ogtmvfp"]
+[gd_scene load_steps=88 format=3 uid="uid://cop7c1ogtmvfp"]
 
 [ext_resource type="Texture2D" uid="uid://k34whldhlwo7" path="res://sprites/KnightSprites/_Attack.png" id="1_3gsrm"]
 [ext_resource type="Texture2D" uid="uid://b1w0sw470dpsj" path="res://sprites/KnightSprites/_frozenandunfreze.png" id="1_ere4o"]
 [ext_resource type="Texture2D" uid="uid://drpu3dhq7e2av" path="res://sprites/KnightSprites/_Dash.png" id="1_nmuhr"]
 [ext_resource type="Texture2D" uid="uid://d0k3oo6bm6y51" path="res://sprites/KnightSprites/_Idle.png" id="1_y5bw3"]
 [ext_resource type="Texture2D" uid="uid://xiqy5erxkhn5" path="res://sprites/KnightSprites/_Jump.png" id="2_2dvmj"]
+[ext_resource type="Texture2D" uid="uid://bldcmu1mqf865" path="res://sprites/KnightSprites/_Death.png" id="2_mvt38"]
 [ext_resource type="Texture2D" uid="uid://dkd1f8e24wino" path="res://sprites/KnightSprites/_Run.png" id="3_glb56"]
 [ext_resource type="Texture2D" uid="uid://dpspw0fvswaqk" path="res://sprites/KnightSprites/_DeathNoMovement.png" id="4_k8dk1"]
 [ext_resource type="Texture2D" uid="uid://d0voydig7wlew" path="res://sprites/KnightSprites/_Attack2.png" id="6_4fsq4"]
@@ -16,49 +17,58 @@
 
 [sub_resource type="GDScript" id="GDScript_deogl"]
 script/source = "extends CharacterBody2D
-class_name PLayer
+class_name Player
 
 const SPEED = 220.0
 const JUMP_VELOCITY = -400.0
-const DASH_SPEED = 600.0  # Dash speed
-const DASH_DURATION = 0.2  # Dash lasts for 0.2 seconds
-const DASH_COOLDOWN = 2.5  # Cooldown time for dash in seconds
-const FRICTION = 0.1  # Lower value for more gradual slowdown
-const KNIGHT_MOVE_COOLDOWN = 1.2  # Cooldown time before Knight can move again after Soul exits
-const COYOTE_TIME = 0.5  # 0.2 seconds of coyote time to jump after leaving the ground
+const DASH_SPEED = 600.0
+const DASH_DURATION = 0.2
+const DASH_COOLDOWN = 2.5
+const FRICTION = 0.1
+const KNIGHT_MOVE_COOLDOWN = 1.2
+const COYOTE_TIME = 0.5
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d_2: Sprite2D = $Sprite2D2
 @onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
-@onready var soul: CharacterBody2D = $Soul  # Reference to the Soul character
+@onready var soul: CharacterBody2D = $Soul
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
-#Sounds
+# Sounds
 @onready var audio_stream_player_2d_1: AudioStreamPlayer2D = $AudioStreamPlayer2D1
 @onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 @onready var audio_stream_player_2d_3: AudioStreamPlayer2D = $AudioStreamPlayer2D3
 
-
-
 var is_attacking = false
-var facing_direction = 1  # 1 for right, -1 for left
-var is_frozen = false  # Track if frozen animation is playing
-var soul_was_active = false  # Track whether Soulmode was active
-var is_dashing = false  # Track if player is dashing
-var dash_timer = 0.0  # Timer for dash duration
-var dash_cooldown_timer = 0.0  # Timer for dash cooldown
-var move_cooldown_timer = 0.0  # Timer for Knight move cooldown after Soul exits
-var coyote_timer = 0.0  # Timer for coyote time
+var facing_direction = 1
+var is_frozen = false
+var soul_was_active = false
+var is_dashing = false
+var dash_timer = 0.0
+var dash_cooldown_timer = 0.0
+var move_cooldown_timer = 0.0
+var coyote_timer = 0.0
+
+var health = 100
+var start_position: Vector2
+var is_dead = false  # New variable to track if the player is dead
+
+func _ready() -> void:
+	start_position = position
+	animation_player.animation_finished.connect(_on_attack_animation_finished)
+	animation_player_2.animation_finished.connect(_on_attack_animation_finished_2)
 
 func _physics_process(delta: float) -> void:
-	# If Soul is active or exiting, prevent Knight movement
+	if is_dead:
+		return  # Prevent any movement or actions if dead
+
 	if soul.is_playable:
 		if not is_frozen:
 			animated_sprite_2d.play(\"frozen\")
 			is_frozen = true
-		return  # Exit early if Soul is active (no movement allowed)
+		return
 
 	if is_frozen:
 		animated_sprite_2d.play(\"notfrozen\")
@@ -66,35 +76,30 @@ func _physics_process(delta: float) -> void:
 		soul_was_active = true
 		return
 
-	# Handle cooldown after Soul exits before allowing Knight movement
 	if move_cooldown_timer > 0:
 		move_cooldown_timer -= delta
 		if move_cooldown_timer <= 0:
 			print(\"Knight can move again.\")
 		else:
-			animated_sprite_2d.play(\"notfrozen\")  # Ensure \"notfrozen\" animation plays during cooldown
-		return  # Do not allow movement during cooldown
+			animated_sprite_2d.play(\"notfrozen\")
+		return
 
 	if soul_was_active:
 		soul_was_active = false
-		# Start cooldown after Soul exits
 		move_cooldown_timer = KNIGHT_MOVE_COOLDOWN
 		print(\"Starting Knight movement cooldown.\")
 
-	# Update coyote timer if the Knight is not on the floor
 	if not is_on_floor():
 		coyote_timer -= delta
 	else:
-		coyote_timer = COYOTE_TIME  # Reset coyote time when on the ground
+		coyote_timer = COYOTE_TIME
 
-	# Apply gravity if not on the floor
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Jump handling, allowing coyote time jump
 	if Input.is_action_just_pressed(\"jump\") and (is_on_floor() or coyote_timer > 0) and not is_attacking:
 		velocity.y = JUMP_VELOCITY
-		coyote_timer = 0  # Reset coyote time after jumping
+		coyote_timer = 0
 
 	if Input.is_action_just_pressed(\"left_mouse_click\") and not is_attacking:
 		start_attack1()
@@ -112,10 +117,8 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.flip_h = true
 		facing_direction = -1
 
-	# Handle animations based on the current state
 	if not is_attacking and not soul_was_active:
 		if is_dashing:
-			# Ensure dash animation is playing
 			animated_sprite_2d.play(\"dash\")
 		else:
 			if is_on_floor():
@@ -126,7 +129,6 @@ func _physics_process(delta: float) -> void:
 			else:
 				animated_sprite_2d.play(\"jump\")
 
-	# Dash input and handling (using 'dash_now')
 	if Input.is_action_just_pressed(\"dash_now\") and not is_dashing and dash_cooldown_timer <= 0:
 		start_dash()
 
@@ -135,34 +137,29 @@ func _physics_process(delta: float) -> void:
 		if dash_timer <= 0:
 			stop_dash()
 
-	# Update cooldown timer if it's active
 	if dash_cooldown_timer > 0:
 		dash_cooldown_timer -= delta
 
-	# Apply movement with gradual deceleration to reduce sliding
-	var current_speed = (DASH_SPEED if is_dashing else SPEED)  # Adjust speed based on dash state
+	var current_speed = (DASH_SPEED if is_dashing else SPEED)
 	if direction != 0:
 		velocity.x = direction * current_speed
 	else:
-		# Apply friction to gradually slow down the character
 		velocity.x = move_toward(velocity.x, 0, FRICTION * SPEED)
 
 	move_and_slide()
 
-# Start the dash by setting the speed and timer
 func start_dash() -> void:
 	is_dashing = true
 	dash_timer = DASH_DURATION
-	dash_cooldown_timer = DASH_COOLDOWN  # Start cooldown
+	dash_cooldown_timer = DASH_COOLDOWN
 	animated_sprite_2d.play(\"dash\")
 	audio_stream_player_2d_3.play()
 	gpu_particles_2d.emitting = true
 
-# Stop the dash after the timer ends
 func stop_dash() -> void:
 	is_dashing = false
 	gpu_particles_2d.emitting = false
-	animated_sprite_2d.play(\"run\")  # Transition back to running
+	animated_sprite_2d.play(\"run\")
 
 func start_attack1() -> void:
 	if not is_attacking:
@@ -190,9 +187,43 @@ func _on_attack_animation_finished_2(animation_name: String) -> void:
 		is_attacking = false
 		animated_sprite_2d.visible = true
 
-func _ready() -> void:
-	animation_player.animation_finished.connect(_on_attack_animation_finished)
-	animation_player_2.animation_finished.connect(_on_attack_animation_finished_2)
+func take_damage(amount: int) -> void:
+	if is_dead:  # Prevent taking damage if dead
+		return
+
+	health -= amount
+	print(\"Player took damage! Current health: \", health)
+	flash_red()  # Call the flash function
+	if health <= 0 and not is_dead:  # Check if player is not already dead
+		die()
+
+func flash_red() -> void:
+	# Store the original modulate color
+	var original_color = animated_sprite_2d.modulate
+
+	# Flash red
+	animated_sprite_2d.modulate = Color(1, 0, 0)  # Red color
+	await get_tree().create_timer(0.1).timeout  # Flash duration
+	animated_sprite_2d.modulate = original_color  # Revert to original color
+
+func die() -> void:
+	if is_dead:  # Prevent multiple calls to die
+		return
+
+	is_dead = true  # Mark as dead
+	await play_death_animation()
+	reset_to_start()
+
+func play_death_animation() -> void:
+	animated_sprite_2d.play(\"death\")
+	print(\"Playing death animation...\")
+	await get_tree().create_timer(3.0).timeout
+
+func reset_to_start() -> void:
+	position = start_position
+	health = 100
+	is_dead = false  # Reset dead status
+	print(\"Player has been reset to the start of the level.\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff8bx"]
@@ -202,6 +233,46 @@ region = Rect2(0, 40, 120, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2e8t"]
 atlas = ExtResource("1_nmuhr")
 region = Rect2(120, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep6tm"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(0, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p38t"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(120, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx1h7"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(240, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xupc6"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(360, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4w62"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(480, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8ec7"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(600, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_833ak"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(720, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xauq0"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(840, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5tin"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(960, 40, 120, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqdrc"]
+atlas = ExtResource("2_mvt38")
+region = Rect2(1080, 40, 120, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixj3q"]
 atlas = ExtResource("1_ere4o")
@@ -411,6 +482,41 @@ animations = [{
 "loop": false,
 "name": &"dash",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep6tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p38t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx1h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xupc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4w62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8ec7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_833ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xauq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5tin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqdrc")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -795,8 +901,8 @@ script = SubResource("GDScript_deogl")
 position = Vector2(5, -1)
 scale = Vector2(0.891667, 1)
 sprite_frames = SubResource("SpriteFrames_8fjx5")
-animation = &"notfrozen"
-frame = 2
+animation = &"death"
+frame = 9
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

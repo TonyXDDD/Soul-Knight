@@ -6,6 +6,7 @@ extends CharacterBody2D
 var minimum_detection_radius: float = 20.0  # Minimum detection radius
 var chase_detection_radius: float = 800.0   # Increased detection radius while chasing
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 
 var is_chasing_player: bool = false
 var is_hitting: bool = false  # Flag to track if the hit animation is playing
@@ -78,6 +79,7 @@ func _physics_process(delta: float):
 
 	# Check if health is 0 or below and play death animation if true
 	if health <= 0:
+		audio_stream_player_2d_2.play()
 		await play_death_animation()  # Play death animation
 
 	# Handle flashing effect
@@ -140,7 +142,13 @@ func attack_player():
 		is_attacking = true  # Set the attack state to true
 		velocity.x = 0  # Stop movement during attack
 		play_animation("attack")  # Play attack animation
-		await animated_sprite_2d.animation_finished  # Wait for attack animation to finish
+		
+		# Wait for attack animation to finish
+		await animated_sprite_2d.animation_finished 
+		
+		# Check if the player is still in range before applying damage
+		if is_player_in_attack_range():
+			player.take_damage(30)  # Apply damage only if player is in range
 
 		# Start cooldown timer
 		attack_timer = attack_cooldown  
@@ -161,6 +169,7 @@ func play_animation(animation_name: String):
 # Function to play the death animation
 func play_death_animation():
 	play_animation("death")  # Play death animation
+	#audio_stream_player_2d_2.play()
 	await animated_sprite_2d.animation_finished  # Wait for death animation to finish
 	queue_free()  # Remove the enemy from the scene
 
