@@ -22,6 +22,7 @@ Music="*res://music.gd"
 
 Player=""
 cameraKnightG=""
+GhostGroup=""
 
 [input]
 
