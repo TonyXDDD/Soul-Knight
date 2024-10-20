@@ -149,7 +149,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 15.0
+"speed": 35.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -245,7 +245,9 @@ shape = SubResource("RectangleShape2D_l554v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_mbkiw")
-animation = &"run"
+animation = &"attack"
+frame = 7
+frame_progress = 1.0
 
 [node name="mushroom_manscript" type="Area2D" parent="."]
 script = ExtResource("7_b5jwt")

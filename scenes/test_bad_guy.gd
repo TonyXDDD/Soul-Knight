@@ -18,8 +18,10 @@ var player: Node2D
 # HP reference
 var health: int = 50  # Health variable for the enemy
 
-# Attack range
-@export var attack_radius: float = 55.0  # Distance for the attack
+# Attack ranges
+@export var attack_animation_radius: float = 55.0  # Distance to trigger attack animation
+@export var damage_radius: float = 80.0  # Distance to apply damage to the player
+
 var attack_cooldown: float = 2.0  # Cooldown period between attacks
 var attack_timer: float = 1.5  # Timer to track the cooldown
 var movement_timeout: float = 1.5  # Time to remain idle after attacking
@@ -62,7 +64,7 @@ func _physics_process(delta: float):
 			is_chasing_player = is_chasing_player and is_player_in_chase_range()
 
 		if is_chasing_player:
-			if is_player_in_attack_range() and attack_timer <= 0:
+			if is_player_in_attack_animation_range() and attack_timer <= 0:
 				attack_player()
 			else:
 				chase_player(delta)
@@ -127,9 +129,13 @@ func is_player_in_range() -> bool:
 func is_player_in_chase_range() -> bool:
 	return position.distance_to(player.position) <= chase_detection_radius
 
-# Function to check if the player is in the attack range
-func is_player_in_attack_range() -> bool:
-	return position.distance_to(player.position) <= attack_radius
+# Function to check if the player is in the attack animation range
+func is_player_in_attack_animation_range() -> bool:
+	return position.distance_to(player.position) <= attack_animation_radius
+
+# Function to check if the player is in the damage range
+func is_player_in_damage_range() -> bool:
+	return position.distance_to(player.position) <= damage_radius
 
 # Function to check if the player is very close to the enemy
 func is_player_very_close() -> bool:
@@ -163,9 +169,9 @@ func attack_player():
 		# Wait for attack animation to finish
 		await animated_sprite_2d.animation_finished 
 		
-		# Check if the player is still in range before applying damage
-		if is_player_in_attack_range():
-			player.take_damage(30)  # Apply damage only if player is in range
+		# After animation, check if the player is within damage range
+		if is_player_in_damage_range():
+			player.take_damage(30)  # Apply damage only if player is in damage range
 
 		# Start cooldown timer
 		attack_timer = attack_cooldown  
