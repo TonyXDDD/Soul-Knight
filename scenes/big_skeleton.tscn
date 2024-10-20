@@ -240,7 +240,7 @@ shape = SubResource("RectangleShape2D_l554v")
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_mbkiw")
 animation = &"shield"
-frame_progress = 0.104829
+frame_progress = 0.926507
 
 [node name="big_skeletonscript" type="Area2D" parent="."]
 script = ExtResource("7_8wfdv")

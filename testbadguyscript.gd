@@ -57,7 +57,7 @@ func _process(delta: float) -> void:
 	if healthcheckerNUM > 0 and not soul_active:  # Only allow damage if Soulmode is not active
 		if player_in_area and Input.is_action_just_pressed("left_mouse_click"):
 			print("Player attack1")
-			healthcheckerNUM -= 5
+			healthcheckerNUM -= 10
 			#animated_sprite_2d.play("hit")
 			print(healthcheckerNUM)
 			start_camera_rumble()
@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 
 		elif player_in_area and Input.is_action_just_pressed("right_mouse_click"):
 			print("Player attack2")
-			healthcheckerNUM -= 10
+			healthcheckerNUM -= 15
 			#animated_sprite_2d.play("hit")
 			print(healthcheckerNUM)
 			start_camera_rumble()
