@@ -95,10 +95,10 @@ func _physics_process(delta: float):
 	# Check for mouse button clicks when the player is very close
 	if is_player_very_close():
 		if Input.is_action_just_pressed("left_mouse_click"):
-			health -= 5  # Decrease health by 5 for left click
+			health -= 10  # Decrease health by 5 for left click
 			flash_effect()  # Trigger flash effect
 		elif Input.is_action_just_pressed("right_mouse_click"):
-			health -= 10  # Decrease health by 10 for right click
+			health -= 15  # Decrease health by 10 for right click
 			flash_effect()  # Trigger flash effect
 		# Update the TextureProgressBar value based on health
 		texture_progress_bar.value = health
