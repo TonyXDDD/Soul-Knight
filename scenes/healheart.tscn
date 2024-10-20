@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb7yxllly171k"]
+
+[ext_resource type="Texture2D" uid="uid://6aifchj7rquu" path="res://sprites/Soul sprites/soulhealH.png" id="1_eogpo"]
+[ext_resource type="Script" path="res://scenes/healheartscript.gd" id="2_5dbf5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_faxqx"]
+
+[node name="healheart" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("1_eogpo")
+
+[node name="healheartscript" type="Area2D" parent="."]
+script = ExtResource("2_5dbf5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="healheartscript"]
+shape = SubResource("CircleShape2D_faxqx")
+
+[connection signal="body_entered" from="healheartscript" to="healheartscript" method="_on_body_entered"]
+[connection signal="body_exited" from="healheartscript" to="healheartscript" method="_on_body_exited"]
