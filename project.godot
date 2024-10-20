@@ -23,6 +23,7 @@ Music="*res://music.gd"
 Player=""
 cameraKnightG=""
 GhostGroup=""
+health_bars=""
 
 [input]
 

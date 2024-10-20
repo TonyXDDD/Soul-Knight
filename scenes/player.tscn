@@ -41,6 +41,8 @@ const COYOTE_TIME = 0.5
 @onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 @onready var audio_stream_player_2d_3: AudioStreamPlayer2D = $AudioStreamPlayer2D3
 
+var health_bar: TextureProgressBar  # Variable to store health bar reference
+
 var is_attacking = false
 var facing_direction = 1
 var is_frozen = false
@@ -53,12 +55,18 @@ var coyote_timer = 0.0
 
 var health = 100
 var start_position: Vector2
-var is_dead = false  # New variable to track if the player is dead
+var is_dead = false  # Variable to track if the player is dead
 
 func _ready() -> void:
 	start_position = position
 	animation_player.animation_finished.connect(_on_attack_animation_finished)
 	animation_player_2.animation_finished.connect(_on_attack_animation_finished_2)
+
+	# Get health bar from the group
+	var health_bars = get_tree().get_nodes_in_group(\"health_bars\")
+	if health_bars.size() > 0:
+		health_bar = health_bars[0]  # Assuming there's one health bar in the group
+		health_bar.value = health  # Set initial health bar value
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -193,6 +201,10 @@ func take_damage(amount: int) -> void:
 
 	health -= amount
 	print(\"Player took damage! Current health: \", health)
+
+	if health_bar != null:
+		health_bar.value = health  # Update the health bar value
+	
 	flash_red()  # Call the flash function
 	if health <= 0 and not is_dead:  # Check if player is not already dead
 		die()
@@ -227,6 +239,10 @@ func play_death_animation() -> void:
 func reset_to_start() -> void:
 	position = start_position
 	health = 100
+
+	if health_bar != null:
+		health_bar.value = health  # Reset health bar to full
+
 	is_dead = false  # Reset dead status
 	print(\"Player has been reset to the start of the level.\")
 "
