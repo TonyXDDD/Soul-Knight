@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://bt0hniy5va30a"]
+[gd_scene load_steps=45 format=3 uid="uid://bt0hniy5va30a"]
 
 [ext_resource type="Texture2D" uid="uid://bhye3re7yynri" path="res://sprites/Soul sprites/000.png" id="1_7r8nr"]
 [ext_resource type="Script" path="res://scenes/soul.gd" id="1_ho78h"]
+[ext_resource type="AudioStream" uid="uid://cijjt1mea1o0e" path="res://tarnished-bell-deepwoken-roblox-sound-effect-vfx_4mBZ6Ee8.mp3" id="3_ll4tj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1e03"]
 atlas = ExtResource("1_7r8nr")
@@ -322,3 +323,6 @@ frame_progress = 1.0
 light_mask = 0
 visibility_layer = 0
 shape = SubResource("CircleShape2D_ocxpf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ll4tj")

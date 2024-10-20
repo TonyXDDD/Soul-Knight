@@ -1220,6 +1220,9 @@ shape = SubResource("CircleShape2D_aeonr")
 [node name="testBadGuy" parent="." instance=ExtResource("19_s0i61")]
 position = Vector2(358, -15)
 
+[node name="testBadGuy2" parent="." instance=ExtResource("19_s0i61")]
+position = Vector2(257, -12)
+
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_entered"]

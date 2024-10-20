@@ -224,6 +224,19 @@ func take_damage(amount: int) -> void:
 	if health <= 0 and not is_dead:  # Check if player is not already dead
 		die()
 
+func heal(amount: int) -> void:
+	if is_dead:
+		return
+	
+	health+=amount
+	if health > 100:
+		health = 100
+	
+	print(\"player healed!\")
+	
+	if health_bar != null:
+		health_bar.value = health
+
 func flash_red() -> void:
 	# Store the original modulate color
 	var original_color = animated_sprite_2d.modulate

@@ -7,6 +7,7 @@ const CIRCLE_RADIUS = 125  # Adjust the radius for the movement constraint
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: CharacterBody2D = $".."
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_playable: bool = false  # Variable to track if the character is playable
 var is_exiting: bool = false  # Variable to track if the character is exiting
@@ -59,6 +60,7 @@ func _process(delta: float) -> void:
 	# Check for control toggle input
 	if Input.is_action_just_pressed("ui_toggle_control"):  # Custom action for Q
 		_toggle_control()
+		audio_stream_player_2d.play()
 
 	# Check if we need to reset the position when exiting
 	if is_exiting and not animated_sprite_2d.is_playing():

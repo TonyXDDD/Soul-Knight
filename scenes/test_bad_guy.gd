@@ -146,7 +146,7 @@ func is_player_in_damage_range() -> bool:
 
 # Function to check if the player is very close to the enemy
 func is_player_very_close() -> bool:
-	var very_close_distance = 50.0  # Set a distance to consider the player "very close"
+	var very_close_distance = 70.0  # Set a distance to consider the player "very close"
 	return position.distance_to(player.position) <= very_close_distance
 
 # Function to chase the player
@@ -206,7 +206,7 @@ func play_death_animation():
 	# audio_stream_player_2d_2.play()  # Uncomment if you want to play death sound
 
 	await animated_sprite_2d.animation_finished  # Wait for death animation to finish
-
+	player.heal(20)
 	# After death animation finishes, remove the enemy from the scene
 	queue_free()  # Free the enemy node from the scene
 
