@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkdcwgdmeq7kr"]
+
+[ext_resource type="Texture2D" uid="uid://rbeoq358lyd2" path="res://sprites/progBar/Over (2).png" id="1_uluj6"]
+[ext_resource type="Texture2D" uid="uid://0rhj1oiw80ik" path="res://sprites/progBar/UnderandProg (2).png" id="2_m61er"]
+
+[node name="dashBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -903.0
+offset_bottom = -550.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." groups=["dash_bars"]]
+layout_mode = 1
+offset_left = 19.0
+offset_top = 52.0
+offset_right = 231.0
+offset_bottom = 70.0
+max_value = 2.5
+fill_mode = 1
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+texture_under = ExtResource("1_uluj6")
+texture_over = ExtResource("2_m61er")
+texture_progress = ExtResource("1_uluj6")
+tint_under = Color(0, 0.937255, 0, 1)
+tint_over = Color(0.516438, 0.270835, 0.0432434, 1)
+tint_progress = Color(0, 0, 0, 1)

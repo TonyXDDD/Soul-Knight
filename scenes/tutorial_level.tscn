@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://detgrwi2njwun"]
+[gd_scene load_steps=32 format=3 uid="uid://detgrwi2njwun"]
 
 [ext_resource type="Texture2D" uid="uid://cmii75afand2n" path="res://sprites/levelbuilds/SET1/_PNG/SET1_background_obj.png" id="1_73sss"]
 [ext_resource type="Script" path="res://scenes/tutorial_level.gd" id="1_hxa6k"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="16_t852s"]
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_yib6t"]
 [ext_resource type="PackedScene" uid="uid://cvg4w2eww1hxp" path="res://scenes/healthbar.tscn" id="19_l7qlm"]
+[ext_resource type="PackedScene" uid="uid://bkdcwgdmeq7kr" path="res://scenes/dash_bar.tscn" id="20_37be0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsmyb"]
 texture = ExtResource("1_73sss")
@@ -250,3 +251,5 @@ script = ExtResource("16_t852s")
 [node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_yib6t")]
 
 [node name="healthbar" parent="CanvasLayer" instance=ExtResource("19_l7qlm")]
+
+[node name="dashBar" parent="CanvasLayer" instance=ExtResource("20_37be0")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=43 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scenes/hitchecker.gd" id="17_mci04"]
 [ext_resource type="PackedScene" uid="uid://cvg4w2eww1hxp" path="res://scenes/healthbar.tscn" id="18_r66lm"]
 [ext_resource type="PackedScene" uid="uid://mjlpimxwe6h8" path="res://scenes/mushroom_man.tscn" id="19_s0i61"]
+[ext_resource type="PackedScene" uid="uid://bkdcwgdmeq7kr" path="res://scenes/dash_bar.tscn" id="19_wl2ee"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1205,6 +1206,8 @@ script = ExtResource("15_3ylfc")
 [node name="Pause_menu" parent="CanvasLayer" instance=ExtResource("16_a00e1")]
 
 [node name="healthbar" parent="CanvasLayer" instance=ExtResource("18_r66lm")]
+
+[node name="dashBar" parent="CanvasLayer" instance=ExtResource("19_wl2ee")]
 
 [node name="hitchecker" type="Area2D" parent="."]
 position = Vector2(5, -3)

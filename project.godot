@@ -24,6 +24,7 @@ Player=""
 cameraKnightG=""
 GhostGroup=""
 health_bars=""
+dash_bars=""
 
 [input]
 

@@ -42,6 +42,7 @@ const COYOTE_TIME = 0.5
 @onready var audio_stream_player_2d_3: AudioStreamPlayer2D = $AudioStreamPlayer2D3
 
 var health_bar: TextureProgressBar  # Variable to store health bar reference
+var dash_bar: TextureProgressBar  # Variable to store dash bar reference
 
 var is_attacking = false
 var facing_direction = 1
@@ -67,6 +68,13 @@ func _ready() -> void:
 	if health_bars.size() > 0:
 		health_bar = health_bars[0]  # Assuming there's one health bar in the group
 		health_bar.value = health  # Set initial health bar value
+
+	# Get dash bar from the group
+	var dash_bars = get_tree().get_nodes_in_group(\"dash_bars\")
+	if dash_bars.size() > 0:
+		dash_bar = dash_bars[0]  # Assuming there's one dash bar in the group
+		dash_bar.max_value = DASH_COOLDOWN  # Set the maximum value for the dash cooldown
+		dash_bar.value = DASH_COOLDOWN  # Initialize the bar to the full cooldown
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -147,6 +155,11 @@ func _physics_process(delta: float) -> void:
 
 	if dash_cooldown_timer > 0:
 		dash_cooldown_timer -= delta
+		if dash_bar != null:
+			dash_bar.value = dash_cooldown_timer  # Update the dash progress bar value
+	else:
+		if dash_bar != null:
+			dash_bar.value = 0  # Reset the bar to 0 when cooldown is done
 
 	var current_speed = (DASH_SPEED if is_dashing else SPEED)
 	if direction != 0:
@@ -160,6 +173,8 @@ func start_dash() -> void:
 	is_dashing = true
 	dash_timer = DASH_DURATION
 	dash_cooldown_timer = DASH_COOLDOWN
+	if dash_bar != null:
+		dash_bar.value = DASH_COOLDOWN  # Reset the dash progress bar to max cooldown
 	animated_sprite_2d.play(\"dash\")
 	audio_stream_player_2d_3.play()
 	gpu_particles_2d.emitting = true
@@ -204,7 +219,7 @@ func take_damage(amount: int) -> void:
 
 	if health_bar != null:
 		health_bar.value = health  # Update the health bar value
-	
+
 	flash_red()  # Call the flash function
 	if health <= 0 and not is_dead:  # Check if player is not already dead
 		die()
@@ -233,18 +248,16 @@ func play_death_animation() -> void:
 	# Check if the soul is currently active before toggling control
 	if soul.is_playable:
 		soul._toggle_control()
-	
+
 	await get_tree().create_timer(3.0).timeout
 
 func reset_to_start() -> void:
 	position = start_position
 	health = 100
-
 	if health_bar != null:
-		health_bar.value = health  # Reset health bar to full
-
-	is_dead = false  # Reset dead status
-	print(\"Player has been reset to the start of the level.\")
+		health_bar.value = health  # Reset the health bar value
+	is_dead = false  # Player can act again
+	print(\"Player has respawned at the starting position.\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ff8bx"]

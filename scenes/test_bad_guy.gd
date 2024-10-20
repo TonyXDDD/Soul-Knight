@@ -7,6 +7,7 @@ var minimum_detection_radius: float = 20.0  # Minimum detection radius
 var chase_detection_radius: float = 800.0   # Increased detection radius while chasing
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
+@onready var texture_progress_bar: TextureProgressBar = $Control/TextureProgressBar
 
 var is_chasing_player: bool = false
 var is_hitting: bool = false  # Flag to track if the hit animation is playing
@@ -42,6 +43,10 @@ func _ready():
 	# Find the player in the Player group
 	player = get_player_in_group()
 	original_color = animated_sprite_2d.modulate  # Save the original color
+	# Set the max value for the TextureProgressBar based on initial health
+	texture_progress_bar.max_value = health
+	# Update the progress bar value at the start
+	texture_progress_bar.value = health
 
 func _physics_process(delta: float):
 	# Update attack cooldown timer
@@ -95,6 +100,8 @@ func _physics_process(delta: float):
 		elif Input.is_action_just_pressed("right_mouse_click"):
 			health -= 10  # Decrease health by 10 for right click
 			flash_effect()  # Trigger flash effect
+		# Update the TextureProgressBar value based on health
+		texture_progress_bar.value = health
 
 	# Check if health is 0 or below and play death animation if true
 	if health <= 0:
@@ -207,5 +214,5 @@ func play_death_animation():
 func get_player_in_group() -> Node2D:
 	var players = get_tree().get_nodes_in_group("Player")
 	if players.size() > 0:
-		return players[0]  # Assuming there's only one player in the group
+		return players[0] as Node2D
 	return null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://mjlpimxwe6h8"]
+[gd_scene load_steps=41 format=3 uid="uid://mjlpimxwe6h8"]
 
 [ext_resource type="Script" path="res://scenes/test_bad_guy.gd" id="1_fb5yl"]
 [ext_resource type="Texture2D" uid="uid://cdrsxxkkhcadb" path="res://sprites/Enemies/Mushroom/Attack.png" id="2_s01x4"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dxlxxcaidt8eh" path="res://sprites/Enemies/Mushroom/Run.png" id="6_nqqa1"]
 [ext_resource type="Script" path="res://testbadguyscript.gd" id="7_b5jwt"]
 [ext_resource type="AudioStream" uid="uid://c1oyrm84rh68v" path="res://sword-stab-flesh-joshua-chivers-1-00-01 (1).mp3" id="8_upw2s"]
+[ext_resource type="Texture2D" uid="uid://rbeoq358lyd2" path="res://sprites/progBar/Over (2).png" id="9_v45q2"]
+[ext_resource type="Texture2D" uid="uid://0rhj1oiw80ik" path="res://sprites/progBar/UnderandProg (2).png" id="10_1ql6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l554v"]
 size = Vector2(21, 35)
@@ -237,6 +239,8 @@ size = Vector2(72, 38.5)
 
 [node name="mushroom_man" type="CharacterBody2D"]
 script = ExtResource("1_fb5yl")
+attack_animation_radius = 70.0
+damage_radius = 55.0
 
 [node name="CollisionShape2Dbody" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 7.5)
@@ -261,6 +265,31 @@ stream = ExtResource("8_upw2s")
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_upw2s")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_left = -21.0
+offset_top = -29.0
+offset_right = 21.0
+offset_bottom = -20.0
+max_value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 7
+stretch_margin_top = 4
+stretch_margin_right = 7
+stretch_margin_bottom = 4
+texture_under = ExtResource("9_v45q2")
+texture_over = ExtResource("10_1ql6j")
+texture_progress = ExtResource("9_v45q2")
+tint_under = Color(0.0295066, 0.0295066, 0.0295066, 1)
+tint_over = Color(0.0156863, 0.34902, 0.0156863, 1)
+tint_progress = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="mushroom_manscript" to="mushroom_manscript" method="_on_body_entered"]
 [connection signal="body_exited" from="mushroom_manscript" to="mushroom_manscript" method="_on_body_exited"]
