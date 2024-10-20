@@ -19,7 +19,7 @@ var player: Node2D
 var health: int = 50  # Health variable for the enemy
 
 # Attack range
-@export var attack_radius: float = 70.0  # Distance for the attack
+@export var attack_radius: float = 55.0  # Distance for the attack
 var attack_cooldown: float = 2.0  # Cooldown period between attacks
 var attack_timer: float = 1.5  # Timer to track the cooldown
 var movement_timeout: float = 1.5  # Time to remain idle after attacking
