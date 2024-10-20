@@ -249,9 +249,7 @@ shape = SubResource("RectangleShape2D_l554v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_mbkiw")
-animation = &"attack"
-frame = 7
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="mushroom_manscript" type="Area2D" parent="."]
 script = ExtResource("7_b5jwt")
