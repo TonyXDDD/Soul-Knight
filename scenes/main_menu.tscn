@@ -128,7 +128,7 @@ autoplay = true
 
 [node name="Transition" parent="." instance=ExtResource("5_46aii")]
 layout_mode = 1
-offset_left = 536.0
-offset_top = 153.0
-offset_right = -498.0
-offset_bottom = -416.0
+offset_left = 541.0
+offset_top = 160.0
+offset_right = -493.0
+offset_bottom = -409.0
