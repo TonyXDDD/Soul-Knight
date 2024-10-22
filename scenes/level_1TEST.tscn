@@ -1121,7 +1121,7 @@ shape = SubResource("RectangleShape2D_dpg7t")
 show_behind_parent = true
 position = Vector2(118, -1)
 sprite_frames = SubResource("SpriteFrames_30j2g")
-animation = &"notdef"
+animation = &"close"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR2"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://detgrwi2njwun"]
+[gd_scene load_steps=57 format=3 uid="uid://detgrwi2njwun"]
 
 [ext_resource type="Texture2D" uid="uid://cmii75afand2n" path="res://sprites/levelbuilds/SET1/_PNG/SET1_background_obj.png" id="1_73sss"]
 [ext_resource type="Script" path="res://scenes/tutorial_level.gd" id="1_hxa6k"]
@@ -20,6 +20,16 @@
 [ext_resource type="PackedScene" uid="uid://dyp2yemsn67uw" path="res://scenes/pause_menu.tscn" id="16_yib6t"]
 [ext_resource type="PackedScene" uid="uid://cvg4w2eww1hxp" path="res://scenes/healthbar.tscn" id="19_l7qlm"]
 [ext_resource type="PackedScene" uid="uid://bkdcwgdmeq7kr" path="res://scenes/dash_bar.tscn" id="20_37be0"]
+[ext_resource type="Texture2D" uid="uid://ci5dgovydfjfc" path="res://sprites/levelbuilds/finalDoor.png" id="21_f2yhb"]
+[ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="21_u34vx"]
+[ext_resource type="Script" path="res://scenes/area_2d_2.gd" id="22_ii1nk"]
+[ext_resource type="Script" path="res://scenes/door2TESTLEVEL.gd" id="24_x53xa"]
+[ext_resource type="Script" path="res://scenes/area_2dkeyuseTUTLEVL.gd" id="25_lnqf6"]
+[ext_resource type="Script" path="res://scenes/area_2dkeyuse_2TUTLD.gd" id="26_bale6"]
+[ext_resource type="Script" path="res://scenes/area_2d_keyTUTLVL.gd" id="26_upmpf"]
+[ext_resource type="PackedScene" uid="uid://mjlpimxwe6h8" path="res://scenes/mushroom_man.tscn" id="27_cvhqa"]
+[ext_resource type="Script" path="res://scenes/area_2d_key_2TUTLblss.gd" id="28_to1ma"]
+[ext_resource type="PackedScene" uid="uid://bb7yxllly171k" path="res://scenes/healheart.tscn" id="30_478lf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsmyb"]
 texture = ExtResource("1_73sss")
@@ -153,6 +163,105 @@ sources/7 = SubResource("TileSetAtlasSource_d1chu")
 sources/8 = SubResource("TileSetAtlasSource_3627o")
 sources/9 = SubResource("TileSetAtlasSource_3j7rw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfjm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npkm7"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(27, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbkew"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(18, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54cb0"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(9, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jixlk"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(0, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkmyo"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(0, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhlvn"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(0, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njlo3"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(9, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeguu"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(18, 0, 9, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c17p1"]
+atlas = ExtResource("21_f2yhb")
+region = Rect2(27, 0, 9, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcqfa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npkm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbkew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54cb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jixlk")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkmyo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhlvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njlo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeguu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c17p1")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"notdef",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta1dh"]
+size = Vector2(6.9677, 38.7068)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d7hq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqwxm"]
+size = Vector2(27, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enrvt"]
+
 [node name="Tutorial_level" type="Node2D"]
 script = ExtResource("1_hxa6k")
 
@@ -160,15 +269,15 @@ script = ExtResource("1_hxa6k")
 tile_set = SubResource("TileSet_sv12d")
 format = 2
 layer_0/name = "Layer3"
-layer_0/tile_data = PackedInt32Array(0, 1, 0, 40, 1, 0)
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 40, 1, 0, 79, 1, 0, 114, 1, 0)
 layer_1/name = "Layer2"
-layer_1/tile_data = PackedInt32Array(0, 2, 0, 40, 2, 0)
+layer_1/tile_data = PackedInt32Array(0, 2, 0, 40, 2, 0, 79, 2, 0, 114, 2, 0)
 layer_2/name = "Layer1"
-layer_2/tile_data = PackedInt32Array(0, 3, 0, 40, 3, 0, 458759, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 458760, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 458749, 1835015, 30, 327673, 458759, 25, 262143, 7, 23, 458736, 1310727, 24)
+layer_2/tile_data = PackedInt32Array(0, 3, 0, 40, 3, 0, 458759, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 458760, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 458749, 1835015, 30, 327673, 458759, 25, 262143, 7, 23, 458736, 1310727, 24, 79, 3, 0, 114, 3, 0, 262227, 458759, 25, 393303, 1835015, 30, 196697, 7, 23, 327761, 458759, 25, 458837, 1835015, 30, 262231, 7, 23, 262225, 458759, 25, 393301, 1835015, 30, 196695, 7, 23)
 layer_3/name = "Mainphy"
-layer_3/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, -196549, 65543, 0, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32, 131085, 917512, 7, 589836, 1048585, 14, 589851, 1048585, 14, 131098, 327688, 7, 29, 917513, 0, 196637, 917513, 2, 327709, 917513, 2, 458781, 196617, 3, 458782, 196617, 3, 32, 1179657, 0, 196640, 1179657, 2, 327712, 1179657, 2, 131107, 917512, 7)
+layer_3/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32, 131085, 917512, 7, 589836, 1048585, 14, 589851, 1048585, 14, 131098, 327688, 7, 29, 917513, 0, 196637, 917513, 2, 327709, 917513, 2, 458781, 196617, 3, 458782, 196617, 3, 32, 1179657, 0, 196640, 1179657, 2, 327712, 1179657, 2, 131107, 917512, 7, 589887, 1048585, 14, 589892, 1048585, 14, 589897, 1048585, 14, 589902, 1048585, 14, 589907, 1048585, 14, 589912, 1048585, 14, 589917, 1048585, 14, 589921, 1048585, 14, 917567, 131081, 16, 917572, 131081, 16, 917577, 131081, 16, 917582, 131081, 16, 917587, 131081, 16, 917592, 131081, 16, 917597, 131081, 16, 917600, 131081, 16, 917601, 131081, 16, 196656, 917513, 7, 196660, 1179657, 7, 48, 917513, 2, 52, 1179657, 2, -196560, 917513, 2, -196556, 1179657, 2, -393168, 917513, 0, -393164, 1179657, 0, -393156, 917513, 0, -196548, 917513, 2, 60, 917513, 2, 196668, 917513, 7, -393152, 1179657, 0, -196544, 1179657, 2, 64, 1179657, 2, 196672, 1179657, 7, -393144, 917513, 0, -196536, 917513, 2, 72, 917513, 2, 196680, 917513, 7, -393140, 1179657, 0, -196532, 1179657, 2, 76, 1179657, 2, 196684, 1179657, 7, 589926, 1048585, 14, 589931, 1048585, 14, 589936, 1048585, 14, 589941, 1048585, 14, 589946, 1048585, 14, 589951, 1048585, 14, 589956, 1048585, 14, 917606, 131081, 16, 917611, 131081, 16, 917616, 131081, 16, 917621, 131081, 16, 917626, 131081, 16, 917631, 131081, 16, 917636, 131081, 16, -262011, 65543, 0, -393111, 917513, 0, -196503, 917513, 2, 105, 917513, 2, 196713, 917513, 7, -393107, 1179657, 0, -196499, 1179657, 2, 109, 1179657, 2, 196717, 1179657, 7)
 layer_4/name = "covr"
-layer_4/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 196618, 1179657, 2, 458783, 262153, 5, 458784, 262153, 5, 458782, 262153, 5, 458781, 262153, 5, 524317, 262153, 5, 524318, 262153, 5, 655374, 1179657, 2, 917518, 1179657, 2, 655385, 917513, 2, 917529, 917513, 2, 458776, 917513, 14, 458767, 1376265, 14, 720913, 1638400, 48, 720917, 1638400, 48, 327701, 1048576, 57, 458777, 917513, 0, 589851, 262153, 4, 655387, 262153, 4, 655388, 262153, 4, 589852, 262153, 4, 655389, 262153, 4, 589853, 262153, 4, 589854, 262153, 4, 524316, 262153, 4, 524315, 262153, 4, 196640, 1179657, 2)
+layer_4/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 196618, 1179657, 2, 458783, 262153, 5, 458784, 262153, 5, 458782, 262153, 5, 458781, 262153, 5, 524317, 262153, 5, 524318, 262153, 5, 655374, 1179657, 2, 917518, 1179657, 2, 655385, 917513, 2, 917529, 917513, 2, 458776, 917513, 14, 458767, 1376265, 14, 720913, 1638400, 48, 720917, 1638400, 48, 327701, 1048576, 57, 458777, 917513, 0, 589851, 262153, 4, 655387, 262153, 4, 655388, 262153, 4, 589852, 262153, 4, 655389, 262153, 4, 589853, 262153, 4, 589854, 262153, 4, 524316, 262153, 4, 524315, 262153, 4, 196640, 1179657, 2, -262088, 1638400, 48, -262076, 1638400, 48)
 
 [node name="Player" parent="." instance=ExtResource("11_yyq76")]
 position = Vector2(-190, 102)
@@ -179,8 +288,14 @@ position = Vector2(1, -31)
 [node name="cameraKnight" parent="Player" instance=ExtResource("14_k74qu")]
 limit_left = -300
 limit_top = -173
-limit_right = 957
+limit_right = 2143
 limit_bottom = 170
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(190, -102)
+stream = ExtResource("15_gf51s")
+pitch_scale = 1.25
+autoplay = true
 
 [node name="Labels" type="Node" parent="."]
 
@@ -220,10 +335,10 @@ text = "Spacebar to jump"
 
 [node name="Label4" type="Label" parent="Labels"]
 show_behind_parent = true
-offset_left = 299.0
-offset_top = 148.0
-offset_right = 435.0
-offset_bottom = 171.0
+offset_left = 292.0
+offset_top = 149.0
+offset_right = 428.0
+offset_bottom = 172.0
 text = "Death...."
 
 [node name="Label5" type="Label" parent="Labels"]
@@ -234,16 +349,129 @@ offset_right = 411.0
 offset_bottom = 6.0
 text = "Press C to Dash across"
 
+[node name="Label7" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 624.0
+offset_top = -31.0
+offset_right = 797.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 11
+text = "In Soul Knight you will 
+encounter Puzzles that 
+can only be sovlved 
+using the Soul"
+
+[node name="Label8" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 770.0
+offset_top = -45.0
+offset_right = 849.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 8
+text = "Press the \"e\" key
+on the button below 
+to open the barrier
+
+
+"
+
+[node name="Label9" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 963.0
+offset_top = -80.0
+offset_right = 1044.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 8
+text = "
+Press the \"e\" key
+on the lever below 
+to open the barrier
+but hurry up ! ! ! !
+
+
+The barrier will close 
+after 10 seconds
+
+
+"
+
+[node name="Label10" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 1155.0
+offset_top = -97.0
+offset_right = 1234.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 8
+text = "
+Press the \"e\" key
+on the KEY below 
+to pick up the KEY
+Then bring the Soul
+to the barrier and
+press the \"e\" key
+
+Now the barrier will
+open for you"
+
+[node name="Label11" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 1273.0
+offset_top = -85.0
+offset_right = 1463.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 9
+text = "Congratulations you got through
+ the 3 different Puzzles !!!!!!
+
+But get ready ahead you will
+face you're first Enemy ! ! ! !
+
+To attack use mouse 1 (light attack) 
+and mouse 2 (heavy attack) 
+Good luck Knight ! ! ! !"
+
+[node name="Label12" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 1533.0
+offset_top = -33.0
+offset_right = 1655.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 9
+text = "SLAY THE MUSHROOM MAN
+ AND GRAB THE KEY ! ! ! !"
+
+[node name="Label13" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 1778.0
+offset_top = -56.0
+offset_right = 1976.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 10
+text = "Good job Knight ! ! ! !
+You are alive... For now at least
+
+Where you hit by the Mushroom Man?
+Use the Soul to pick up these Heart gems
+and heal yourself :)"
+
+[node name="Label14" type="Label" parent="Labels"]
+show_behind_parent = true
+offset_left = 2008.0
+offset_top = 4.0
+offset_right = 2147.0
+offset_bottom = 85.0
+theme_override_font_sizes/font_size = 9
+text = "Thats the end of the Tutorial
+
+Press the \"esc\" key to go 
+back to the main menu 
+and play the game ! ! ! !"
+
 [node name="Transition" parent="." instance=ExtResource("14_or3bf")]
 offset_left = -223.0
 offset_top = 72.0
 offset_right = -223.0
 offset_bottom = 72.0
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_gf51s")
-pitch_scale = 1.25
-autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("16_t852s")
@@ -253,3 +481,138 @@ script = ExtResource("16_t852s")
 [node name="healthbar" parent="CanvasLayer" instance=ExtResource("19_l7qlm")]
 
 [node name="dashBar" parent="CanvasLayer" instance=ExtResource("20_37be0")]
+
+[node name="button" type="Sprite2D" parent="."]
+position = Vector2(804.5, 12.5)
+texture = ExtResource("21_u34vx")
+
+[node name="lever" type="Sprite2D" parent="."]
+position = Vector2(1000.5, 13.5)
+texture = ExtResource("21_u34vx")
+
+[node name="key" type="Sprite2D" parent="."]
+position = Vector2(1194.5, 12.5)
+texture = ExtResource("21_u34vx")
+
+[node name="key2" type="Sprite2D" parent="."]
+position = Vector2(1595, 7)
+texture = ExtResource("21_u34vx")
+
+[node name="Doors (Puzzle elements) below" type="Node" parent="."]
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("22_ii1nk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(804.5, 12.5)
+shape = SubResource("RectangleShape2D_ykfjm")
+
+[node name="TESTDOOR" type="AnimatedSprite2D" parent="."]
+position = Vector2(804.75, 89.25)
+scale = Vector2(1.72222, 1.70513)
+sprite_frames = SubResource("SpriteFrames_jcqfa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR/StaticBody2D"]
+position = Vector2(0.145203, -0.146618)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ta1dh")
+
+[node name="Area2Ddoor2" type="Area2D" parent="."]
+script = ExtResource("24_x53xa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2Ddoor2"]
+position = Vector2(1000.5, 13.5)
+shape = SubResource("RectangleShape2D_1d7hq")
+
+[node name="TESTDOOR2" type="AnimatedSprite2D" parent="."]
+position = Vector2(1001, 89)
+scale = Vector2(1.72222, 1.70513)
+sprite_frames = SubResource("SpriteFrames_jcqfa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR2/StaticBody2D"]
+position = Vector2(0.145203, -0.146618)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ta1dh")
+
+[node name="Area2DKEYUSE" type="Area2D" parent="."]
+script = ExtResource("25_lnqf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DKEYUSE"]
+position = Vector2(1193.5, 88)
+shape = SubResource("RectangleShape2D_lqwxm")
+
+[node name="Area2DKEYUSE2" type="Area2D" parent="."]
+script = ExtResource("26_bale6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DKEYUSE2"]
+position = Vector2(1720, 88)
+shape = SubResource("RectangleShape2D_lqwxm")
+
+[node name="Area2DKey" type="Area2D" parent="."]
+script = ExtResource("26_upmpf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DKey"]
+position = Vector2(1195, 13)
+shape = SubResource("RectangleShape2D_enrvt")
+
+[node name="Area2DKey2" type="Area2D" parent="."]
+script = ExtResource("28_to1ma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DKey2"]
+position = Vector2(1595, 7)
+shape = SubResource("RectangleShape2D_enrvt")
+
+[node name="TESTDOOR3" type="AnimatedSprite2D" parent="."]
+position = Vector2(1194, 89)
+scale = Vector2(1.72222, 1.70513)
+sprite_frames = SubResource("SpriteFrames_jcqfa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR3/StaticBody2D"]
+position = Vector2(0.145203, -0.146618)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ta1dh")
+
+[node name="TESTDOOR4" type="AnimatedSprite2D" parent="."]
+position = Vector2(1720, 88)
+scale = Vector2(1.72222, 1.70513)
+sprite_frames = SubResource("SpriteFrames_jcqfa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR4/StaticBody2D"]
+position = Vector2(0.145264, -0.146614)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ta1dh")
+
+[node name="! BADGUYS BELOW !" type="Node" parent="."]
+
+[node name="mushroom_man" parent="." instance=ExtResource("27_cvhqa")]
+position = Vector2(1500, 89)
+
+[node name="healheart" parent="." instance=ExtResource("30_478lf")]
+position = Vector2(1850, 68)
+
+[node name="healheart2" parent="." instance=ExtResource("30_478lf")]
+position = Vector2(1889, 53)
+
+[node name="healheart3" parent="." instance=ExtResource("30_478lf")]
+position = Vector2(1885, 96)
+
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2Ddoor2" to="Area2Ddoor2" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2DKEYUSE" to="Area2DKEYUSE" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2DKEYUSE" to="Area2DKEYUSE" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2DKEYUSE2" to="Area2DKEYUSE2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2DKEYUSE2" to="Area2DKEYUSE2" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2DKey" to="Area2DKey" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2DKey" to="Area2DKey" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2DKey2" to="Area2DKey2" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2DKey2" to="Area2DKey2" method="_on_body_exited"]
