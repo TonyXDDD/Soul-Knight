@@ -1,4 +1,10 @@
+## 2024-10-17 - 6hr: Implementing the Puzzles ( 3 types of door puzzles)
+*Item 1 - Today i worked on finnaly implementing the puzzles for my Soul to solve
+*Item 2 - The puzzles constist of 3 types of doors, 1# Button, Soul presses the button and door opens. 2# Lever, Soul pulls lever and has 10 seconds to pass through the open door until it closes again. #3 Key, Soul must find a key on the map, pick it up and bring it to the door inorder to open it.
 
+## 2024-10-16 - 8hr: Trying to fix my game
+*Item 1 - I started out by working on the Soul so it would proberly collide with only areas that i set it to collide with, problem is that somehow while working on this issue i managed to currupt my files for the game.
+*Item 2 - Thank god for my repo's and commits because i was able to get old files of my game and build it up again to fix the currupted files
 
 ## 2024-10-09 - 5hr: Implementing a simple dash mechanic for the Knight
 * Item 1 - created a dash for the Knight mechanic so traversing the map would be a little more fun
