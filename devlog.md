@@ -1,3 +1,17 @@
+## 2024-10-20 - 8hr: Added hearts for the Soul to pick up and heal the Knight and new enemy type (SKELETON WARRIOR)
+*Item 1 - added healing items that the Soul can pick up the heal the Knight if hes in danger of dying because of low hp
+*Item 2 - I added a new enemy type: the Skeleton Warrior, he is fast and does a ton of damage but gets stuck in place for 4.5 seconds after attacking, he holds up his shield so the player cant do much damage, but the key for this enemy is to attack while he is stuck in place hollding his shield to kill him
+
+## 2024-10-19 - 5hr: Added fixes to damage range vs attack range for the enemy srripts and made UI for the player
+*Item 1 - i added two var that controll the range of where the player can be damaged from (enemy swing) and the attack range of an enemy
+*Item 2 - to spice up my game I added a health bar and a dash bar so the player can keep track of the Knights health and dash cooldowns
+
+## 2024-10-18 - 15hr: Implementing my first Enemy
+*Item 1 - this was a horrible and long procsess of understanding how to add enemies into my game
+*Item 2 - in the end i created this super janky code that allows the player (Knight) to be harmed and deal damage to enemies
+*Item 3 - Bassicaly what i did was set up a area2D node that would detect if the player either m1 (light attack) or m2 (heavy attack)
+*Item 4 - the first enemy is a mushroom monster that does a good amount of damage but doesint have super high health
+
 ## 2024-10-17 - 6hr: Implementing the Puzzles ( 3 types of door puzzles)
 *Item 1 - Today i worked on finnaly implementing the puzzles for my Soul to solve
 *Item 2 - The puzzles constist of 3 types of doors, 1# Button, Soul presses the button and door opens. 2# Lever, Soul pulls lever and has 10 seconds to pass through the open door until it closes again. #3 Key, Soul must find a key on the map, pick it up and bring it to the door inorder to open it.
