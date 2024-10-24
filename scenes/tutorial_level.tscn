@@ -516,7 +516,6 @@ sprite_frames = SubResource("SpriteFrames_jcqfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR/StaticBody2D"]
 position = Vector2(0.145203, -0.146618)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ta1dh")
 
 [node name="Area2Ddoor2" type="Area2D" parent="."]
@@ -535,7 +534,6 @@ sprite_frames = SubResource("SpriteFrames_jcqfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR2/StaticBody2D"]
 position = Vector2(0.145203, -0.146618)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ta1dh")
 
 [node name="Area2DKEYUSE" type="Area2D" parent="."]
@@ -575,7 +573,6 @@ sprite_frames = SubResource("SpriteFrames_jcqfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR3/StaticBody2D"]
 position = Vector2(0.145203, -0.146618)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ta1dh")
 
 [node name="TESTDOOR4" type="AnimatedSprite2D" parent="."]
@@ -587,7 +584,6 @@ sprite_frames = SubResource("SpriteFrames_jcqfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TESTDOOR4/StaticBody2D"]
 position = Vector2(0.145264, -0.146614)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ta1dh")
 
 [node name="! BADGUYS BELOW !" type="Node" parent="."]
