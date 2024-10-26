@@ -17,6 +17,12 @@ var rumble_duration: float = 0.2  # Duration of the rumble effect
 var death_animation_timer: float = 0.0  # Timer for the death animation visibility
 var is_visible_after_death: bool = false  # Flag to track visibility state
 
+# Cooldown timers for mouse damage
+var left_mouse_cooldown: float = 0.3  # 0.5 seconds for left mouse button
+var left_mouse_timer: float = 0.0  # Timer to track left mouse cooldown
+var right_mouse_cooldown: float = 0.5  # 1 second for right mouse button
+var right_mouse_timer: float = 0.0  # Timer to track right mouse cooldown
+
 # Method to check if Soulmode is activated or deactivated
 func SoulmodeChecker() -> void:
 	if Input.is_action_just_pressed("ui_toggle_control"):  # Toggle Soulmode with "Q"
@@ -43,6 +49,12 @@ func _on_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	SoulmodeChecker()  # Continuously check if Soulmode is toggled
 
+	# Update cooldown timers for mouse damage
+	if left_mouse_timer > 0:
+		left_mouse_timer -= delta
+	if right_mouse_timer > 0:
+		right_mouse_timer -= delta
+
 	# Handle camera rumble effect
 	if rumble_timer > 0:
 		apply_camera_rumble(delta)
@@ -55,25 +67,30 @@ func _process(delta: float) -> void:
 			is_visible_after_death = false  # Reset the flag
 
 	if healthcheckerNUM > 0 and not soul_active:  # Only allow damage if Soulmode is not active
-		if player_in_area and Input.is_action_just_pressed("left_mouse_click"):
-			print("Player attack1")
-			healthcheckerNUM -= 10
-			#animated_sprite_2d.play("hit")
-			print(healthcheckerNUM)
-			start_camera_rumble()
+		if player_in_area:
+			# Handle left mouse click attack with cooldown
+			if Input.is_action_just_pressed("left_mouse_click") and left_mouse_timer <= 0:
+				print("Player attack1")
+				healthcheckerNUM -= 10
+				#animated_sprite_2d.play("hit")
+				print(healthcheckerNUM)
+				start_camera_rumble()
+				left_mouse_timer = left_mouse_cooldown  # Reset left mouse cooldown
 
-			if healthcheckerNUM <= 0:
-				handle_death()
+				if healthcheckerNUM <= 0:
+					handle_death()
 
-		elif player_in_area and Input.is_action_just_pressed("right_mouse_click"):
-			print("Player attack2")
-			healthcheckerNUM -= 15
-			#animated_sprite_2d.play("hit")
-			print(healthcheckerNUM)
-			start_camera_rumble()
+			# Handle right mouse click attack with cooldown
+			elif Input.is_action_just_pressed("right_mouse_click") and right_mouse_timer <= 0:
+				print("Player attack2")
+				healthcheckerNUM -= 15
+				#animated_sprite_2d.play("hit")
+				print(healthcheckerNUM)
+				start_camera_rumble()
+				right_mouse_timer = right_mouse_cooldown  # Reset right mouse cooldown
 
-			if healthcheckerNUM <= 0:
-				handle_death()
+				if healthcheckerNUM <= 0:
+					handle_death()
 
 # Function to handle the death logic
 func handle_death() -> void:
