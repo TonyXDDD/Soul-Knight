@@ -1,10 +1,12 @@
-[gd_scene load_steps=57 format=3 uid="uid://detgrwi2njwun"]
+[gd_scene load_steps=65 format=3 uid="uid://detgrwi2njwun"]
 
 [ext_resource type="Texture2D" uid="uid://cmii75afand2n" path="res://sprites/levelbuilds/SET1/_PNG/SET1_background_obj.png" id="1_73sss"]
 [ext_resource type="Script" path="res://scenes/tutorial_level.gd" id="1_hxa6k"]
 [ext_resource type="Texture2D" uid="uid://dcwux0s6gwq5f" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_day1.png" id="2_br2td"]
 [ext_resource type="Texture2D" uid="uid://bxe2ekim2fklj" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_day2.png" id="3_76rhs"]
+[ext_resource type="Texture2D" uid="uid://bu3qyc7lcrq7i" path="res://sprites/props2.png" id="4_js8dj"]
 [ext_resource type="Texture2D" uid="uid://c3vm30y1n8iel" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_day3.png" id="4_r6d58"]
+[ext_resource type="Texture2D" uid="uid://bdl0bpmu21w0s" path="res://sprites/mainlev_build.png" id="5_820pp"]
 [ext_resource type="Texture2D" uid="uid://2xadmkle5rah" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_night1.png" id="5_rwrp1"]
 [ext_resource type="Texture2D" uid="uid://bdovdltaldggh" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_night2.png" id="6_tj4tg"]
 [ext_resource type="Texture2D" uid="uid://namek1glqnxg" path="res://sprites/levelbuilds/SET1/_PNG/SET1_bakcground_night3.png" id="7_adqmu"]
@@ -23,13 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://ci5dgovydfjfc" path="res://sprites/levelbuilds/finalDoor.png" id="21_f2yhb"]
 [ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="21_u34vx"]
 [ext_resource type="Script" path="res://scenes/area_2d_2.gd" id="22_ii1nk"]
+[ext_resource type="Texture2D" uid="uid://b3717hmgxglad" path="res://sprites/levelbuilds/lever.png" id="24_5itxw"]
 [ext_resource type="Script" path="res://scenes/door2TESTLEVEL.gd" id="24_x53xa"]
+[ext_resource type="Texture2D" uid="uid://betw0cub8f53w" path="res://sprites/levelbuilds/key.png" id="25_25whj"]
 [ext_resource type="Script" path="res://scenes/area_2dkeyuseTUTLEVL.gd" id="25_lnqf6"]
 [ext_resource type="Script" path="res://scenes/area_2dkeyuse_2TUTLD.gd" id="26_bale6"]
 [ext_resource type="Script" path="res://scenes/area_2d_keyTUTLVL.gd" id="26_upmpf"]
 [ext_resource type="PackedScene" uid="uid://mjlpimxwe6h8" path="res://scenes/mushroom_man.tscn" id="27_cvhqa"]
 [ext_resource type="Script" path="res://scenes/area_2d_key_2TUTLblss.gd" id="28_to1ma"]
 [ext_resource type="PackedScene" uid="uid://bb7yxllly171k" path="res://scenes/healheart.tscn" id="30_478lf"]
+[ext_resource type="Script" path="res://scenes/tonxt_lvl.gd" id="33_b33el"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsmyb"]
 texture = ExtResource("1_73sss")
@@ -42,6 +47,20 @@ texture = ExtResource("1_73sss")
 texture = ExtResource("2_br2td")
 0:0/size_in_atlas = Vector2i(40, 23)
 0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f1s7j"]
+texture = ExtResource("4_js8dj")
+1:53/size_in_atlas = Vector2i(23, 10)
+1:53/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3vxje"]
+texture = ExtResource("5_820pp")
+60:1/size_in_atlas = Vector2i(3, 4)
+60:1/0 = 0
+60:12/size_in_atlas = Vector2i(3, 1)
+60:12/0 = 0
+60:14/size_in_atlas = Vector2i(3, 1)
+60:14/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bmjwu"]
 texture = ExtResource("3_76rhs")
@@ -162,6 +181,8 @@ sources/6 = SubResource("TileSetAtlasSource_ygfjv")
 sources/7 = SubResource("TileSetAtlasSource_d1chu")
 sources/8 = SubResource("TileSetAtlasSource_3627o")
 sources/9 = SubResource("TileSetAtlasSource_3j7rw")
+sources/10 = SubResource("TileSetAtlasSource_f1s7j")
+sources/11 = SubResource("TileSetAtlasSource_3vxje")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykfjm"]
 
@@ -262,6 +283,9 @@ size = Vector2(27, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_enrvt"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iit6g"]
+size = Vector2(28, 40.75)
+
 [node name="Tutorial_level" type="Node2D"]
 script = ExtResource("1_hxa6k")
 
@@ -274,10 +298,12 @@ layer_1/name = "Layer2"
 layer_1/tile_data = PackedInt32Array(0, 2, 0, 40, 2, 0, 79, 2, 0, 114, 2, 0, 154, 2, 0)
 layer_2/name = "Layer1"
 layer_2/tile_data = PackedInt32Array(0, 3, 0, 40, 3, 0, 458759, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 458760, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 458749, 1835015, 30, 327673, 458759, 25, 262143, 7, 23, 458736, 1310727, 24, 79, 3, 0, 114, 3, 0, 262227, 458759, 25, 393303, 1835015, 30, 196697, 7, 23, 327761, 458759, 25, 458837, 1835015, 30, 262231, 7, 23, 262225, 458759, 25, 393301, 1835015, 30, 196695, 7, 23, 154, 3, 0)
-layer_3/name = "Mainphy"
-layer_3/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32, 131085, 917512, 7, 589836, 1048585, 14, 589851, 1048585, 14, 131098, 327688, 7, 29, 917513, 0, 196637, 917513, 2, 327709, 917513, 2, 458781, 196617, 3, 458782, 196617, 3, 32, 1179657, 0, 196640, 1179657, 2, 327712, 1179657, 2, 131107, 917512, 7, 589887, 1048585, 14, 589892, 1048585, 14, 589897, 1048585, 14, 589902, 1048585, 14, 589907, 1048585, 14, 589912, 1048585, 14, 589917, 1048585, 14, 589921, 1048585, 14, 917567, 131081, 16, 917572, 131081, 16, 917577, 131081, 16, 917582, 131081, 16, 917587, 131081, 16, 917592, 131081, 16, 917597, 131081, 16, 917600, 131081, 16, 917601, 131081, 16, 196656, 917513, 7, 196660, 1179657, 7, 48, 917513, 2, 52, 1179657, 2, -196560, 917513, 2, -196556, 1179657, 2, -393168, 917513, 0, -393164, 1179657, 0, -393156, 917513, 0, -196548, 917513, 2, 60, 917513, 2, 196668, 917513, 7, -393152, 1179657, 0, -196544, 1179657, 2, 64, 1179657, 2, 196672, 1179657, 7, -393144, 917513, 0, -196536, 917513, 2, 72, 917513, 2, 196680, 917513, 7, -393140, 1179657, 0, -196532, 1179657, 2, 76, 1179657, 2, 196684, 1179657, 7, 589926, 1048585, 14, 589931, 1048585, 14, 589936, 1048585, 14, 589941, 1048585, 14, 589946, 1048585, 14, 589951, 1048585, 14, 589956, 1048585, 14, 917606, 131081, 16, 917611, 131081, 16, 917616, 131081, 16, 917621, 131081, 16, 917626, 131081, 16, 917631, 131081, 16, 917636, 131081, 16, -393111, 917513, 0, -196503, 917513, 2, 105, 917513, 2, 196713, 917513, 7, -393107, 1179657, 0, -196499, 1179657, 2, 109, 1179657, 2, 196717, 1179657, 7, 589961, 1048585, 14, 917641, 131081, 16, 589966, 1048585, 14, 917646, 131081, 16, 589971, 1048585, 14, 917651, 131081, 16, 589976, 1048585, 14, 917656, 131081, 16, 589981, 1048585, 14, 917661, 131081, 16, 589986, 1048585, 14, 917666, 131081, 16, 589991, 1048585, 14, 917671, 131081, 16, 589996, 1048585, 14, 917676, 131081, 16, -261997, 65543, 0)
-layer_4/name = "covr"
-layer_4/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 196618, 1179657, 2, 458783, 262153, 5, 458784, 262153, 5, 458782, 262153, 5, 458781, 262153, 5, 524317, 262153, 5, 524318, 262153, 5, 655374, 1179657, 2, 917518, 1179657, 2, 655385, 917513, 2, 917529, 917513, 2, 458776, 917513, 14, 458767, 1376265, 14, 720913, 1638400, 48, 720917, 1638400, 48, 327701, 1048576, 57, 458777, 917513, 0, 589851, 262153, 4, 655387, 262153, 4, 655388, 262153, 4, 589852, 262153, 4, 655389, 262153, 4, 589853, 262153, 4, 589854, 262153, 4, 524316, 262153, 4, 524315, 262153, 4, 196640, 1179657, 2, -262088, 1638400, 48, -262076, 1638400, 48)
+layer_3/name = "tonextL"
+layer_3/tile_data = PackedInt32Array(262283, 65546, 53, 196742, 65546, 53)
+layer_4/name = "Mainphy"
+layer_4/tile_data = PackedInt32Array(-131091, 65543, 0, 655342, 1048585, 14, 655347, 1048585, 14, 655352, 1048585, 14, 655357, 1048585, 14, 589826, 1048585, 14, 589831, 1048585, 14, 589835, 1048585, 14, 589852, 1048585, 14, 589857, 1048585, 14, 589862, 1048585, 14, 327687, 917513, 2, 196615, 917513, 2, 7, 917513, 0, 10, 1179657, 0, 196618, 1179657, 2, 327690, 1179657, 2, 458759, 196617, 3, 458760, 196617, 3, 524295, 196617, 3, 131076, 327688, 7, 589867, 1048585, 14, 589872, 1048585, 14, 589877, 1048585, 14, 589882, 1048585, 14, 983022, 131081, 16, 983027, 131081, 16, 983032, 131081, 16, 983037, 131081, 16, 917506, 131081, 16, 917511, 131081, 16, 917516, 131081, 16, 917531, 131081, 16, 917535, 131081, 16, 917540, 131081, 16, 917543, 131081, 16, 917548, 131081, 16, 917552, 131081, 16, 917556, 131081, 16, 852024, 131081, 16, 917562, 131081, 16, 917560, 131081, 16, 458752, 2359303, 32, 131085, 917512, 7, 589836, 1048585, 14, 589851, 1048585, 14, 131098, 327688, 7, 29, 917513, 0, 196637, 917513, 2, 327709, 917513, 2, 458781, 196617, 3, 458782, 196617, 3, 32, 1179657, 0, 196640, 1179657, 2, 327712, 1179657, 2, 131107, 917512, 7, 589887, 1048585, 14, 589892, 1048585, 14, 589897, 1048585, 14, 589902, 1048585, 14, 589907, 1048585, 14, 589912, 1048585, 14, 589917, 1048585, 14, 589921, 1048585, 14, 917567, 131081, 16, 917572, 131081, 16, 917577, 131081, 16, 917582, 131081, 16, 917587, 131081, 16, 917592, 131081, 16, 917597, 131081, 16, 917600, 131081, 16, 917601, 131081, 16, 196656, 917513, 7, 196660, 1179657, 7, 48, 917513, 2, 52, 1179657, 2, -196560, 917513, 2, -196556, 1179657, 2, -393168, 917513, 0, -393164, 1179657, 0, -393156, 917513, 0, -196548, 917513, 2, 60, 917513, 2, 196668, 917513, 7, -393152, 1179657, 0, -196544, 1179657, 2, 64, 1179657, 2, 196672, 1179657, 7, -393144, 917513, 0, -196536, 917513, 2, 72, 917513, 2, 196680, 917513, 7, -393140, 1179657, 0, -196532, 1179657, 2, 76, 1179657, 2, 196684, 1179657, 7, 589926, 1048585, 14, 589931, 1048585, 14, 589936, 1048585, 14, 589941, 1048585, 14, 589946, 1048585, 14, 589951, 1048585, 14, 589956, 1048585, 14, 917606, 131081, 16, 917611, 131081, 16, 917616, 131081, 16, 917621, 131081, 16, 917626, 131081, 16, 917631, 131081, 16, 917636, 131081, 16, -393111, 917513, 0, -196503, 917513, 2, 105, 917513, 2, 196713, 917513, 7, -393107, 1179657, 0, -196499, 1179657, 2, 109, 1179657, 2, 196717, 1179657, 7, 589961, 1048585, 14, 917641, 131081, 16, 589966, 1048585, 14, 917646, 131081, 16, 589971, 1048585, 14, 917651, 131081, 16, 589976, 1048585, 14, 917656, 131081, 16, 589981, 1048585, 14, 917661, 131081, 16, 589986, 1048585, 14, 917666, 131081, 16, 589991, 1048585, 14, 917671, 131081, 16, 589996, 1048585, 14, 917676, 131081, 16, -261997, 65543, 0, 458888, 3932171, 14, 327816, 3932171, 1)
+layer_5/name = "covr"
+layer_5/tile_data = PackedInt32Array(458759, 196617, 3, 458761, 196617, 3, 458762, 196617, 3, 524295, 196617, 3, 524296, 196617, 3, 524298, 196617, 3, 524297, 196617, 3, 196618, 1179657, 2, 458783, 262153, 5, 458784, 262153, 5, 458782, 262153, 5, 458781, 262153, 5, 524317, 262153, 5, 524318, 262153, 5, 655374, 1179657, 2, 917518, 1179657, 2, 655385, 917513, 2, 917529, 917513, 2, 458776, 917513, 14, 458767, 1376265, 14, 720913, 1638400, 48, 720917, 1638400, 48, 327701, 1048576, 57, 458777, 917513, 0, 589851, 262153, 4, 655387, 262153, 4, 655388, 262153, 4, 589852, 262153, 4, 655389, 262153, 4, 589853, 262153, 4, 589854, 262153, 4, 524316, 262153, 4, 524315, 262153, 4, 196640, 1179657, 2, -262088, 1638400, 48, -262076, 1638400, 48)
 
 [node name="Player" parent="." instance=ExtResource("11_yyq76")]
 position = Vector2(-190, 102)
@@ -456,16 +482,14 @@ and heal yourself :)"
 
 [node name="Label14" type="Label" parent="Labels"]
 show_behind_parent = true
-offset_left = 2008.0
-offset_top = 4.0
-offset_right = 2147.0
-offset_bottom = 85.0
-theme_override_font_sizes/font_size = 9
-text = "Thats the end of the Tutorial
+offset_left = 2087.0
+offset_top = -7.0
+offset_right = 2292.0
+offset_bottom = 74.0
+theme_override_font_sizes/font_size = 13
+text = "! Thats the end of the Tutorial !
 
-Press the \"esc\" key to go 
-back to the main menu 
-and play the game ! ! ! !"
+Enter the Caverns to start level 1"
 
 [node name="Transition" parent="." instance=ExtResource("14_or3bf")]
 offset_left = -223.0
@@ -488,15 +512,15 @@ texture = ExtResource("21_u34vx")
 
 [node name="lever" type="Sprite2D" parent="."]
 position = Vector2(1000.5, 13.5)
-texture = ExtResource("21_u34vx")
+texture = ExtResource("24_5itxw")
 
 [node name="key" type="Sprite2D" parent="."]
 position = Vector2(1194.5, 12.5)
-texture = ExtResource("21_u34vx")
+texture = ExtResource("25_25whj")
 
 [node name="key2" type="Sprite2D" parent="."]
 position = Vector2(1595, 7)
-texture = ExtResource("21_u34vx")
+texture = ExtResource("25_25whj")
 
 [node name="Doors (Puzzle elements) below" type="Node" parent="."]
 
@@ -599,6 +623,19 @@ position = Vector2(1889, 53)
 
 [node name="healheart3" parent="." instance=ExtResource("30_478lf")]
 position = Vector2(1885, 96)
+
+[node name="tonxtLVL" type="Area2D" parent="."]
+script = ExtResource("33_b33el")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonxtLVL"]
+position = Vector2(2184, 89)
+shape = SubResource("RectangleShape2D_iit6g")
+
+[node name="Transition2" parent="." instance=ExtResource("14_or3bf")]
+offset_left = 2153.0
+offset_top = 60.0
+offset_right = 2153.0
+offset_bottom = 60.0
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
