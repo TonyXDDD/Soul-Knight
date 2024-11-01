@@ -102,6 +102,7 @@ text = "Start Game
 "
 
 [node name="tutrl" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.839216, 0.984314, 1)

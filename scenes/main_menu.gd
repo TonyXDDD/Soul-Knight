@@ -16,7 +16,7 @@ func _ready():
 	animation_player.play("fade_in")
 
 func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)
+	get_tree().change_scene_to_packed(start_levelT)
 
 func on_tutrl_pressed() -> void:
 	get_tree().change_scene_to_packed(start_levelT)
