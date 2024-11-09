@@ -9,6 +9,9 @@ const CIRCLE_RADIUS = 125  # Adjust the radius for the movement constraint
 @onready var player: CharacterBody2D = $".."
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+var soul_bar: TextureProgressBar # Variable to store soul bar reference (global group is called soul_bars)
+var soul_mode_cooldown = 3.0  # Cooldown duration in seconds
+
 var is_playable: bool = false  # Variable to track if the character is playable
 var is_exiting: bool = false  # Variable to track if the character is exiting
 var waiting_for_idle: bool = false  # Variable to track if we should play "idle" after "enter"
@@ -22,10 +25,15 @@ var at_boundary: bool = false  # Track if the character is at the boundary
 # Variable to track the facing direction (-1 for left, 1 for right)
 var facing_direction: int = 1
 
+# Cooldown time tracker
+var cooldown_time: float = 0.0
+
+# Flag to track if it's the first press
+var is_first_press: bool = true
+
 func _ready() -> void:
 	# Set visibility to false at the start
 	animated_sprite_2d.visible = false
-	print("Soul character ready and visibility set to false.")
 
 	# Set collision layer and mask
 	set_collision_layer(3)  # Set to Layer 3
@@ -35,13 +43,30 @@ func _ready() -> void:
 	_toggle_control()
 
 func _toggle_control() -> void:
+	# Handle first press differently (no cooldown for first press)
+	if is_first_press:
+		is_first_press = false
+		_handle_control_toggle()  # Handle the control toggle (no cooldown)
+		# Play sound on first press
+		audio_stream_player_2d.play()
+		return  # No cooldown after first press
+
+	# Check if cooldown is active before allowing to press the button again
+	if cooldown_time <= 0:
+		_handle_control_toggle()  # Handle the control toggle (cooldown has finished)
+		cooldown_time = soul_mode_cooldown  # Start cooldown
+
+		# Play sound after cooldown is finished
+		audio_stream_player_2d.play()
+
+# Function to toggle control
+func _handle_control_toggle() -> void:
 	if is_playable:
 		# If currently playable, play exit animation
 		is_playable = false
 		is_exiting = true
 		waiting_for_idle = false
 		animated_sprite_2d.play("exit")
-		print("Playing exit animation.")
 	else:
 		# If currently not playable, update reset position and play enter animation
 		is_playable = true
@@ -50,17 +75,18 @@ func _toggle_control() -> void:
 		reset_position = player.global_position + Vector2(0, OFFSET_Y)  # Update reset position based on Knight's position
 		animated_sprite_2d.play("enter")
 		animated_sprite_2d.visible = true  # Show character when entering
-		print("Playing enter animation and character is now visible. Reset position updated to: ", reset_position)
 
 		# Set the circle center to the current position when becoming playable
 		circle_center = global_position
-		print("Circle center set to: ", circle_center)
 
 func _process(delta: float) -> void:
+	# Decrease cooldown time if it's greater than 0
+	if cooldown_time > 0:
+		cooldown_time -= delta  # Decrease cooldown over time
+
 	# Check for control toggle input
 	if Input.is_action_just_pressed("ui_toggle_control"):  # Custom action for Q
 		_toggle_control()
-		audio_stream_player_2d.play()
 
 	# Check if we need to reset the position when exiting
 	if is_exiting and not animated_sprite_2d.is_playing():
@@ -68,7 +94,6 @@ func _process(delta: float) -> void:
 		animated_sprite_2d.visible = false
 		global_position = reset_position  # Use global_position to reset position
 		is_exiting = false
-		print("Exit animation finished, hiding character and resetting position.")
 
 func _physics_process(delta: float) -> void:
 	if not is_playable:
@@ -106,7 +131,6 @@ func _physics_process(delta: float) -> void:
 		# Restrict movement to the circle boundary
 		var direction_to_center = (new_position - circle_center).normalized()
 		global_position = circle_center + direction_to_center * circle_radius
-		print("Restricted movement to the edge of the circle.")
 		at_boundary = true  # At the boundary
 
 	# Apply the movement
@@ -118,7 +142,6 @@ func _physics_process(delta: float) -> void:
 			# Play the cantReach animation if the character is at the boundary
 			if animated_sprite_2d.animation != "cantReach":
 				animated_sprite_2d.play("cantReach")
-				print("Playing cantReach animation.")
 		elif velocity.length() > 0:
 			# Play the float animation when moving within the circle
 			animated_sprite_2d.play("float")
@@ -128,7 +151,6 @@ func _physics_process(delta: float) -> void:
 				if not animated_sprite_2d.is_playing():
 					animated_sprite_2d.play("idle")
 					waiting_for_idle = false
-					print("Playing idle animation.")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact_soul") and is_playable:

@@ -25,6 +25,7 @@ cameraKnightG=""
 GhostGroup=""
 health_bars=""
 dash_bars=""
+soul_bars=""
 
 [input]
 

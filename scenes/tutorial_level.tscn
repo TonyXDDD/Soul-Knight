@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://detgrwi2njwun"]
+[gd_scene load_steps=66 format=3 uid="uid://detgrwi2njwun"]
 
 [ext_resource type="Texture2D" uid="uid://cmii75afand2n" path="res://sprites/levelbuilds/SET1/_PNG/SET1_background_obj.png" id="1_73sss"]
 [ext_resource type="Script" path="res://scenes/tutorial_level.gd" id="1_hxa6k"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://ci5dgovydfjfc" path="res://sprites/levelbuilds/finalDoor.png" id="21_f2yhb"]
 [ext_resource type="Texture2D" uid="uid://bbgytacsan37" path="res://sprites/levelbuilds/button.png" id="21_u34vx"]
 [ext_resource type="Script" path="res://scenes/area_2d_2.gd" id="22_ii1nk"]
+[ext_resource type="PackedScene" uid="uid://0qjc7qfiudkd" path="res://scenes/soul_bar.tscn" id="23_o1e3p"]
 [ext_resource type="Texture2D" uid="uid://b3717hmgxglad" path="res://sprites/levelbuilds/lever.png" id="24_5itxw"]
 [ext_resource type="Script" path="res://scenes/door2TESTLEVEL.gd" id="24_x53xa"]
 [ext_resource type="Texture2D" uid="uid://betw0cub8f53w" path="res://sprites/levelbuilds/key.png" id="25_25whj"]
@@ -517,6 +518,8 @@ script = ExtResource("16_t852s")
 [node name="healthbar" parent="CanvasLayer" instance=ExtResource("19_l7qlm")]
 
 [node name="dashBar" parent="CanvasLayer" instance=ExtResource("20_37be0")]
+
+[node name="soul_bar" parent="CanvasLayer" instance=ExtResource("23_o1e3p")]
 
 [node name="button" type="Sprite2D" parent="."]
 position = Vector2(804.5, 12.5)
