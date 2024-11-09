@@ -10,8 +10,9 @@ const CIRCLE_RADIUS = 125  # Adjust the radius for the movement constraint
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var soul_bar: TextureProgressBar # Variable to store soul bar reference (global group is called soul_bars)
-var soul_mode_cooldown = 3.0  # Cooldown duration in seconds
-
+var cooldown_times: Array = [1.0, 3.0]  # Array to hold 1st and 2nd cooldown times
+var current_cooldown_index: int = 0  # Start with the 1-second cooldown
+var cooldown_time: float = 0.0  # Track the remaining cooldown time
 var is_playable: bool = false  # Variable to track if the character is playable
 var is_exiting: bool = false  # Variable to track if the character is exiting
 var waiting_for_idle: bool = false  # Variable to track if we should play "idle" after "enter"
@@ -24,9 +25,6 @@ var at_boundary: bool = false  # Track if the character is at the boundary
 
 # Variable to track the facing direction (-1 for left, 1 for right)
 var facing_direction: int = 1
-
-# Cooldown time tracker
-var cooldown_time: float = 0.0
 
 # Flag to track if it's the first press
 var is_first_press: bool = true
@@ -47,8 +45,8 @@ func _ready() -> void:
 	if soul_bars.size() > 0:
 		soul_bar = soul_bars[0] as TextureProgressBar
 		if soul_bar:
-			soul_bar.max_value = soul_mode_cooldown
-			soul_bar.value = soul_mode_cooldown
+			soul_bar.max_value = cooldown_times[current_cooldown_index]  # Start with the 1-second cooldown
+			soul_bar.value = cooldown_times[current_cooldown_index]
 
 func _toggle_control() -> void:
 	# Handle first press differently (no cooldown for first press)
@@ -62,7 +60,10 @@ func _toggle_control() -> void:
 	# Check if cooldown is active before allowing to press the button again
 	if cooldown_time <= 0:
 		_handle_control_toggle()  # Handle the control toggle (cooldown has finished)
-		cooldown_time = soul_mode_cooldown  # Start cooldown
+		
+		# Switch cooldown between 1 second and 3 seconds after each press
+		current_cooldown_index = (current_cooldown_index + 1) % 2  # Toggle between 0 and 1
+		cooldown_time = cooldown_times[current_cooldown_index]  # Set the new cooldown time
 
 		# Play sound after cooldown is finished
 		audio_stream_player_2d.play()
@@ -108,6 +109,7 @@ func _process(delta: float) -> void:
 		is_exiting = false
 
 func _physics_process(delta: float) -> void:
+	# Ensure no movement when the character is not playable
 	if not is_playable:
 		return  # Do not allow movement if the character is not playable
 
