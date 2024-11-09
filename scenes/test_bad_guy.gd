@@ -41,7 +41,7 @@ var is_on_ground: bool = false  # Check if the enemy is on the ground
 # Cooldown timers for mouse damage
 var left_mouse_cooldown: float = 0.3  # 0.5 seconds for left mouse button
 var left_mouse_timer: float = 0.0  # Timer to track left mouse cooldown
-var right_mouse_cooldown: float = 0.5  # 1 second for right mouse button
+var right_mouse_cooldown: float = 0.6  # 1 second for right mouse button
 var right_mouse_timer: float = 0.0  # Timer to track right mouse cooldown
 
 # Called when the node enters the scene tree for the first time

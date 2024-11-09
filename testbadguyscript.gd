@@ -20,7 +20,7 @@ var is_visible_after_death: bool = false  # Flag to track visibility state
 # Cooldown timers for mouse damage
 var left_mouse_cooldown: float = 0.3  # 0.5 seconds for left mouse button
 var left_mouse_timer: float = 0.0  # Timer to track left mouse cooldown
-var right_mouse_cooldown: float = 0.5  # 1 second for right mouse button
+var right_mouse_cooldown: float = 0.6  # 1 second for right mouse button
 var right_mouse_timer: float = 0.0  # Timer to track right mouse cooldown
 
 # Method to check if Soulmode is activated or deactivated
