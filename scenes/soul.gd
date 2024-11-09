@@ -42,6 +42,14 @@ func _ready() -> void:
 	# Simulate pressing Q at the start to make the character playable
 	_toggle_control()
 
+	# Retrieve the soul bar node
+	var soul_bars = get_tree().get_nodes_in_group("soul_bars")
+	if soul_bars.size() > 0:
+		soul_bar = soul_bars[0] as TextureProgressBar
+		if soul_bar:
+			soul_bar.max_value = soul_mode_cooldown
+			soul_bar.value = soul_mode_cooldown
+
 func _toggle_control() -> void:
 	# Handle first press differently (no cooldown for first press)
 	if is_first_press:
@@ -83,6 +91,10 @@ func _process(delta: float) -> void:
 	# Decrease cooldown time if it's greater than 0
 	if cooldown_time > 0:
 		cooldown_time -= delta  # Decrease cooldown over time
+
+		# Update the soul bar value based on the remaining cooldown time
+		if soul_bar:
+			soul_bar.value = cooldown_time
 
 	# Check for control toggle input
 	if Input.is_action_just_pressed("ui_toggle_control"):  # Custom action for Q
