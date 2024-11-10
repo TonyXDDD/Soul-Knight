@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dt58kkfy4x3gb"]
+[gd_scene load_steps=47 format=3 uid="uid://dt58kkfy4x3gb"]
 
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_rfq76"]
 [ext_resource type="Texture2D" uid="uid://b78kgih48n3q8" path="res://sprites/background4b.png" id="2_5mmy4"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bkdcwgdmeq7kr" path="res://scenes/dash_bar.tscn" id="19_wl2ee"]
 [ext_resource type="PackedScene" uid="uid://bb7yxllly171k" path="res://scenes/healheart.tscn" id="23_npj3d"]
 [ext_resource type="PackedScene" uid="uid://b1jds24scxc18" path="res://scenes/big_skeleton.tscn" id="24_l168i"]
+[ext_resource type="PackedScene" uid="uid://rpeyca72q0as" path="res://scenes/green_goblin.tscn" id="25_y2mch"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5nwj"]
 texture = ExtResource("2_5mmy4")
@@ -1237,6 +1238,9 @@ position = Vector2(-304, -17)
 
 [node name="big_skeleton" parent="." instance=ExtResource("24_l168i")]
 position = Vector2(-159, -12)
+
+[node name="green_goblin" parent="." instance=ExtResource("25_y2mch")]
+position = Vector2(50, -52)
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
