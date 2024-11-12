@@ -1,0 +1,77 @@
+[gd_scene load_steps=19 format=3 uid="uid://djj25qe171bf5"]
+
+[ext_resource type="Texture2D" uid="uid://0dcm1fxrouba" path="res://sprites/levelbuilds/SET3/_PNG/SET3_background1.png" id="1_3jyma"]
+[ext_resource type="Texture2D" uid="uid://bm3es16wot1lf" path="res://sprites/levelbuilds/SET3/_PNG/SET3_background2.png" id="2_sbxev"]
+[ext_resource type="Texture2D" uid="uid://d5sjdjkuxync" path="res://sprites/levelbuilds/SET3/_PNG/SET3_background3.png" id="3_2dxx5"]
+[ext_resource type="Texture2D" uid="uid://8dcnxeehlibv" path="res://sprites/levelbuilds/SET3/_PNG/SET3_background4.png" id="4_oc31g"]
+[ext_resource type="Texture2D" uid="uid://bjxn4ylkqvdpp" path="res://sprites/levelbuilds/SET3/_PNG/SET3_background.png" id="5_6q1e5"]
+[ext_resource type="Texture2D" uid="uid://dnga5xb7lbuy8" path="res://sprites/levelbuilds/SET3/_PNG/SET3_Mainlev_build.png" id="6_3ftv4"]
+[ext_resource type="Texture2D" uid="uid://2y3v82spp8vg" path="res://sprites/levelbuilds/SET3/_PNG/SET3_Main_bckgrdlev_build.png" id="7_38847"]
+[ext_resource type="PackedScene" uid="uid://cop7c1ogtmvfp" path="res://scenes/player.tscn" id="8_jjj0f"]
+[ext_resource type="PackedScene" uid="uid://bt0hniy5va30a" path="res://scenes/soul.tscn" id="9_0jgjn"]
+[ext_resource type="PackedScene" uid="uid://bkh3lt8ovxxto" path="res://scenes/camera_knight.tscn" id="10_lmqri"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s303q"]
+texture = ExtResource("1_3jyma")
+0:0/size_in_atlas = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7lmkt"]
+texture = ExtResource("2_sbxev")
+0:0/size_in_atlas = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0poen"]
+texture = ExtResource("3_2dxx5")
+0:0/size_in_atlas = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h6pvb"]
+texture = ExtResource("4_oc31g")
+0:0/size_in_atlas = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ri6p"]
+texture = ExtResource("5_6q1e5")
+0:0/size_in_atlas = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uf4le"]
+texture = ExtResource("6_3ftv4")
+33:9/size_in_atlas = Vector2i(10, 1)
+33:9/0 = 0
+33:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-80, -8, 80, -8, 76, 0, -76, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yjpx"]
+texture = ExtResource("7_38847")
+
+[sub_resource type="TileSet" id="TileSet_hg8vk"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_s303q")
+sources/1 = SubResource("TileSetAtlasSource_7lmkt")
+sources/2 = SubResource("TileSetAtlasSource_0poen")
+sources/3 = SubResource("TileSetAtlasSource_h6pvb")
+sources/4 = SubResource("TileSetAtlasSource_2ri6p")
+sources/5 = SubResource("TileSetAtlasSource_uf4le")
+sources/6 = SubResource("TileSetAtlasSource_3yjpx")
+
+[node name="REAL_level_1" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_hg8vk")
+format = 2
+layer_0/name = "Layer3"
+layer_0/tile_data = PackedInt32Array(-1, 0, 0)
+layer_1/name = "Layer2"
+layer_1/tile_data = PackedInt32Array(-1, 1, 0)
+layer_2/name = "Layer1"
+layer_2/tile_data = PackedInt32Array(-1, 2, 0)
+layer_3/name = "mainLayer"
+layer_3/tile_data = PackedInt32Array(196607, 2162693, 9)
+layer_4/name = "covr"
+
+[node name="Player" parent="." instance=ExtResource("8_jjj0f")]
+
+[node name="Soul" parent="Player" instance=ExtResource("9_0jgjn")]
+
+[node name="cameraKnight" parent="Player" instance=ExtResource("10_lmqri")]
