@@ -7,7 +7,7 @@ extends Area2D
 
 
 
-var next_level_scene = "res://scenes/game.tscn"
+var next_level_scene = "res://scenes/real_level_1.tscn"
 
 func _ready():
 	# Connect the body_entered signal to the function

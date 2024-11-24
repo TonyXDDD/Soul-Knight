@@ -550,7 +550,6 @@ shape = SubResource("RectangleShape2D_ykfjm")
 position = Vector2(804.75, 89.25)
 scale = Vector2(1.72222, 1.70513)
 sprite_frames = SubResource("SpriteFrames_jcqfa")
-animation = &"notdef"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TESTDOOR"]
 
