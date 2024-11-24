@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://djj25qe171bf5"]
+[gd_scene load_steps=65 format=3 uid="uid://djj25qe171bf5"]
 
 [ext_resource type="Texture2D" uid="uid://0dcm1fxrouba" path="res://sprites/levelbuilds/SET3/_PNG/SET3_background1.png" id="1_3jyma"]
 [ext_resource type="Script" path="res://scenes/real_level_1.gd" id="1_xjw7d"]
@@ -38,6 +38,8 @@
 [ext_resource type="PackedScene" uid="uid://bkdcwgdmeq7kr" path="res://scenes/dash_bar.tscn" id="35_0ym36"]
 [ext_resource type="PackedScene" uid="uid://cvg4w2eww1hxp" path="res://scenes/healthbar.tscn" id="36_ivo33"]
 [ext_resource type="PackedScene" uid="uid://0qjc7qfiudkd" path="res://scenes/soul_bar.tscn" id="37_a8g57"]
+[ext_resource type="PackedScene" uid="uid://bb7yxllly171k" path="res://scenes/healheart.tscn" id="39_iojd2"]
+[ext_resource type="Script" path="res://scenes/trans.gd" id="40_6rx1c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s303q"]
 texture = ExtResource("1_3jyma")
@@ -362,6 +364,9 @@ size = Vector2(26.25, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_014cv"]
 size = Vector2(28, 83.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia7t1"]
+size = Vector2(26.75, 34.75)
+
 [node name="REAL_level_1" type="Node2D"]
 script = ExtResource("1_xjw7d")
 
@@ -441,7 +446,6 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleDoor1/StaticBody2D"]
 position = Vector2(0, 7.62939e-06)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sk21a")
 
 [node name="Area2DPuzzleD1" type="Area2D" parent="."]
@@ -461,7 +465,6 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleDoor2/StaticBody2D"]
 position = Vector2(0, 3.43323e-05)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sk21a")
 
 [node name="Area2DPuzzleD2" type="Area2D" parent="."]
@@ -481,7 +484,6 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleDoor3/StaticBody2D"]
 position = Vector2(0, -0.590875)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sk21a")
 
 [node name="Area2DPuzzleD3" type="Area2D" parent="."]
@@ -501,7 +503,6 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleDoor4/StaticBody2D"]
 position = Vector2(4.76837e-07, -0.590876)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sk21a")
 
 [node name="Area2DPuzzleD4" type="Area2D" parent="."]
@@ -535,7 +536,6 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleDoor5/StaticBody2D"]
 position = Vector2(0.000152588, 3.35574e-05)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sk21a")
 
 [node name="Area2DPuzzleD5" type="Area2D" parent="."]
@@ -562,7 +562,6 @@ animation = &"notdef"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PuzzleDoor6/StaticBody2D"]
 position = Vector2(4.05312e-06, 3.36766e-05)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sk21a")
 
 [node name="Area2DPuzzleD6" type="Area2D" parent="."]
@@ -670,6 +669,120 @@ script = ExtResource("33_2xee4")
 [node name="healthbar" parent="CanvasLayer" instance=ExtResource("36_ivo33")]
 
 [node name="soul_bar" parent="CanvasLayer" instance=ExtResource("37_a8g57")]
+
+[node name="Hearts" type="Node" parent="."]
+
+[node name="healheart" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1008, 103)
+
+[node name="healheart2" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1217, 194)
+
+[node name="healheart4" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1254, 455)
+
+[node name="healheart5" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1021, 495)
+
+[node name="healheart6" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(626, 488)
+
+[node name="healheart7" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(737, 699)
+
+[node name="healheart8" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1080, 910)
+
+[node name="healheart15" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1282, 1246)
+
+[node name="healheart18" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1327, 990)
+
+[node name="healheart17" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(975, 1263)
+
+[node name="healheart16" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(910, 1095)
+
+[node name="healheart19" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(524, 1108)
+
+[node name="healheart20" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(194, 1288)
+
+[node name="healheart21" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(137, 1050)
+
+[node name="healheart22" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(32, 827)
+
+[node name="healheart23" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(-196, 782)
+
+[node name="healheart24" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(-488, 932)
+
+[node name="healheart25" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(-539, 742)
+
+[node name="healheart26" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(-112, 567)
+
+[node name="healheart27" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(100, 695)
+
+[node name="healheart28" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(452, 628)
+
+[node name="healheart9" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1392, 700)
+
+[node name="healheart29" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1851, 617)
+
+[node name="healheart30" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(2136, 893)
+
+[node name="healheart11" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1600, 898)
+
+[node name="healheart12" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(2097, 1090)
+
+[node name="healheart14" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(2217, 1294)
+
+[node name="healheart13" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1965, 1241)
+
+[node name="healheart10" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(1864, 389)
+
+[node name="healheart3" parent="Hearts" instance=ExtResource("39_iojd2")]
+position = Vector2(807, 266)
+
+[node name="Transition2" parent="." instance=ExtResource("28_sk0r1")]
+offset_left = 2422.0
+offset_top = 774.0
+offset_right = 2422.0
+offset_bottom = 774.0
+
+[node name="trans" type="Area2D" parent="."]
+script = ExtResource("40_6rx1c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trans"]
+position = Vector2(2456, 808)
+shape = SubResource("RectangleShape2D_ia7t1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 2366.0
+offset_top = 866.0
+offset_right = 2626.0
+offset_bottom = 915.0
+theme_override_font_sizes/font_size = 11
+text = "!! YOU BEAT THE LEVEL CONGRATS !!
+            ! Thanks for Playing !"
 
 [connection signal="body_entered" from="Area2DPuzzleD1" to="Area2DPuzzleD1" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2DPuzzleD1" to="Area2DPuzzleD1" method="_on_body_exited"]
