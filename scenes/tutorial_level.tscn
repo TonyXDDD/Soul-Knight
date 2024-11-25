@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://detgrwi2njwun"]
+[gd_scene load_steps=71 format=3 uid="uid://detgrwi2njwun"]
 
 [ext_resource type="Texture2D" uid="uid://cmii75afand2n" path="res://sprites/levelbuilds/SET1/_PNG/SET1_background_obj.png" id="1_73sss"]
 [ext_resource type="Script" path="res://scenes/tutorial_level.gd" id="1_hxa6k"]
@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://cpie24oamx8jc" path="res://sprites/progBar/audio.mp3" id="37_q4yuf"]
 [ext_resource type="AudioStream" uid="uid://vtkmfn26rq5v" path="res://sprites/progBar/audio (1).mp3" id="38_46oqt"]
 [ext_resource type="AudioStream" uid="uid://drmg2w3kqfvq2" path="res://sprites/progBar/audio (2).mp3" id="39_wo0f6"]
+[ext_resource type="Script" path="res://scenes/deathg.gd" id="40_yqlir"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dsmyb"]
 texture = ExtResource("1_73sss")
@@ -299,6 +300,9 @@ size = Vector2(27, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iit6g"]
 size = Vector2(28, 40.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kscm"]
+size = Vector2(152, 37)
 
 [node name="Tutorial_level" type="Node2D"]
 script = ExtResource("1_hxa6k")
@@ -663,6 +667,13 @@ stream = ExtResource("38_46oqt")
 
 [node name="keySOUND" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("39_wo0f6")
+
+[node name="DEATHG" type="Area2D" parent="."]
+script = ExtResource("40_yqlir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DEATHG"]
+position = Vector2(320, 237.5)
+shape = SubResource("RectangleShape2D_7kscm")
 
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="Area2D2" method="_on_body_exited"]
