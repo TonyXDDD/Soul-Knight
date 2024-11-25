@@ -6,6 +6,7 @@ extends Area2D
 @onready var static_body_2d: StaticBody2D = $"../PuzzleDoor5/StaticBody2D"
 @onready var collision_shape_2d: CollisionShape2D = $"../PuzzleDoor5/StaticBody2D/CollisionShape2D"
 @onready var key: Sprite2D = $"../Sprite2D5"
+@onready var key_sound: AudioStreamPlayer2D = $"../keySOUND"
 
 
 var soul_in_areaKEY: bool = false
@@ -30,6 +31,7 @@ func _on_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if soul_in_areaKEY and Input.is_action_just_pressed("interact_soul"):
 		print("Soul interacts with the Area2DKEY AND PICK UP KEY!")
+		key_sound.play()
 		soul_has_pickedup_key = true
 		key.visible = false
 		

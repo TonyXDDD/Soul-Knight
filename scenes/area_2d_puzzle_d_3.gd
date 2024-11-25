@@ -4,6 +4,7 @@ extends Area2D
 @onready var PuzzleDoorD3: AnimatedSprite2D = $"../PuzzleDoor3"
 @onready var static_body_2d: StaticBody2D = $"../PuzzleDoor3/StaticBody2D"
 @onready var collision_shape_2d: CollisionShape2D = $"../PuzzleDoor3/StaticBody2D/CollisionShape2D"
+@onready var lever_sound: AudioStreamPlayer2D = $"../leverSOUND"
 
 var soul_in_area2: bool = false
 
@@ -22,6 +23,7 @@ func _on_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if soul_in_area2 and Input.is_action_just_pressed("interact_soul"):
 		print("Soul interacts with the Area2Ddoor2!")
+		lever_sound.play()
 		# Play the door animation
 		PuzzleDoorD3.play("notdef")
 		# Hide the static body and disable the collision shape
