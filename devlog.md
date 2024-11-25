@@ -1,3 +1,6 @@
+## 2024-11-12 - 4hr: new enemy type (Eye Ball Bat)
+* Item 1 - This enemy tpype is similar to the goblin, just as weak and can swing faster
+
 ## 2024-11-09 - 4hr: new enemy type (Goblin)
 * Item 1 - This enemy type is much weaker compared to the Skeleton and the Mushroom man
 * Item 2 - in turn for this weakness the goblin can hit faster and repeted swings
