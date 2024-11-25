@@ -1,3 +1,7 @@
+## 2024-11-25 - 1hr: Adding Sound effects to the Puzzle mechanics
+* Item 1 - After i asked a friend of mine to playtest my game I found that he was confused when interecting with the puzzle elements such as a lever or a button
+* Item 2 - in order to clear this confusion i added simple sound effects from minecraft into my game so the player will know that they indeed just interected with a button/lever
+
 ## 2024-11-24 - 12hr: Creating and implementing Level 1 (The Caverns)
 * Items 1 - Fully implemented Level-1 (The Caverns)
 * Items 2 - this level took my a while to implement becuase I was sick but it wasint to much of a challenning to make since I already had all of the sprites and mechanic implemented
