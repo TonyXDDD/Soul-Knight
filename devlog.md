@@ -1,3 +1,7 @@
+## 2024-11-09 - 4hr: new enemy type (Goblin)
+* Item 1 - This enemy type is much weaker compared to the Skeleton and the Mushroom man
+* Item 2 - in turn for this weakness the goblin can hit faster and repeted swings
+
 ## 2024-11-08 - 1hr: Controller Input
 * Item 1 - Added input for a basic xbox or playstation controller
 
