@@ -1,6 +1,6 @@
 ## 2024-10-20 - 8hr: Added hearts for the Soul to pick up and heal the Knight and new enemy type (SKELETON WARRIOR)
-*Item 1 - added healing items that the Soul can pick up the heal the Knight if hes in danger of dying because of low hp 
-*Item 2 - I added a new enemy type: the Skeleton Warrior, he is fast and does a ton of damage but gets stuck in place for 4.5 seconds after attacking, he holds up his shield so the player cant do much damage, but the key for this enemy is to attack while he is stuck in place hollding his shield to kill him
+* Item 1 - added healing items that the Soul can pick up the heal the Knight if hes in danger of dying because of low hp 
+* Item 2 - I added a new enemy type: the Skeleton Warrior, he is fast and does a ton of damage but gets stuck in place for 4.5 seconds after attacking, he holds up his shield so the player cant do much damage, but the key for this enemy is to attack while he is stuck in place hollding his shield to kill him
 
 ## 2024-10-19 - 5hr: Added fixes to damage range vs attack range for the enemy srripts and made UI for the player
 *Item 1 - i added two var that controll the range of where the player can be damaged from (enemy swing) and the attack range of an enemy
