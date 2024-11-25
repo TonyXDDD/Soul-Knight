@@ -1,3 +1,6 @@
+## 2024-11-08 - 1hr: Controller Input
+* Item 1 - Added input for a basic xbox or playstation controller
+
 ## 2024-10-22 - 4hr: Finished implementing the tutorial level
 * Item 1 - I completly finshed the tutorial level
 * Item 2 - added a movent section, puzzle solving section and a combat section so the player can learn the basics
