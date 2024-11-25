@@ -1,3 +1,7 @@
+## 2024-10-22 - 4hr: Finished implementing the tutorial level
+* Item 1 - I completly finshed the tutorial level
+* Item 2 - added a movent section, puzzle solving section and a combat section so the player can learn the basics
+  
 ## 2024-10-20 - 8hr: Added hearts for the Soul to pick up and heal the Knight and new enemy type (SKELETON WARRIOR)
 * Item 1 - added healing items that the Soul can pick up the heal the Knight if hes in danger of dying because of low hp 
 * Item 2 - I added a new enemy type: the Skeleton Warrior, he is fast and does a ton of damage but gets stuck in place for 4.5 seconds after attacking, he holds up his shield so the player cant do much damage, but the key for this enemy is to attack while he is stuck in place hollding his shield to kill him
