@@ -1,3 +1,8 @@
+## 2024-11-24 - 12hr: Creating and implementing Level 1 (The Caverns)
+*Items 1 - Fully implemented Level-1 (The Caverns)
+*Items 2 - this level took my a while to implement becuase I was sick but it wasint to much of a challenning to make since I already had all of the sprites and mechanic implemented
+*Item 3 - the only challenge I did struggle with was trying to make the level fun, I think I did i decent job but I never took into consideration how hard it is to make levels in games fun to play lol
+
 ## 2024-11-12 - 4hr: new enemy type (Eye Ball Bat)
 * Item 1 - This enemy tpype is similar to the goblin, just as weak and can swing faster
 
